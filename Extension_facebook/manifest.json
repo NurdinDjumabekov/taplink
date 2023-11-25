@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Time",
+  "description": "Time of your country",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "js": ["script.js"],
+      "css": ["style.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"]
+}
