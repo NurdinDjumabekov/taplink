@@ -5,8 +5,51 @@
   align-items: center;
   width: 100%;
   &__inner {
-    background: red;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    button {
+      position: relative;
+      overflow: hidden;
+      // background: rgb(241, 238, 238, 0.38);
+      // color: rgb(187, 92, 108);
+      background: #fff;
+      color: #f4439f;
+      padding: 22px 0;
+      font-weight: 500;
+      font-size: 22px;
+      width: 400px;
+      border-radius: 8px;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    button:hover {
+      background-color: rgb(215, 176, 183);
+      color: #fff;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%; /* Изменено на -100% для начального положения за пределами кнопки */
+      width: 35%; /* Уменьшен размер в 3 раза */
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.5) 80%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease-out, left 0.5s ease-out; /* Добавлено свойство для анимации left */
+    }
+
+    button:hover::before {
+      left: 100%; /* Изменено на 100% для конечного положения за пределами кнопки */
+      opacity: 1;
+    }
   }
 }

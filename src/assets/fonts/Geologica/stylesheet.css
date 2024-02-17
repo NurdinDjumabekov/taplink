@@ -1,0 +1,169 @@
+@font-face {
+    font-family: 'Geologica';
+    src: url('Geologica-SemiBold.eot');
+    src: url('Geologica-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('Geologica-SemiBold.woff2') format('woff2'),
+        url('Geologica-SemiBold.woff') format('woff'),
+        url('Geologica-SemiBold.ttf') format('truetype'),
+        url('Geologica-SemiBold.svg#Geologica-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica';
+    src: url('Geologica-Light.eot');
+    src: url('Geologica-Light.eot?#iefix') format('embedded-opentype'),
+        url('Geologica-Light.woff2') format('woff2'),
+        url('Geologica-Light.woff') format('woff'),
+        url('Geologica-Light.ttf') format('truetype'),
+        url('Geologica-Light.svg#Geologica-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Cursive';
+    src: url('GeologicaCursive-Bold.eot');
+    src: url('GeologicaCursive-Bold.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaCursive-Bold.woff2') format('woff2'),
+        url('GeologicaCursive-Bold.woff') format('woff'),
+        url('GeologicaCursive-Bold.ttf') format('truetype'),
+        url('GeologicaCursive-Bold.svg#GeologicaCursive-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Cursive';
+    src: url('GeologicaCursive-Regular.eot');
+    src: url('GeologicaCursive-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaCursive-Regular.woff2') format('woff2'),
+        url('GeologicaCursive-Regular.woff') format('woff'),
+        url('GeologicaCursive-Regular.ttf') format('truetype'),
+        url('GeologicaCursive-Regular.svg#GeologicaCursive-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica';
+    src: url('Geologica-Medium.eot');
+    src: url('Geologica-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Geologica-Medium.woff2') format('woff2'),
+        url('Geologica-Medium.woff') format('woff'),
+        url('Geologica-Medium.ttf') format('truetype'),
+        url('Geologica-Medium.svg#Geologica-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Cursive';
+    src: url('GeologicaCursive-Light.eot');
+    src: url('GeologicaCursive-Light.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaCursive-Light.woff2') format('woff2'),
+        url('GeologicaCursive-Light.woff') format('woff'),
+        url('GeologicaCursive-Light.ttf') format('truetype'),
+        url('GeologicaCursive-Light.svg#GeologicaCursive-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica';
+    src: url('Geologica-Regular.eot');
+    src: url('Geologica-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Geologica-Regular.woff2') format('woff2'),
+        url('Geologica-Regular.woff') format('woff'),
+        url('Geologica-Regular.ttf') format('truetype'),
+        url('Geologica-Regular.svg#Geologica-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Roman';
+    src: url('GeologicaRoman-SemiBold.eot');
+    src: url('GeologicaRoman-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaRoman-SemiBold.woff2') format('woff2'),
+        url('GeologicaRoman-SemiBold.woff') format('woff'),
+        url('GeologicaRoman-SemiBold.ttf') format('truetype'),
+        url('GeologicaRoman-SemiBold.svg#GeologicaRoman-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Roman';
+    src: url('GeologicaRoman-Medium.eot');
+    src: url('GeologicaRoman-Medium.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaRoman-Medium.woff2') format('woff2'),
+        url('GeologicaRoman-Medium.woff') format('woff'),
+        url('GeologicaRoman-Medium.ttf') format('truetype'),
+        url('GeologicaRoman-Medium.svg#GeologicaRoman-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Roman';
+    src: url('GeologicaRoman-Regular.eot');
+    src: url('GeologicaRoman-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaRoman-Regular.woff2') format('woff2'),
+        url('GeologicaRoman-Regular.woff') format('woff'),
+        url('GeologicaRoman-Regular.ttf') format('truetype'),
+        url('GeologicaRoman-Regular.svg#GeologicaRoman-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Roman';
+    src: url('GeologicaRoman-Light.eot');
+    src: url('GeologicaRoman-Light.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaRoman-Light.woff2') format('woff2'),
+        url('GeologicaRoman-Light.woff') format('woff'),
+        url('GeologicaRoman-Light.ttf') format('truetype'),
+        url('GeologicaRoman-Light.svg#GeologicaRoman-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Cursive';
+    src: url('GeologicaCursive-Medium.eot');
+    src: url('GeologicaCursive-Medium.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaCursive-Medium.woff2') format('woff2'),
+        url('GeologicaCursive-Medium.woff') format('woff'),
+        url('GeologicaCursive-Medium.ttf') format('truetype'),
+        url('GeologicaCursive-Medium.svg#GeologicaCursive-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geologica Cursive';
+    src: url('GeologicaCursive-SemiBold.eot');
+    src: url('GeologicaCursive-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('GeologicaCursive-SemiBold.woff2') format('woff2'),
+        url('GeologicaCursive-SemiBold.woff') format('woff'),
+        url('GeologicaCursive-SemiBold.ttf') format('truetype'),
+        url('GeologicaCursive-SemiBold.svg#GeologicaCursive-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+

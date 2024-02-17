@@ -16,9 +16,9 @@ const MainPage = () => {
       gyroControls: false,
       minHeight: 200.0,
       minWidth: 200.0,
-      highlightColor: 0xb04567,
-      midtoneColor: 0xcf1fd0,
-      lowlightColor: 0xcc2a97,
+      highlightColor: 0xbb5c7a,
+      midtoneColor: 0xc944ca,
+      lowlightColor: 0xb62286,
       baseColor: 0xffffff,
       blurFactor: 0.59,
       speed: 0.7,
@@ -33,6 +33,7 @@ const MainPage = () => {
           <button>Записаться</button>
           <button>Подарочные сертификаты</button>
           <button>Перенос или отмена записи</button>
+          <button>Подтвердить запись</button>
           <button>Обратная взять</button>
           <button>Информация о нас</button>
         </div>
@@ -52,3 +53,16 @@ export default MainPage;
 //   midtoneColor: 0xfd00ff,
 //   lowlightColor: 0xcc852a,
 //   baseColor: 0xefe5e5
+
+//  mouseControls: true,
+//   touchControls: true,
+//   gyroControls: false,
+//   minHeight: 200.00,
+//   minWidth: 200.00,
+//   highlightColor: 0xbb5c7a,
+//   midtoneColor: 0xc944ca,
+//   lowlightColor: 0xb62286,
+//   baseColor: 0xffffff,
+//   blurFactor: 0.59,
+//   speed: 0.70,
+//   zoom: 0.60
