@@ -18,9 +18,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   preloader: false,
   typesService: [
-    { codeid: 1, categ_name: 'Комплексы', bool: true },
-    { codeid: 2, categ_name: 'Зоны по отдельности', bool: false },
-    { codeid: 3, categ_name: 'Лазерная эпиляция', bool: false },
+    { codeid: 1, categ_name: 'Все услуги', bool: true },
+    { codeid: 2, categ_name: 'Комплексы', bool: false },
+    { codeid: 3, categ_name: 'Зоны по отдельности', bool: false },
+    { codeid: 4, categ_name: 'Лазерная эпиляция', bool: false },
   ],
 };
 

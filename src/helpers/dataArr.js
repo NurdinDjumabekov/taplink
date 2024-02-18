@@ -66,6 +66,7 @@ export const listAdres = [
   //   listPoint: [{ id: 1, geometry: [42.8746, 74.6] }],
   // },
 ];
+
 export const listSpecialist = [
   {
     id: 1,
@@ -202,17 +203,66 @@ export const listService = [
   },
   {
     codeid: 2,
-    logo: 'https://i.pinimg.com/736x/2c/86/95/2c869539df5e67ed046105b10b0dff25.jpg',
+    logo: 'https://static.baza.farpost.ru/v/1663231068923_bulletin',
     sum: '539сом',
     title: 'Руки до локтя шугаринг',
     descr: 'Руки полностью шугаринг, Руки полностью шугаринг',
   },
   {
-    codeid: 2,
+    codeid: 3,
+    logo: 'https://media.istockphoto.com/id/1208819242/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2%D0%BE%D0%BB%D0%BE%D1%81-%D1%83-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD-%D0%BA%D0%BE%D0%BD%D1%86%D0%B5%D0%BF%D1%86%D0%B8%D1%8F-%D0%BB%D0%B0%D0%B7%D0%B5%D1%80%D0%BD%D0%BE%D0%B9-%D1%8D%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D0%B8-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F.jpg?s=612x612&w=0&k=20&c=siLpGJhu8AUmiii1m4MnWzDkUGZciu2zLfr1i3itFFA=',
+    sum: '539сом',
+    title: 'Руки до локтя шугаринг',
+    descr:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptates autem rerum consequatur repellendus sequi, obcaecati ad eveniet tempore, quas, assumenda perspiciatis! Nulla itaque sequi alias placeat eius reiciendis quia necessitatibus praesentium earum velit nostrum numquam illo delectus consequatur hic, animi, dolores doloribus voluptatibus esse quisquam sit architecto amet! Debitis.',
+  },
+  {
+    codeid: 4,
     logo: 'https://i.pinimg.com/736x/2c/86/95/2c869539df5e67ed046105b10b0dff25.jpg',
+    sum: '799сом',
+    title: 'Бикини глубокое шугаринг',
+    descr: 'Руки полностью шугаринг, Руки полностью шугаринг',
+  },
+  {
+    codeid: 5,
+    logo: 'https://static.baza.farpost.ru/v/1663231068923_bulletin',
+    sum: '539сом',
+    title: 'Руки до локтя шугаринг',
+    descr: 'Руки полностью шугаринг, Руки полностью шугаринг',
+  },
+  {
+    codeid: 6,
+    logo: 'https://media.istockphoto.com/id/1208819242/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2%D0%BE%D0%BB%D0%BE%D1%81-%D1%83-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD-%D0%BA%D0%BE%D0%BD%D1%86%D0%B5%D0%BF%D1%86%D0%B8%D1%8F-%D0%BB%D0%B0%D0%B7%D0%B5%D1%80%D0%BD%D0%BE%D0%B9-%D1%8D%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D0%B8-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F.jpg?s=612x612&w=0&k=20&c=siLpGJhu8AUmiii1m4MnWzDkUGZciu2zLfr1i3itFFA=',
     sum: '539сом',
     title: 'Руки до локтя шугаринг',
     descr:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptates autem rerum consequatur repellendus sequi, obcaecati ad eveniet tempore, quas, assumenda perspiciatis! Nulla itaque sequi alias placeat eius reiciendis quia necessitatibus praesentium earum velit nostrum numquam illo delectus consequatur hic, animi, dolores doloribus voluptatibus esse quisquam sit architecto amet! Debitis.',
   },
 ];
+
+export const listComments = {
+  codeid: 1,
+  name: 'Эмилбеков Айжан',
+  logo: 'https://masterpiecer-images.s3.yandex.net/5fc98bf5ad510b6:upscaled',
+  rating: 5,
+  schedule: ['ВТ', 'СР', 'ЧТ', 'Пт'],
+  countSchel: 15,
+  descr:
+    'Приятная девушка. Быстро, чисто и аккуратно все сделала! Приятная девушка. Быстро, чисто и аккуратно все сделала! Приятная девушка. Быстро, чисто и аккуратно все сделала!',
+  arrComm: [
+    {
+      id: 1,
+      name: 'Амираева Зулкумар',
+      date: '23.02.2024',
+      description:
+        'В легкие руки попала )) спасибо большое вам,очень быстро работу выполнила',
+    },
+    {
+      id: 2,
+      name: 'Османова Бегимай',
+      date: '23.02.2024',
+      description:
+        'В легкие руки попала )) спасибо большое вам,очень быстро работу выполнила',
+    },
+  ],
+};

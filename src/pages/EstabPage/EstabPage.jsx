@@ -29,7 +29,7 @@ const EstabPage = () => {
     });
     dispatch(changeListBtns(newData));
   };
-
+  
   return (
     <>
       <div className="establishment">

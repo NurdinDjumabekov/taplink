@@ -10,7 +10,8 @@ import ChoiceDate from '../pages/ChoiceDate/ChoiceDate';
 import ChoiceService from '../pages/ChoiceService/ChoiceService';
 import EstabPage from '../pages/EstabPage/EstabPage';
 import Alerts from '../components/Alerts/Alerts';
-import Basket from '../components/Basket/Basket';
+import BasketPage from '../pages/BasketPage/BasketPage';
+import CommentsPage from '../pages/CommentsPage/CommentsPage';
 // import Alerts from '../components/Alerts/Alerts';
 
 const MainRoutes = () => {
@@ -25,7 +26,8 @@ const MainRoutes = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/zap" element={<LookAction />} />
           <Route path="/det/:id" element={<EstabPage />} />
-          <Route path="/basket" element={<Basket />} />
+          <Route path="/com" element={<CommentsPage />} />
+          <Route path="/basket" element={<BasketPage />} />
         </Route>
       </Routes>
       {/* <MoreInfo /> */}

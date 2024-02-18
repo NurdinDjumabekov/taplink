@@ -6,10 +6,12 @@ import { renderStars } from '../../helpers/renderStars';
 import DateLook from '../../components/DateLook/DateLook';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeIdForDate } from '../../store/reducers/stateSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ChoiceSpecialist = () => {
   const [lookDate, setLookdate] = React.useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const clickDate = (id) => {
     dispatch(changeIdForDate(id));
@@ -18,6 +20,7 @@ const ChoiceSpecialist = () => {
 
   const clickComents = (id) => {
     dispatch(changeIdForDate(id));
+    navigate('/com');
   };
 
   return (
