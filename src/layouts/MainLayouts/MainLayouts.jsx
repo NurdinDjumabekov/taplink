@@ -2,10 +2,11 @@ import React from 'react';
 import './MainLayouts.scss';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import CallBtns from '../components/CallBtns/CallBtns';
 import CLOUDS from 'vanta/src/vanta.fog';
+import CallBtns from '../../components/CallBtns/CallBtns';
+import Basket from '../../components/Basket/Basket';
 
-function MainLayouts() {
+const MainLayouts = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -54,9 +55,10 @@ function MainLayouts() {
       <div>
         <Outlet />
         <CallBtns />
+        <Basket />
       </div>
     </div>
   );
-}
+};
 
 export default MainLayouts;

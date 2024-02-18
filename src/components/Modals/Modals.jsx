@@ -1,5 +1,5 @@
 import './Modals.scss';
-import krest from '../../asstes/icons/krestik.svg';
+import krest from '../../assets/icons/krestik.svg';
 import { useEffect } from 'react';
 
 const Modals = (props) => {
@@ -19,7 +19,7 @@ const Modals = (props) => {
       document.body.style.overflow = 'visible';
     };
   }, [props.openModal]);
-  
+
   return (
     <>
       {props.openModal && (
@@ -29,7 +29,6 @@ const Modals = (props) => {
             {props.children}
             <button className="krest" onClick={closeModal}>
               <img src={krest} alt="x" />
-              
             </button>
           </div>
         </div>

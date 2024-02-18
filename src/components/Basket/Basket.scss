@@ -1,0 +1,21 @@
+.basket {
+  position: fixed;
+  z-index: 99;
+  right: 180px;
+  bottom: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  button {
+    width: 75px;
+    height: 75px;
+    padding: 10px;
+    border-radius: 50%;
+    background: #f4439f;
+    border: 2px solid #000;
+    img {
+      border-radius: 50%;
+    }
+  }
+}

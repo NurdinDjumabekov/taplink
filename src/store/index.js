@@ -20,12 +20,13 @@ import inputSlice from './reducers/inputSlice';
 import requestSlice from './reducers/requestSlice';
 import saveDataSlice from './reducers/saveDataSlice';
 import selectsSlice from './reducers/selectsSlice';
-
+import stateSlice from './reducers/stateSlice';
 const reducer = combineReducers({
   inputSlice,
   requestSlice,
   saveDataSlice,
   selectsSlice,
+  stateSlice,
 });
 
 const persistConfig = {

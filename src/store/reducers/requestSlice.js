@@ -17,6 +17,11 @@ import { createSlice } from '@reduxjs/toolkit';
 //// delete
 const initialState = {
   preloader: false,
+  typesService: [
+    { codeid: 1, categ_name: 'Комплексы', bool: true },
+    { codeid: 2, categ_name: 'Зоны по отдельности', bool: false },
+    { codeid: 3, categ_name: 'Лазерная эпиляция', bool: false },
+  ],
 };
 
 const requestSlice = createSlice({
@@ -26,8 +31,11 @@ const requestSlice = createSlice({
     changePreloader: (state, action) => {
       state.preloader = action.payload;
     },
+    changeTypesService: (state, action) => {
+      state.typesService = action.payload;
+    },
   },
 });
-export const { changePreloader } = requestSlice.actions;
+export const { changePreloader, changeTypesService } = requestSlice.actions;
 
 export default requestSlice.reducer;

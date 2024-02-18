@@ -1,0 +1,57 @@
+.dateLook {
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 0 20px 0;
+    gap: 20px;
+  }
+  &__every {
+    background: green;
+    width: 100%;
+    // width: 440px;
+    background-color: rgba(177, 76, 167, 0.34);
+    padding: 0px 0px 10px;
+    border-radius: 8px;
+    h5 {
+      padding: 10px;
+      background: #51a8cd;
+      color: #fff;
+      font-size: 25px;
+      border-radius: 8px 8px 0 0;
+      text-align: center;
+    }
+    &__times {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 10px;
+      button {
+        background: rgb(255, 255, 255);
+        padding: 15px 20px;
+        font-size: 22px;
+        border-radius: 8px;
+        font-weight: 400;
+        &:hover {
+          transform: scale(1.03);
+          transition: 0.5s;
+          background: #e8e3e3;
+          border: 1px solid #000;
+        }
+      }
+    }
+  }
+  .choiceService {
+    background: #ad70c3d4;
+    color: #fff;
+    display: block;
+    margin: 20px auto;
+    padding: 20px 25px;
+    font-family: 'Geologica', sans-serif;
+    line-height: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+}
