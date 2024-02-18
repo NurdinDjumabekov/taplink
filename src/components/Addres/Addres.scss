@@ -1,0 +1,59 @@
+.addres {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    .map {
+      background: #e6dbe1e8;
+      width: 47%;
+      padding: 10px;
+      border-radius: 8px;
+      &__inner {
+        height: 350px;
+        width: 100%;
+      }
+      &__contects {
+        background: #fff;
+        padding: 15px 10px 5px 10px;
+        border-radius: 0 0 8px 8px;
+        position: relative;
+        h3 {
+          font-size: 26px;
+          font-weight: 700;
+          font-family: 'Geologica', sans-serif;
+          line-height: 25px;
+          margin: 0 0 8px 0;
+          color: #222;
+        }
+        p {
+          font-size: 20px;
+          font-weight: 600;
+          font-family: 'Geologica', sans-serif;
+          line-height: 28px;
+          color: #222;
+        }
+        span {
+          font-size: 18px;
+          font-weight: 500;
+          font-family: 'Geologica', sans-serif;
+          line-height: 25px;
+          color: #5e6e82;
+        }
+        button {
+          padding: 10px 25px;
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          background: #a7cce4;
+          color: #fff;
+          border-radius: 5px;
+          font-size: 20px;
+          font-weight: 500;
+          font-family: 'Geologica', sans-serif;
+        }
+      }
+    }
+  }
+}

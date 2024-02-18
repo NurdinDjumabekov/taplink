@@ -1,76 +1,52 @@
-export const selectArr = [
-  { codeid: 1, name: "Мужской" },
-  { codeid: 2, name: "Женский" },
-];
+export const listAdres = [
+  {
+    codeid: 1,
+    coordinates: { x: 42.8746, y: 74.5998 },
+    addres: 'Ж/м Кок-Жар, ул. Новая 22',
+    listPoint: [{ id: 1, geometry: [42.8746, 74.6] }],
+    schedule: '10:00 - 22:00',
+    contacts: ['0555555555', '050513132'],
+  },
+  {
+    codeid: 2,
+    coordinates: { x: 42.8746, y: 74.5998 },
+    addres: 'Ул. Жайылма, дом 19',
+    schedule: '10:00 - 22:00',
+    contacts: ['0700754454', '0502024964'],
+    listPoint: [
+      { id: 1, geometry: [42.8746, 74.6] },
+      { id: 2, geometry: [42.8776, 74.605] },
+      { id: 3, geometry: [42.8766, 74.625] },
+    ],
+  },
+  {
+    codeid: 3,
+    coordinates: { x: 42.8998, y: 74.7998 },
+    addres: 'Ул. Жайылма, дом 19',
+    schedule: '10:00 - 22:00',
+    contacts: ['0700754454', '0502024964'],
+    listPoint: [{ id: 1, geometry: [42.8998, 74.7998] }],
+  },
+  {
+    codeid: 4,
+    coordinates: { x: 42.8746, y: 74.5998 },
+    addres: 'Ул. Жайылма, дом 19',
+    schedule: '10:00 - 22:00',
+    contacts: ['0700754454', '0502024964'],
+    listPoint: [{ id: 1, geometry: [42.8746, 74.6] }],
+  },
+  // {
+  //   codeid: 5,
+  //   coordinates: { x: 42.8746, y: 74.5998 },
+  //   addres: 'Ул. Жайылма, дом 19',
 
-export const selectCountry = [
-  { codeid: 0, name: "Кыргызстан" },
-  { codeid: 1, name: "Казахстан" },
-  { codeid: 2, name: "Россия" },
-  { codeid: 3, name: "Узбекистан" },
-  { codeid: 4, name: "Кыргызстан" },
-  { codeid: 5, name: "Казахстан" },
-];
+  //   listPoint: [{ id: 1, geometry: [42.8746, 74.6] }],
+  // },
+  // {
+  //   codeid: 6,
+  //   coordinates: { x: 42.8746, y: 74.5998 },
+  //   addres: 'Ул. Жайылма, дом 19',
 
-export const selectRegion = [
-  { codeid: 0, name: "Новгородный" },
-  { codeid: 1, name: "Промежуточный" },
-];
-
-export const selectDistrict = [
-  { codeid: 0, name: "Араванский" },
-  { codeid: 1, name: "Конский" },
-  { codeid: 2, name: "Божественный" },
-  { codeid: 3, name: "Логичный" },
-  { codeid: 4, name: "Бодрый" },
-];
-
-export const selectAddresElement = [
-  { codeid: 0, name: "Станция" },
-  { codeid: 1, name: "Участок" },
-  { codeid: 2, name: "Улица" },
-  { codeid: 3, name: "Бульвар" },
-  { codeid: 4, name: "Площадь" },
-  { codeid: 5, name: "Канал" },
-  { codeid: 6, name: "Проспект" },
-  { codeid: 7, name: "Шоссе" },
-];
-
-export const typeOrganization = [
-  { codeid: 0, name: "ОсОО" },
-  { codeid: 1, name: "ОсДо" },
-];
-
-export const typeCompanyArr = [
-  { codeid: 0, name: "ЗАО" },
-  { codeid: 1, name: "АО" },
-  { codeid: 2, name: "ОАО" },
-];
-
-export const selectUserStatus = [
-  { codeid: 0, name: "Председатель правления" },
-  { codeid: 1, name: "Генеральный деректор" },
-  { codeid: 2, name: "Временный администратор" },
-  { codeid: 3, name: "Директор" },
-  { codeid: 4, name: "Президент" },
-];
-
-export const typeValuta = [
-  { codeid: 0, name: "Сом" },
-  { codeid: 1, name: "Рубль" },
-  { codeid: 2, name: "Тенге" },
-  { codeid: 3, name: "Тенге" },
-  { codeid: 4, name: "Тенге" },
-  { codeid: 5, name: "Тенге" },
-];
-
-export const typeCountSum = [
-  { codeid: 1, name: "спор материального характера" },
-  { codeid: 2, name: "спор неимущественного характера" },
-];
-
-export const typeSecretar = [
-  { codeid: 0, name: "Секретарь дела выбран" },
-  { codeid: 1, name: "Джумабеков Нурдин" },
-  { codeid: 2, name: "Садирдинов Руслан" },
+  //   listPoint: [{ id: 1, geometry: [42.8746, 74.6] }],
+  // },
 ];

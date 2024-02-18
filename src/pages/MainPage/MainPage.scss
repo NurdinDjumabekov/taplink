@@ -20,7 +20,7 @@
       padding: 22px 0;
       font-weight: 500;
       font-size: 22px;
-      width: 400px;
+      width: 600px;
       border-radius: 8px;
       transition: background-color 0.5s, color 0.5s;
     }
@@ -28,6 +28,8 @@
     button:hover {
       background-color: rgb(215, 176, 183);
       color: #fff;
+      scale: 1.02;
+      transition: 0.5s;
     }
 
     button::before {

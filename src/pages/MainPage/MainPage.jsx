@@ -2,40 +2,53 @@ import React from 'react';
 import './MainPage.scss';
 import { ENV } from '../../helpers/ENV';
 import { useNavigate } from 'react-router-dom';
-import CLOUDS from 'vanta/src/vanta.fog';
 
 const MainPage = () => {
   // console.log(ENV());
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    CLOUDS({
-      el: '#vanta',
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      highlightColor: 0xbb5c7a,
-      midtoneColor: 0xc944ca,
-      lowlightColor: 0xb62286,
-      baseColor: 0xffffff,
-      blurFactor: 0.59,
-      speed: 0.7,
-      zoom: 0.6,
-    });
-  }, []);
+  const pageList = [
+    {
+      id: 1,
+      link: 'zap',
+      text: 'Записаться',
+    },
+    {
+      id: 2,
+      link: 'zap',
+      text: 'Подарочные сертификаты',
+    },
+    {
+      id: 3,
+      link: 'zap',
+      text: 'Перенос или отмена записи',
+    },
+    {
+      id: 4,
+      link: 'zap',
+      text: 'Подтвердить запись',
+    },
+    {
+      id: 5,
+      link: 'zap',
+      text: 'Обратная взять',
+    },
+    {
+      id: 6,
+      link: 'zap',
+      text: 'Информация о нас',
+    },
+  ];
 
   return (
-    <div className="mainPage" id="vanta">
+    <div className="mainPage">
       <div className="container">
         <div className="mainPage__inner">
-          <button>Записаться</button>
-          <button>Подарочные сертификаты</button>
-          <button>Перенос или отмена записи</button>
-          <button>Подтвердить запись</button>
-          <button>Обратная взять</button>
-          <button>Информация о нас</button>
+          {pageList?.map((page) => (
+            <button key={page?.id} onClick={() => navigate(page?.link)}>
+              {page?.text}
+            </button>
+          ))}
         </div>
       </div>
     </div>
