@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Modals from '../Modals/Modals';
-import { useDispatch, useSelector } from 'react-redux';
-import { listDate } from '../../helpers/dataArr';
-import './DateLook.scss';
-import { addBasketUser } from '../../store/reducers/saveDataSlice';
+import React, { useState } from "react";
+import Modals from "../Modals/Modals";
+import { useDispatch, useSelector } from "react-redux";
+import { listDate } from "../../helpers/dataArr";
+import "./DateLook.scss";
+import { addBasketUser } from "../../store/reducers/saveDataSlice";
 import {
   changeAlertText,
   changeListBtns,
   changeTypeLookSevices,
-} from '../../store/reducers/stateSlice';
-import { useNavigate } from 'react-router-dom';
+} from "../../store/reducers/stateSlice";
+import { useNavigate } from "react-router-dom";
 
 const DateLook = ({ lookDate, setLookdate }) => {
   const dispatch = useDispatch();
@@ -23,13 +23,13 @@ const DateLook = ({ lookDate, setLookdate }) => {
     if (+basketUser?.length === 3) {
       dispatch(
         changeAlertText({
-          text: 'Вы за раз можете выбрать только 3 окна!',
-          backColor: '#ab89bce0',
+          text: "Вы за раз можете выбрать только 3 окна!",
+          backColor: "#ab89bce0",
           state: true,
         })
       );
       //   setLookdate(false);
-      navigate('/basket');
+      navigate("/basket");
     } else {
       dispatch(
         addBasketUser({
@@ -45,8 +45,8 @@ const DateLook = ({ lookDate, setLookdate }) => {
     if (+basketUser?.length === 0) {
       dispatch(
         changeAlertText({
-          text: 'Выберите время для записи!',
-          backColor: '#ab89bce0',
+          text: "Выберите время для записи!",
+          backColor: "#ab89bce0",
           state: true,
         })
       );
@@ -55,9 +55,9 @@ const DateLook = ({ lookDate, setLookdate }) => {
       setLookdate(false);
       dispatch(
         changeListBtns([
-          { id: 1, title: 'Выбрать специалиста', bool: false },
-          { id: 2, title: 'Выбрать дату и время', bool: false },
-          { id: 3, title: 'Выбрать услуги', bool: true },
+          { id: 1, title: "Выбрать услуги", bool: true },
+          { id: 2, title: "Выбрать специалиста", bool: false },
+          { id: 3, title: "Выбрать дату и время", bool: false },
         ])
       );
     }

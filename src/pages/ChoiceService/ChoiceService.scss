@@ -32,6 +32,8 @@
       padding: 10px;
       border-radius: 8px;
       cursor: pointer;
+      // background: red;
+      position: relative;
       &:hover {
         transition: 0.5s;
         transform: scale(1.03);
@@ -49,6 +51,12 @@
       }
       &__texts {
         padding: 10px 0px;
+        > div {
+          display: flex;
+          // align-items: center;
+          justify-content: space-between;
+          padding: 10px 0px;
+        }
         h5 {
           margin: 5px 0 10px 0;
           font-size: 25px;
@@ -71,6 +79,22 @@
           -webkit-line-clamp: 5; /* Количество отображаемых строк текста */
           -webkit-box-orient: vertical;
         }
+      }
+      &__basket {
+        // position: absolute;
+        right: 40px;
+        bottom: 40px;
+        // border: 1px solid #000;
+        // border-radius: 50%;
+        // width: 50px;
+        height: 40px;
+        width: 30%;
+        margin: 0 0 10px 0;
+        border-radius: 8px;
+        background: #edf2f9;
+        background: rgb(235, 203, 209);
+        box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
+        //  #edf2f9
       }
     }
   }

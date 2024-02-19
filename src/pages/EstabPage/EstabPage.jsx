@@ -1,15 +1,15 @@
-import React from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import './EstabPage.scss';
-import logo from '../../assets/icons/callMe.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import ChoiceSpecialist from '../ChoiceSpecialist/ChoiceSpecialist';
-import ChoiceDate from '../ChoiceDate/ChoiceDate';
-import ChoiceService from '../ChoiceService/ChoiceService';
+import React from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import "./EstabPage.scss";
+import logo from "../../assets/icons/callMe.svg";
+import { useDispatch, useSelector } from "react-redux";
+import ChoiceSpecialist from "../ChoiceSpecialist/ChoiceSpecialist";
+import ChoiceDate from "../ChoiceDate/ChoiceDate";
+import ChoiceService from "../ChoiceService/ChoiceService";
 import {
   changeListBtns,
   changeTypeLookSevices,
-} from '../../store/reducers/stateSlice';
+} from "../../store/reducers/stateSlice";
 
 const EstabPage = () => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const EstabPage = () => {
     });
     dispatch(changeListBtns(newData));
   };
-  
+
   return (
     <>
       <div className="establishment">
@@ -61,15 +61,15 @@ const EstabPage = () => {
                 <button
                   key={i.id}
                   onClick={() => clickBtn(i?.id)}
-                  className={i?.bool ? 'activeBtnChioce' : ''}
+                  className={i?.bool ? "activeBtnChioce" : ""}
                 >
                   {i?.title}
                 </button>
               ))}
             </div>
-            {typeLookSevices === 1 && <ChoiceSpecialist />}
-            {typeLookSevices === 2 && <ChoiceDate />}
-            {typeLookSevices === 3 && <ChoiceService />}
+            {typeLookSevices === 1 && <ChoiceService />}
+            {typeLookSevices === 2 && <ChoiceSpecialist />}
+            {typeLookSevices === 3 && <ChoiceDate />}
           </div>
         </div>
       </div>

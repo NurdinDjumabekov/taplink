@@ -1,9 +1,9 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { listComments } from '../../helpers/dataArr';
-import { renderStars } from '../../helpers/renderStars';
-import './CommentsPage.scss';
-import star from '../../assets/icons/star.svg';
+import React from "react";
+import { useParams } from "react-router-dom";
+import { listComments } from "../../helpers/dataArr";
+import { renderStars } from "../../helpers/renderStars";
+import "./CommentsPage.scss";
+import star from "../../assets/icons/star.svg";
 
 const CommentsPage = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const CommentsPage = () => {
                   {listComments?.schedule?.map((con, ind) => (
                     <span key={ind}>
                       {con}
-                      {ind !== listComments.schedule.length - 1 && ', '}
+                      {ind !== listComments.schedule.length - 1 && ", "}
                     </span>
                   ))}
                 </p>
@@ -38,7 +38,7 @@ const CommentsPage = () => {
             <p className="comDescr">{listComments?.descr}</p>
             <div className="commentsPage__inner">
               {listComments?.arrComm?.map((com) => (
-                <div className="everyCom">
+                <div key={com?.id} className="everyCom">
                   <div className="everyCom__inner">
                     <div className="imgText">
                       <p>{com?.name?.[0]}</p>
