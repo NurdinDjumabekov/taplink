@@ -10,9 +10,10 @@ const initialState = {
   },
   listBtns: [
     { id: 1, title: "Выбрать услуги", bool: true },
-    { id: 2, title: "Выбрать специалиста", bool: false },
+    { id: 2, title: "Выбрать специалиста и дату", bool: false },
     { id: 3, title: "Выбрать дату и время", bool: false },
   ],
+  summOrders: 0,
 };
 
 const stateSlice = createSlice({
@@ -31,6 +32,9 @@ const stateSlice = createSlice({
     changeListBtns: (state, action) => {
       state.listBtns = action.payload;
     },
+    changeSummOrders: (state, action) => {
+      state.summOrders = action.payload;
+    },
   },
 });
 
@@ -39,6 +43,7 @@ export const {
   changeIdForDate,
   changeAlertText,
   changeListBtns,
+  changeSummOrders,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

@@ -3,13 +3,14 @@ import Modals from "../Modals/Modals";
 import { useDispatch, useSelector } from "react-redux";
 import { listDate } from "../../helpers/dataArr";
 import "./DateLook.scss";
-import { addBasketUser } from "../../store/reducers/saveDataSlice";
+import { addBasketMaster } from "../../store/reducers/saveDataSlice";
 import {
   changeAlertText,
   changeListBtns,
   changeTypeLookSevices,
 } from "../../store/reducers/stateSlice";
 import { useNavigate } from "react-router-dom";
+import dateCard from "../../assets/image/dateBack.jpg";
 
 const DateLook = ({ lookDate, setLookdate }) => {
   const dispatch = useDispatch();
@@ -19,8 +20,8 @@ const DateLook = ({ lookDate, setLookdate }) => {
   //   console.log(idForDate, 'idForDate');
   //   console.log(basketUser?.length, 'basketUser');
 
-  const clickAddDate = (id, codeUser, codeid) => {
-    if (+basketUser?.length === 3) {
+  const clickAddDate = (obj) => {
+    if (+basketUser?.master?.length === 3) {
       dispatch(
         changeAlertText({
           text: "Вы за раз можете выбрать только 3 окна!",
@@ -29,20 +30,14 @@ const DateLook = ({ lookDate, setLookdate }) => {
         })
       );
       //   setLookdate(false);
-      navigate("/basket");
+      // navigate("/basket");
     } else {
-      dispatch(
-        addBasketUser({
-          id,
-          codeUser,
-          codeid,
-        })
-      );
+      dispatch(addBasketMaster(obj));
     }
   };
 
   const clickService = () => {
-    if (+basketUser?.length === 0) {
+    if (+basketUser?.master?.length === 0) {
       dispatch(
         changeAlertText({
           text: "Выберите время для записи!",
@@ -51,7 +46,7 @@ const DateLook = ({ lookDate, setLookdate }) => {
         })
       );
     } else {
-      dispatch(changeTypeLookSevices(3));
+      dispatch(changeTypeLookSevices(1));
       setLookdate(false);
       dispatch(
         changeListBtns([
@@ -63,10 +58,13 @@ const DateLook = ({ lookDate, setLookdate }) => {
     }
   };
 
+  console.log(listDate, "listDate");
+
   return (
     <div className="dateLook">
       <Modals openModal={lookDate} setOpenModal={() => setLookdate()}>
         <div className="container">
+          <h3>Свободные окна </h3>
           <div className="dateLook__inner">
             {listDate?.map((dat) => (
               <div key={dat?.codeid} className="dateLook__every">
@@ -75,8 +73,19 @@ const DateLook = ({ lookDate, setLookdate }) => {
                   {dat?.timeList?.map((i) => (
                     <button
                       key={i?.id}
+                      className={i?.check ? "" : ""}
                       onClick={() =>
-                        clickAddDate(i?.id, dat?.codeUser, dat?.codeid)
+                        clickAddDate({
+                          obj: i,
+                          codeid: dat?.codeid,
+                          date: dat?.date,
+                          codeUser: dat?.codeUser,
+                          codeUser: dat?.codeUser,
+                          nameUser: dat?.nameUser,
+                          rating: dat?.rating,
+                          countSchel: dat?.countSchel,
+                          logo: dat?.logo,
+                        })
                       }
                     >
                       {i?.time}
@@ -86,9 +95,14 @@ const DateLook = ({ lookDate, setLookdate }) => {
               </div>
             ))}
           </div>
-          <button className="choiceService" onClick={clickService}>
-            Выбрать услугу
-          </button>
+          <div className="dateLook__actions">
+            <button className="choiceService" onClick={clickService}>
+              Выбрать услугу
+            </button>
+            <button className="choiceService" onClick={clickService}>
+              Посмотреть корзину
+            </button>
+          </div>
         </div>
       </Modals>
     </div>

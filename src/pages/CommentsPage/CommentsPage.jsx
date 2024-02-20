@@ -8,6 +8,9 @@ import star from "../../assets/icons/star.svg";
 const CommentsPage = () => {
   const { id } = useParams();
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="commentsPage">
       <div className="establishment">

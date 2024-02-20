@@ -1,7 +1,7 @@
-import React from 'react';
-import './MainPage.scss';
-import { ENV } from '../../helpers/ENV';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./MainPage.scss";
+import { ENV } from "../../helpers/ENV";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   // console.log(ENV());
@@ -10,35 +10,39 @@ const MainPage = () => {
   const pageList = [
     {
       id: 1,
-      link: 'zap',
-      text: 'Записаться',
+      link: "zap",
+      text: "Записаться",
     },
     {
       id: 2,
-      link: 'zap',
-      text: 'Подарочные сертификаты',
+      link: "zap",
+      text: "Подарочные сертификаты",
     },
     {
       id: 3,
-      link: 'zap',
-      text: 'Перенос или отмена записи',
+      link: "zap",
+      text: "Перенос или отмена записи",
     },
     {
       id: 4,
-      link: 'zap',
-      text: 'Подтвердить запись',
+      link: "zap",
+      text: "Подтвердить запись",
     },
     {
       id: 5,
-      link: 'zap',
-      text: 'Обратная взять',
+      link: "zap",
+      text: "Обратная взять",
     },
     {
       id: 6,
-      link: 'zap',
-      text: 'Информация о нас',
+      link: "zap",
+      text: "Информация о нас",
     },
   ];
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="mainPage">

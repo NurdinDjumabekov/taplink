@@ -24,9 +24,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     // width: 400px;
-    background-color: rgb(237, 242, 249);
-    background: #fff;
-
+    background:linear-gradient(to right, #be84c9, rgb(255, 255, 255));
     opacity: 1;
     transition: background-color 0.5s, opacity 0.5s;
     border-radius: 8px;

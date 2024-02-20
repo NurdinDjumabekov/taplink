@@ -18,6 +18,17 @@ const MainRoutes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { basketUser } = useSelector((state) => state.saveDataSlice);
+  const { typeLookSevices, listBtns } = useSelector(
+    (state) => state.stateSlice
+  );
+  console.log(typeLookSevices, "typeLookSevices");
+  console.log(basketUser, "basketUser");
+  // console.log(listBtns, "listBtns");
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

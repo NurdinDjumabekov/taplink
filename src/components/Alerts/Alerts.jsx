@@ -1,8 +1,8 @@
-import React from 'react';
-import './Alerts.scss';
-import { Box, Modal } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeAlertText } from '../../store/reducers/stateSlice';
+import React from "react";
+import "./Alerts.scss";
+import { Box, Modal } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { changeAlertText } from "../../store/reducers/stateSlice";
 
 const Alerts = () => {
   const dispatch = useDispatch();
@@ -14,19 +14,19 @@ const Alerts = () => {
   const [timerId, setTimerId] = React.useState(null);
 
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 500,
     zIndex: 999,
     height: 230,
     bgcolor: alertText.backColor,
     boxShadow: 24,
-    borderRadius: '8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     p: 4,
   };
 
@@ -35,8 +35,8 @@ const Alerts = () => {
       const timer = setTimeout(() => {
         dispatch(
           changeAlertText({
-            text: '',
-            backColor: '',
+            text: "",
+            backColor: "",
             state: false,
           })
         );
@@ -55,13 +55,13 @@ const Alerts = () => {
   }, [alertText?.state]);
 
   const styleText = {
-    color: '#222',
-    fontFamily: 'Gilroy',
-    fontSize: '24px',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: 'normal',
-    textAlign: 'center',
+    color: "#222",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "24px",
+    fontStyle: "normal",
+    fontWeight: 700,
+    lineHeight: "normal",
+    textAlign: "center",
   };
 
   return (

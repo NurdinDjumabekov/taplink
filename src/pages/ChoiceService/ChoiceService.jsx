@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ChoiceService.scss";
 import { changeTypesService } from "../../store/reducers/requestSlice";
 import { listService } from "../../helpers/dataArr";
+import { addBasketService } from "../../store/reducers/saveDataSlice";
+import { changeAlertText } from "../../store/reducers/stateSlice";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
   const { typesService } = useSelector((state) => state.requestSlice);
+  const { basketUser } = useSelector((state) => state.saveDataSlice);
 
   const clickType = (codeid) => {
     const newData = typesService.map((button) => {
@@ -17,6 +20,44 @@ const ChoiceService = () => {
     });
     dispatch(changeTypesService(newData));
   };
+
+  const addBasket = (obj) => {
+    const isServiceInBasket = basketUser?.service?.some(
+      /// проверка есть ли id, если есть то не добавлять
+      (i) => i?.codeid === obj?.codeid
+    );
+
+    if (isServiceInBasket) {
+      dispatch(
+        changeAlertText({
+          text: "Такая услуга уже есть у вас в корзине",
+          backColor: "#c284e4",
+          state: true,
+        })
+      );
+    } else {
+      if (basketUser?.service?.length === 6) {
+        dispatch(
+          changeAlertText({
+            text: "Вы за раз можете выбрать не больше 6ти услуг",
+            backColor: "#c284e4",
+            state: true,
+          })
+        );
+      } else {
+        dispatch(
+          changeAlertText({
+            text: "Мы добавили эту услугу в корзину",
+            backColor: "#e484ba",
+            state: true,
+          })
+        );
+        dispatch(addBasketService(obj));
+      }
+    }
+  };
+
+  // console.log(typesService, "typesService");
 
   return (
     <div>
@@ -43,10 +84,12 @@ const ChoiceService = () => {
                   <h5>{i?.title}</h5>
                   <div>
                     <span>Цена: {i?.sum}</span>
-                    <button className="cards__basket">В корзину</button>
                   </div>
                   <p>{i?.descr}</p>
                 </div>
+                <button className="cards__basket" onClick={() => addBasket(i)}>
+                  В корзину
+                </button>
               </div>
             </>
           ))}

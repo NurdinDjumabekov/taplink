@@ -1,12 +1,12 @@
-import React from 'react';
-import { listSpecialist } from '../../helpers/dataArr';
-import './ChoiceSpecialist.scss';
-import star from '../../assets/icons/star.svg';
-import { renderStars } from '../../helpers/renderStars';
-import DateLook from '../../components/DateLook/DateLook';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeIdForDate } from '../../store/reducers/stateSlice';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { listSpecialist } from "../../helpers/dataArr";
+import "./ChoiceSpecialist.scss";
+import star from "../../assets/icons/star.svg";
+import { renderStars } from "../../helpers/renderStars";
+import DateLook from "../../components/DateLook/DateLook";
+import { useDispatch, useSelector } from "react-redux";
+import { changeIdForDate } from "../../store/reducers/stateSlice";
+import { useNavigate } from "react-router-dom";
 
 const ChoiceSpecialist = () => {
   const [lookDate, setLookdate] = React.useState(false);
@@ -20,7 +20,7 @@ const ChoiceSpecialist = () => {
 
   const clickComents = (id) => {
     dispatch(changeIdForDate(id));
-    navigate('/com');
+    navigate("/com");
   };
 
   return (
@@ -38,7 +38,7 @@ const ChoiceSpecialist = () => {
                     {spec?.schedule?.map((con, ind) => (
                       <span key={ind}>
                         {con}
-                        {ind !== spec.schedule.length - 1 && ', '}
+                        {ind !== spec.schedule.length - 1 && ", "}
                       </span>
                     ))}
                   </p>

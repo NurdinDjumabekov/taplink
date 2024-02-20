@@ -16,6 +16,10 @@ const LookAction = () => {
   //   });
   //   return () => map && map.destroy();
   // }, []);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="lookAction">
       <Addres />
