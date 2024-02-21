@@ -1,3 +1,15 @@
 .mainLayouts {
-  min-height: 100vh;
+  #vanta {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .mainContent {
+    z-index: 2;
+    position: relative;
+
+  }
 }

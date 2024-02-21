@@ -12,6 +12,8 @@ import EstabPage from "../pages/EstabPage/EstabPage";
 import Alerts from "../components/Alerts/Alerts";
 import BasketPage from "../pages/BasketPage/BasketPage";
 import CommentsPage from "../pages/CommentsPage/CommentsPage";
+import { changeLookDate } from "../store/reducers/stateSlice";
+import DateLook from "../components/DateLook/DateLook";
 // import Alerts from '../components/Alerts/Alerts';
 
 const MainRoutes = () => {
@@ -19,7 +21,8 @@ const MainRoutes = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { basketUser } = useSelector((state) => state.saveDataSlice);
-  const { typeLookSevices, listBtns } = useSelector(
+
+  const { typeLookSevices, listBtns, lookDate } = useSelector(
     (state) => state.stateSlice
   );
   console.log(typeLookSevices, "typeLookSevices");
@@ -44,6 +47,10 @@ const MainRoutes = () => {
       {/* <MoreInfo /> */}
       {/* {preloader && <Preloader />} */}
       <Alerts />
+      <DateLook
+        lookDate={lookDate}
+        setLookdate={() => dispatch(changeLookDate())}
+      />
     </>
   );
 };

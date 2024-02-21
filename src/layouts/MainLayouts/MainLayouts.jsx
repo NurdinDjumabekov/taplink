@@ -31,8 +31,9 @@ const MainLayouts = () => {
   }, []);
 
   return (
-    <div className="mainLayouts" id="vanta">
-      <div>
+    <div className="mainLayouts">
+      <div className="animation" id="vanta"></div>
+      <div className="mainContent">
         <Outlet />
         <CallBtns />
         <Basket />

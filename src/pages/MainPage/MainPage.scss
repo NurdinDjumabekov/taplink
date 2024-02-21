@@ -1,57 +1,78 @@
 .mainPage {
   height: 100vh;
-  // position: relative;
   display: flex;
   align-items: center;
   width: 100%;
+
   &__inner {
     display: flex;
-    // flex-direction: column;
     gap: 20px;
     flex-wrap: wrap;
     justify-content: space-around;
+    @media screen and (max-width: 558px) {
+      gap: 30px;
+    }
+
+
     button {
       position: relative;
       overflow: hidden;
-      // background: rgb(241, 238, 238, 0.38);
-      // color: rgb(187, 92, 108);
-      background: #fff;
-      color: #f4439f;
-      padding: 22px 0;
-      font-weight: 500;
-      font-size: 22px;
-      width: 600px;
-      border-radius: 8px;
+      background: #ffffff87;
+      color: #b32273;
+      font-size: 30px;
+      width: 250px; 
+      height: 280px; 
       transition: background-color 0.5s, color 0.5s;
-    }
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      font-family: "Kurale", serif;
+      font-weight: 400;
+      font-style: normal;
+      background-position: center;
+      background-size: contain;
+      @media screen and (max-width: 560px) {
+        width: 90%;
+        clip-path: none;
+        height: 60px;
+        border-radius: 10px;
+        font-size: 26px;
 
-    button:hover {
-      background-color: rgb(215, 176, 183);
-      color: #fff;
-      scale: 1.02;
-      transition: 0.5s;
-    }
+        @media screen and (max-width: 506px) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: 420px) {
+          font-size: 18px;
+          width: 100%;
+        }
+      }
 
-    button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%; /* Изменено на -100% для начального положения за пределами кнопки */
-      width: 35%; /* Уменьшен размер в 3 раза */
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 30%,
-        rgba(255, 255, 255, 0.5) 80%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      opacity: 0;
-      transition: opacity 0.3s ease-out, left 0.5s ease-out; /* Добавлено свойство для анимации left */
-    }
+      &:hover {
+        background-color: rgb(215, 176, 183);
+        color: #fff;
+        scale: 1.02;
+        transition: 0.5s;
+      }
 
-    button:hover::before {
-      left: 100%; /* Изменено на 100% для конечного положения за пределами кнопки */
-      opacity: 1;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 35%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 30%,
+          rgba(255, 255, 255, 0.5) 80%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease-out, left 0.5s ease-out;
+      }
+
+      &:hover::before {
+        left: 100%;
+        opacity: 1;
+      }
     }
   }
 }

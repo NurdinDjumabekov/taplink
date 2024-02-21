@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ChoiceSpecialist from "../ChoiceSpecialist/ChoiceSpecialist";
 import ChoiceDate from "../ChoiceDate/ChoiceDate";
 import ChoiceService from "../ChoiceService/ChoiceService";
+import TypesNav from "../../components/TypesNav/TypesNav";
 import {
   changeListBtns,
   changeTypeLookSevices,
@@ -18,17 +19,6 @@ const EstabPage = () => {
   const { typeLookSevices, listBtns } = useSelector(
     (state) => state.stateSlice
   );
-
-  const clickBtn = (id) => {
-    dispatch(changeTypeLookSevices(id));
-    const newData = listBtns.map((button) => {
-      return {
-        ...button,
-        bool: id === button.id,
-      };
-    });
-    dispatch(changeListBtns(newData));
-  };
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,17 +50,8 @@ const EstabPage = () => {
                 animi.
               </p>
             </div>
-            <div className="establishment__card">
-              {listBtns?.map((i) => (
-                <button
-                  key={i.id}
-                  onClick={() => clickBtn(i?.id)}
-                  className={i?.bool ? "activeBtnChioce" : ""}
-                >
-                  {i?.title}
-                </button>
-              ))}
-            </div>
+            <TypesNav />
+
             {typeLookSevices === 1 && <ChoiceService />}
             {typeLookSevices === 2 && <ChoiceSpecialist />}
             {typeLookSevices === 3 && <ChoiceDate />}

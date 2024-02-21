@@ -5,17 +5,20 @@ import star from "../../assets/icons/star.svg";
 import { renderStars } from "../../helpers/renderStars";
 import DateLook from "../../components/DateLook/DateLook";
 import { useDispatch, useSelector } from "react-redux";
-import { changeIdForDate } from "../../store/reducers/stateSlice";
+import {
+  changeIdForDate,
+  changeLookDate,
+} from "../../store/reducers/stateSlice";
 import { useNavigate } from "react-router-dom";
 
 const ChoiceSpecialist = () => {
-  const [lookDate, setLookdate] = React.useState(false);
+  // const [lookDate, setLookdate] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const clickDate = (id) => {
     dispatch(changeIdForDate(id));
-    setLookdate(true);
+    dispatch(changeLookDate(true));
   };
 
   const clickComents = (id) => {
@@ -63,7 +66,6 @@ const ChoiceSpecialist = () => {
           </div>
         ))}
       </div>
-      <DateLook lookDate={lookDate} setLookdate={setLookdate} />
     </>
   );
 };

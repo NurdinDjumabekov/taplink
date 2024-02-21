@@ -7,6 +7,18 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media screen and (max-width: 800px) {
+    left: 120px;
+    @media screen and (max-width: 620px) {
+      left: 90px;
+      @media screen and (max-width: 500px) {
+        left: 50px;
+        @media screen and (max-width: 420px) {
+          left: 35px;
+        }
+      }
+    }
+  }
   &__inner {
     position: relative;
     display: flex;
@@ -17,6 +29,11 @@
       transition: all 0.3s ease-in-out;
       animation: ripple 1.5s ease-out infinite;
       border-radius: 50%;
+      @media screen and (max-width: 560px) {
+        width: 45px;
+        height: 45px;
+      }
+
     }
     .linkBtn {
       width: 100%;
@@ -29,6 +46,9 @@
       z-index: 5;
       transform: translate(-50%, -50%);
       padding: 15px;
+      @media screen and (max-width: 560px) {
+        padding: 12px;
+      }
     }
     &__social {
       // background: red;

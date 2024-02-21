@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   typeLookSevices: 1, // для отображения (1)работников, (2)дат и (3)услуг
   idForDate: 0, // id для отображения времени заказа
+  lookDate: false, // для модалки даты каждого мастера
   alertText: {
     text: "",
     backColor: "",
@@ -35,6 +36,9 @@ const stateSlice = createSlice({
     changeSummOrders: (state, action) => {
       state.summOrders = action.payload;
     },
+    changeLookDate: (state, action) => {
+      state.lookDate = action.payload;
+    },
   },
 });
 
@@ -44,6 +48,7 @@ export const {
   changeAlertText,
   changeListBtns,
   changeSummOrders,
+  changeLookDate,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

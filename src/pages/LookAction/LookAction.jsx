@@ -1,8 +1,8 @@
-import React from 'react';
-import './LookAction.scss';
-import { load } from '@2gis/mapgl';
-import MapWrapper from '../../components/MapWrapper/MapWrapper';
-import Addres from '../../components/Addres/Addres';
+import React from "react";
+import "./LookAction.scss";
+import { load } from "@2gis/mapgl";
+import MapWrapper from "../../components/MapWrapper/MapWrapper";
+import Addres from "../../components/Addres/Addres";
 
 const LookAction = () => {
   // React.useEffect(() => {

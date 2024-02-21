@@ -5,21 +5,15 @@ import { changeTypesService } from "../../store/reducers/requestSlice";
 import { listService } from "../../helpers/dataArr";
 import { addBasketService } from "../../store/reducers/saveDataSlice";
 import { changeAlertText } from "../../store/reducers/stateSlice";
+import like from "../../assets/icons/goodSend.svg";
+import del from "../../assets/icons/delBtn.svg";
+import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
-  const { typesService } = useSelector((state) => state.requestSlice);
   const { basketUser } = useSelector((state) => state.saveDataSlice);
 
-  const clickType = (codeid) => {
-    const newData = typesService.map((button) => {
-      return {
-        ...button,
-        bool: codeid === button.codeid,
-      };
-    });
-    dispatch(changeTypesService(newData));
-  };
+ 
 
   const addBasket = (obj) => {
     const isServiceInBasket = basketUser?.service?.some(
@@ -36,10 +30,10 @@ const ChoiceService = () => {
         })
       );
     } else {
-      if (basketUser?.service?.length === 6) {
+      if (basketUser?.service?.length === 4) {
         dispatch(
           changeAlertText({
-            text: "Вы за раз можете выбрать не больше 6ти услуг",
+            text: "Вы за раз можете выбрать не больше 4х услуг",
             backColor: "#c284e4",
             state: true,
           })
@@ -59,20 +53,12 @@ const ChoiceService = () => {
 
   // console.log(typesService, "typesService");
 
+  console.log(basketUser);
+
   return (
     <div>
       <div className="serviceChoice">
-        <div className="serviceChoice__type">
-          {typesService?.map((type) => (
-            <button
-              key={type?.codeid}
-              onClick={() => clickType(type?.codeid)}
-              className={type?.bool ? "activeBtnType" : ""}
-            >
-              {type?.categ_name}
-            </button>
-          ))}
-        </div>
+        <SelectTypeService />
         <div className="serviceChoice__inner">
           {listService?.map((i) => (
             <>
@@ -83,13 +69,34 @@ const ChoiceService = () => {
                 <div className="cards__texts">
                   <h5>{i?.title}</h5>
                   <div>
-                    <span>Цена: {i?.sum}</span>
+                    <span>
+                      Цена: <i>{i?.sum} сом</i>
+                    </span>
                   </div>
                   <p>{i?.descr}</p>
                 </div>
-                <button className="cards__basket" onClick={() => addBasket(i)}>
-                  В корзину
-                </button>
+                <div className="actionsBtn">
+                  <button
+                    className="actionsBtn__basket"
+                    onClick={() => addBasket(i)}
+                  >
+                    В корзину
+                  </button>
+                  {basketUser?.service?.some(
+                    (item) => item?.codeid === i?.codeid
+                  ) ? (
+                    <div>
+                      {/* <button className="actionsBtn__check">
+                        <img src={del} alt="like" />
+                      </button> */}
+                      <button className="actionsBtn__check">
+                        <img src={like} alt="like" />
+                      </button>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
             </>
           ))}

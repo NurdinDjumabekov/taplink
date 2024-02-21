@@ -12,6 +12,7 @@ const MainPage = () => {
       id: 1,
       link: "zap",
       text: "Записаться",
+      img: "https://images.pexels.com/photos/3993293/pexels-photo-3993293.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       id: 2,
@@ -59,27 +60,3 @@ const MainPage = () => {
   );
 };
 export default MainPage;
-
-// el: "#your-element-selector",
-//   mouseControls: true,
-//   touchControls: true,
-//   gyroControls: false,
-//   minHeight: 200.00,
-//   minWidth: 200.00,
-//   highlightColor: 0xb85285,
-//   midtoneColor: 0xfd00ff,
-//   lowlightColor: 0xcc852a,
-//   baseColor: 0xefe5e5
-
-//  mouseControls: true,
-//   touchControls: true,
-//   gyroControls: false,
-//   minHeight: 200.00,
-//   minWidth: 200.00,
-//   highlightColor: 0xbb5c7a,
-//   midtoneColor: 0xc944ca,
-//   lowlightColor: 0xb62286,
-//   baseColor: 0xffffff,
-//   blurFactor: 0.59,
-//   speed: 0.70,
-//   zoom: 0.60

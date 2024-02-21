@@ -1,8 +1,8 @@
-import React from 'react';
-import { listAdres } from '../../helpers/dataArr';
-import './Addres.scss';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { listAdres } from "../../helpers/dataArr";
+import "./Addres.scss";
+import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import { useNavigate } from "react-router-dom";
 
 const Addres = () => {
   const navigate = useNavigate();
@@ -20,9 +20,9 @@ const Addres = () => {
                       zoom: 14,
                     }}
                     style={{
-                      borderRadius: '8px',
-                      width: '100%',
-                      height: '100%',
+                      borderRadius: "8px",
+                      width: "100%",
+                      height: "100%",
                     }}
                   >
                     {point?.listPoint?.map((placemark) => (
@@ -39,11 +39,11 @@ const Addres = () => {
                     График работы: <span>{point?.schedule}</span>
                   </p>
                   <p>
-                    Контакты:{' '}
+                    Контакты:{" "}
                     {point?.contacts?.map((con, ind) => (
                       <span key={ind}>
                         {con}
-                        {ind !== point.contacts.length - 1 && ', '}
+                        {ind !== point.contacts.length - 1 && ", "}
                       </span>
                     ))}
                   </p>

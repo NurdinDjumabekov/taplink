@@ -1,6 +1,6 @@
-import './Modals.scss';
-import krest from '../../assets/icons/krestik.svg';
-import { useEffect } from 'react';
+import "./Modals.scss";
+import krest from "../../assets/icons/krestik.svg";
+import { useEffect } from "react";
 
 const Modals = (props) => {
   const closeModal = () => {
@@ -9,14 +9,14 @@ const Modals = (props) => {
 
   useEffect(() => {
     if (props.openModal) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     } else {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     }
     return () => {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     };
   }, [props.openModal]);
 

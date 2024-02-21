@@ -5,11 +5,18 @@
   padding: 20px 0px;
   cursor: pointer;
   gap: 20px;
+  @media screen and (max-width: 1440px) {
+    justify-content: space-around;
+  }
   &__every {
-    width: 440px;
+    width: 453px;
     background-color: rgba(255, 255, 255, 0.342);
     padding: 10px;
     border-radius: 8px;
+    @media screen and (max-width: 970px) {
+      width: 560px;
+    }
+
     &:hover {
       transition: 0.5s;
       transform: scale(1.03);
@@ -20,6 +27,7 @@
       display: flex;
       align-items: center;
       gap: 15px;
+
       .mainLogo {
         width: 80px;
         height: 80px;
@@ -32,7 +40,7 @@
       .mainText {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 0px;
         &__rating {
           display: flex;
           align-items: center;
@@ -58,17 +66,18 @@
       height: 150px;
     }
     p {
-      height: 80px; /* Максимальная высота блока */
+      height: 82px; /* Максимальная высота блока */
       overflow-y: hidden; /* Скрытие вертикального скроллбара, текст выходит за границы */
       display: -webkit-box;
       -webkit-line-clamp: 4; /* Количество отображаемых строк текста */
       -webkit-box-orient: vertical;
       margin: 0 0 20px 0;
       position: relative;
+      line-height: 20px;
     }
     h4,
     h6 {
-      margin: 15px 0 0 0;
+      margin: 5px 0 0 0;
       font-size: 20px;
       &:hover {
         color: red;

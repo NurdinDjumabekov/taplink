@@ -7,8 +7,6 @@ import { changeAlertText } from "../../store/reducers/stateSlice";
 const Alerts = () => {
   const dispatch = useDispatch();
   const { alertText } = useSelector((state) => state.stateSlice);
-  const handleOpen = () =>
-    dispatch(changeAlertText({ ...alertText, state: true }));
   const handleClose = () =>
     dispatch(changeAlertText({ ...alertText, state: false }));
   const [timerId, setTimerId] = React.useState(null);
@@ -18,9 +16,10 @@ const Alerts = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 500,
+    width: "80%", // Изменено на проценты для адаптивности
+    maxWidth: "500px", // Добавлено максимальное значение ширины
     zIndex: 999,
-    height: 230,
+    height: 230, // Изменено на авто для адаптивной высоты
     bgcolor: alertText.backColor,
     boxShadow: 24,
     borderRadius: "8px",
@@ -56,8 +55,8 @@ const Alerts = () => {
 
   const styleText = {
     color: "#222",
-    fontFamily: "Montserrat, sans-serif",
-    fontSize: "24px",
+    fontFamily: "Kurale, sans-serif",
+    fontSize: "30px",
     fontStyle: "normal",
     fontWeight: 700,
     lineHeight: "normal",

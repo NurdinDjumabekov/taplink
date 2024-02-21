@@ -29,9 +29,22 @@ const saveDataSlice = createSlice({
         service: newData,
       };
     },
+    deleteTimeMaster: (state, action) => {
+      const newData = state?.basketUser?.master?.filter(
+        (i) => i.obj?.id !== action?.payload
+      );
+      state.basketUser = {
+        ...state?.basketUser,
+        master: newData,
+      };
+    },
   },
 });
-export const { addBasketMaster, addBasketService, deleteBasketService } =
-  saveDataSlice.actions;
+export const {
+  addBasketMaster,
+  addBasketService,
+  deleteBasketService,
+  deleteTimeMaster,
+} = saveDataSlice.actions;
 
 export default saveDataSlice.reducer;

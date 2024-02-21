@@ -1,15 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  typeFace: 1,
+  dataUser: {
+    name: "",
+    more_info: "",
+    number: "+996",
+    warn: true,
+  },
 };
 
 const inputSlice = createSlice({
-  name: 'inputSlice',
+  name: "inputSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    changeDataUser: (state, action) => {
+      state.dataUser = action.payload;
+    },
+  },
 });
 
-export const { changeInput } = inputSlice.actions;
+export const { changeDataUser } = inputSlice.actions;
 
 export default inputSlice.reducer;
