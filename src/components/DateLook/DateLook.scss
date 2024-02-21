@@ -2,18 +2,25 @@
   h3{
     font-size: 30px;
     font-weight: 700;
-    font-family: "Geologica", sans-serif;
+    font-family: "Kurale", serif;
     line-height: 25px;
     margin: 0 0 20px 0;
     color: #222;
-    
+    @media screen and (max-width: 500px) {
+      font-size: 25px;
+    }
   }
   &__inner {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap: wrap;
     padding: 0 0 20px 0;
     gap: 20px;
+    @media screen and (max-width: 1200px) {
+      height: 50vh;
+      overflow-y: scroll;
+    }
     
   }
   &__every {
@@ -24,6 +31,7 @@
     padding: 0px 0px 10px;
     border-radius: 8px;
     box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 50px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
+    margin: 0 8px;
 
     h5 {
       padding: 10px;
@@ -32,6 +40,11 @@
       font-size: 25px;
       border-radius: 8px 8px 0 0;
       text-align: center;
+      font-family: "Kurale", serif;
+      @media screen and (max-width: 500px) {
+        font-size: 20px;
+        padding: 5px 0;
+      }
     }
     &__times {
       padding: 10px;
@@ -65,6 +78,10 @@
         font-weight: 700;
         box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
         color: rgba(50, 88, 226, 0.83);
+        @media screen and (max-width: 620px) {
+          padding: 10px 3px 10px 50px ;
+          font-size: 18px;
+        }
         &:hover {
           transform: scale(1.03);
           transition: 0.5s;
@@ -86,11 +103,25 @@
     font-size: 20px;
     border-radius: 8px;
     font-weight: 600;
+    @media screen and (max-width: 620px) {
+        font-size: 16px;
+        padding: 10px 15px;
+        @media screen and (max-width: 500px) {
+          font-size: 14px;
+          padding: 10px 5px;
+          @media screen and (max-width: 500px) {
+            font-size: 12px;
+            padding: 10px 5px;
+            // width: 155px;
+          }
+        }
+      }
   }
   &__actions {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+   
   }
 }

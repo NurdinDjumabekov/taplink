@@ -11,10 +11,11 @@
                 display: flex;
                 align-items: center;
                 gap: 5px;
-                background: #ffffff59;
+                background: #e484ba;
                 padding: 5px 20px 5px 10px;
                 border-radius: 8px;
                 height: 40px;
+                color: #fff;
                 @media screen and (max-width: 660px) {
                     padding: 5px 10px ;
                 }
@@ -118,15 +119,41 @@
 
                         }
                     }
-
                 }
             }
         }
         .services {
+            .mainInfo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                @media screen and (max-width: 630px) {
+                    flex-direction: column-reverse;
+                    align-items: flex-start;
+                }
+                .result {
+                    margin: 0;
+                    display: flex;
+                    gap: 8px;
+                    button {
+                        margin: 0px;
+                        padding: 8px 15px;
+                        border-radius: 8px;
+                        color: #fff;
+                        background: #e484ba;
+                        box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+                        @media screen and (max-width: 380px) {
+                            padding: 8px;
+                        }
+                    }
+                }
+            }
             h5 {
                 font-size: 28px;
                 margin: 30px 0  20px 0;
-                // background: red;
+                @media screen and (max-width: 460px) {
+                    margin: 30px 0 5px 0;
+                }
             }
             padding: 20px 0px;
             &__inner {
@@ -211,14 +238,7 @@
                         font-weight: 500;
                     }
                 }
-                button {
-                    padding: 13px 15px;
-                    border-radius: 8px;
-                    color: #fff;
-                    background: #e484ba;
-                    box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
-                    margin: 40px 20px 0 0;
-                }
+
             }
         }
     } 
@@ -235,6 +255,7 @@
             }
         }
     }
+   
     .emptyBasket {
         // background: red;
         height: 70vh;
@@ -296,7 +317,7 @@
     }
     p {
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 400;
         display: block !important;
     }
 }

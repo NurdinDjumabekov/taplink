@@ -143,7 +143,21 @@ const BasketPage = () => {
               <div className="services">
                 <div>
                   {basketUser?.master?.length !== 0 &&
-                    basketUser?.service?.length !== 0 && <h5>Ваша корзина</h5>}
+                    basketUser?.service?.length !== 0 && (
+                      <div className="mainInfo">
+                        <h5>Ваша корзина</h5>
+                        {+summOrders !== 0 && (
+                          <div className="result">
+                            <button onClick={() => setLookSend(true)}>
+                              Записаться
+                            </button>
+                            <button onClick={clearBasket}>
+                              Очистить всю корзину
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
                 </div>
                 <div className="services__inner">
                   {basketUser?.service?.length === 0 ? (
@@ -192,22 +206,18 @@ const BasketPage = () => {
                     </>
                   )}
                 </div>
-                {+summOrders !== 0 && (
-                  <div className="result">
-                    <p>
-                      Итоговая сумма : <span>{summOrders} сом</span>
-                    </p>
-                    <button onClick={clearBasket}>Очистить всю корзину</button>
-                    <button onClick={() => setLookSend(true)}>
-                      Записаться
-                    </button>
-                  </div>
-                )}
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/* {+summOrders !== 0 && (
+        <div className="result">
+          <p>
+            Итоговая сумма : <span>{summOrders} сом</span>
+          </p>
+        </div>
+      )} */}
       <SendOrders lookSend={lookSend} setLookSend={setLookSend} />
     </>
   );
