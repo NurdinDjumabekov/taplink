@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ChoiceService.scss";
 import { changeTypesService } from "../../store/reducers/requestSlice";
 import { listService } from "../../helpers/dataArr";
-import { addBasketService } from "../../store/reducers/saveDataSlice";
+import {
+  addBasketService,
+  deleteBasketService,
+} from "../../store/reducers/saveDataSlice";
 import { changeAlertText } from "../../store/reducers/stateSlice";
 import like from "../../assets/icons/goodSend.svg";
-import del from "../../assets/icons/delBtn.svg";
+import delWhite from "../../assets/icons/delBtnWhite.svg";
 import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
   const { basketUser } = useSelector((state) => state.saveDataSlice);
-
- 
 
   const addBasket = (obj) => {
     const isServiceInBasket = basketUser?.service?.some(
@@ -53,7 +54,7 @@ const ChoiceService = () => {
 
   // console.log(typesService, "typesService");
 
-  console.log(basketUser);
+  // console.log(basketUser, "basketUser");
 
   return (
     <div>
@@ -70,10 +71,10 @@ const ChoiceService = () => {
                   <h5>{i?.title}</h5>
                   <div>
                     <span>
-                      Цена: <i>{i?.sum} сом</i>
+                      Цена: <b>{i?.sum} сом</b>
                     </span>
                   </div>
-                  <p>{i?.descr}</p>
+                  {/* <p>{i?.descr}</p> */}
                 </div>
                 <div className="actionsBtn">
                   <button
@@ -86,12 +87,16 @@ const ChoiceService = () => {
                     (item) => item?.codeid === i?.codeid
                   ) ? (
                     <div>
+                      <button
+                        className="actionsBtn__check moreDel"
+                        onClick={() => dispatch(deleteBasketService(i?.codeid))}
+                      >
+                        <img src={delWhite} alt="like" />
+                      </button>
                       {/* <button className="actionsBtn__check">
-                        <img src={del} alt="like" />
-                      </button> */}
-                      <button className="actionsBtn__check">
                         <img src={like} alt="like" />
                       </button>
+                      <button className="actionsBtn__basket">Убрать</button> */}
                     </div>
                   ) : (
                     ""

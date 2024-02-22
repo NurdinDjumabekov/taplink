@@ -11,11 +11,11 @@
     right: 120px;
     @media screen and (max-width: 620px) {
       right: 90px;
+      bottom: 110px;
       @media screen and (max-width: 500px) {
-        right: 50px;
-        @media screen and (max-width: 420px) {
-          right: 35px;
-        }
+        right: 40px;
+        bottom: 80px;
+        
       }
     }
   }
@@ -27,8 +27,8 @@
     background: #f4439f;
     border: 2px solid #000;
     @media screen and (max-width: 560px) {
-      width: 45px;
-      height: 45px;
+      width: 55px;
+      height: 55px;
     }
     img {
       border-radius: 50%;

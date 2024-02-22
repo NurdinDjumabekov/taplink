@@ -1,0 +1,23 @@
+.cancellation {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    &__inner {
+        background-color: rgba(255, 255, 255, 0.590);
+        padding: 10px;
+        border-radius: 10px;
+
+    a {
+        display: block;
+        margin: 20px 0 0 0px;
+        text-decoration: underline;
+        font-size: 20px;
+        font-weight: 600;
+        color: rgb(34, 178, 99);
+    }
+    .sendData {
+        margin: 20px auto !important;
+    }
+}
+
+}

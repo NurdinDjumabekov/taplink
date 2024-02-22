@@ -17,7 +17,7 @@
     }
     .cards {
       width: 335px;
-      background-color: rgba(255, 255, 255, 0.342);
+      background-color: rgba(255, 255, 255, 0.590);
       padding: 10px;
       border-radius: 8px;
       cursor: pointer;
@@ -34,7 +34,7 @@
               @media screen and (max-width: 830px) {
                 width: 335px;
                 @media screen and (max-width: 720px) {
-                  width: 420px;
+                  width: 300px;
                 }
             }
           }
@@ -49,7 +49,7 @@
         height: 250px;
         border-radius: 8px;
         @media screen and (max-width: 720px) {
-          height: 300px;
+          height: 200px;
         }
 
         img {
@@ -62,19 +62,23 @@
         padding: 5px 0px;
         > div {
           display: flex;
-          // align-items: center;
           justify-content: space-between;
           padding: 0px;
         }
         h5 {
-          margin: 5px 0 10px 0;
+          margin: 5px 0 5px 0;
           font-size: 22px;
           font-weight: 600;
-          height: 25px;
+          line-height: 20px;
+          height: 45px;
           overflow: hidden;
           display: -webkit-box;
-          -webkit-line-clamp: 1; /* Количество отображаемых строк текста */
+          -webkit-line-clamp: 2; /* Количество отображаемых строк текста */
           -webkit-box-orient: vertical;
+          @media screen and (max-width: 560px) {
+            font-size: 20px;
+          }
+
         }
         span {
           line-height: normal;
@@ -82,9 +86,15 @@
           font-weight: 600;
           margin: 0 0 5px 0;
           display: block;
-          i {
+          @media screen and (max-width: 560px) {
+            font-size: 18px;
+          }
+          b {
             font-size: 19px;
             font-weight: 500;
+            @media screen and (max-width: 560px) {
+              font-size: 17px;
+            }
           }
         }
         p {
@@ -111,11 +121,29 @@
           color: #fff;
           background: #e484ba;
           box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
+          @media screen and (max-width: 560px) {
+            height: 35px;
+          }
         }
         &__check {
           width: 30px;
           height: 30px;
           margin: 0 20px 0 0;
+          @media screen and (max-width: 600px) {
+            width: 25px;
+            height: 25px;
+          }
+        }
+        .moreDel {
+            background: #e484ba;
+            padding: 0px 8px;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            margin: 0 5px 0 0;
+            @media screen and (max-width: 600px) {
+              height: 35px;
+            }
         }
       }
     }

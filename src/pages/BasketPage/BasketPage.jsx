@@ -8,7 +8,11 @@ import more from "../../assets/icons/more.svg";
 import star from "../../assets/icons/star.svg";
 import edit from "../../assets/icons/edit.svg";
 import { convertTime } from "../../helpers/convertTime";
-import { deleteBasketService } from "../../store/reducers/saveDataSlice";
+import {
+  addCertificate,
+  deleteBasketService,
+  deleteCertificate,
+} from "../../store/reducers/saveDataSlice";
 import {
   changeListBtns,
   changeLookDate,
@@ -43,9 +47,9 @@ const BasketPage = () => {
     navigate(`/det/${basketUser?.master?.[0]?.codeid}`);
     dispatch(
       changeListBtns([
-        { id: 1, title: "Выбрать услуги", bool: false },
-        { id: 2, title: "Выбрать специалиста и дату", bool: true },
-        { id: 3, title: "Выбрать дату и время", bool: false },
+        { id: 1, title: "Выбрать специалиста и дату", bool: true },
+        { id: 2, title: "Выбрать услуги", bool: false },
+        { id: 3, title: "Выбрать свою дату и время", bool: false },
       ])
     );
   };
@@ -89,7 +93,10 @@ const BasketPage = () => {
                       <div>
                         <div className="editAndMain">
                           <h4>{basketUser?.master?.[0]?.nameUser}</h4>
-                          <button className="edit" onClick={editMaster}>
+                          <button
+                            className="edit mobileEdit"
+                            onClick={editMaster}
+                          >
                             <img src={edit} alt="edit" />
                             <p>Выбрать другого мастера</p>
                           </button>
@@ -159,19 +166,18 @@ const BasketPage = () => {
                       </div>
                     )}
                 </div>
-                <div className="services__inner">
-                  {basketUser?.service?.length === 0 ? (
-                    <div className="emptyBasket">
-                      <div>
-                        <p>Ваша корзина пустая </p>
-                        <NavLink to={"/zap"}>
-                          {" "}
-                          Перейти на главную страницу
-                        </NavLink>
-                      </div>
+
+                {basketUser?.service?.length === 0 &&
+                basketUser?.certificate?.length === 0 ? (
+                  <div className="emptyBasket">
+                    <div>
+                      <p>Ваша корзина пустая </p>
+                      <NavLink to={"/"}> Перейти на главную страницу</NavLink>
                     </div>
-                  ) : (
-                    <>
+                  </div>
+                ) : (
+                  <>
+                    <div className="services__inner">
                       {basketUser?.service?.map((i) => (
                         <>
                           <div className="cards" key={i?.codeid}>
@@ -203,9 +209,53 @@ const BasketPage = () => {
                           </div>
                         </>
                       ))}
-                    </>
-                  )}
-                </div>
+                    </div>
+                    <div className="certificates">
+                      {basketUser?.certificate?.length !== 0 && (
+                        <h5>Сертификаты</h5>
+                      )}
+                      <div className="certificates__inner">
+                        {basketUser?.certificate?.map((cer) => (
+                          <>
+                            <div
+                              key={cer?.codeid}
+                              className="certificate__inner__card"
+                            >
+                              <div className="inner">
+                                <div className="inner__img">
+                                  <img
+                                    src="https://www.graffiks.ru/images/images/luckclub/2021/01/bqhemlk48ne.jpg"
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="inner__info">
+                                  <h3>Сертификат на {cer?.sum} сом</h3>
+                                  <span>{cer?.count}</span>
+                                </div>
+                                <div className="inner__info">
+                                  <button
+                                    onClick={() =>
+                                      dispatch(deleteCertificate(cer))
+                                    }
+                                  >
+                                    Убрать
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(addCertificate(cer))
+                                    }
+                                  >
+                                    Добавить
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

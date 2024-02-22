@@ -20,14 +20,12 @@ const DateLook = ({ lookDate, setLookdate }) => {
   const navigate = useNavigate();
   const { idForDate, listBtns } = useSelector((state) => state.stateSlice);
   const { basketUser } = useSelector((state) => state.saveDataSlice);
-  //   console.log(idForDate, 'idForDate');
-  //   console.log(basketUser?.length, 'basketUser');
 
   const clickAddDate = (obj) => {
     if (+basketUser?.master?.length === 4) {
       dispatch(
         changeAlertText({
-          text: "Вы за раз можете выбрать только 3 окна!",
+          text: "Вы за раз можете выбрать только 4 окна!",
           backColor: "#ab89bce0",
           state: true,
         })
@@ -51,6 +49,7 @@ const DateLook = ({ lookDate, setLookdate }) => {
     } else {
       dispatch(changeTypeLookSevices(1));
       setLookdate(false);
+      navigate(`/det/${listDate?.[0]?.codeid_addres}`);
       dispatch(
         changeListBtns([
           { id: 1, title: "Выбрать услуги", bool: true },
@@ -67,7 +66,8 @@ const DateLook = ({ lookDate, setLookdate }) => {
   };
 
   // console.log(listDate, "listDate");
-
+  //   console.log(idForDate, 'idForDate');
+  //   console.log(basketUser?.length, 'basketUser');
   return (
     <div className="dateLook">
       <Modals openModal={lookDate} setOpenModal={() => setLookdate()}>

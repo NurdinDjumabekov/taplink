@@ -51,9 +51,8 @@ const EstabPage = () => {
               </p>
             </div>
             <TypesNav />
-
-            {typeLookSevices === 1 && <ChoiceService />}
-            {typeLookSevices === 2 && <ChoiceSpecialist />}
+            {typeLookSevices === 1 && <ChoiceSpecialist />}
+            {typeLookSevices === 2 && <ChoiceService />}
             {typeLookSevices === 3 && <ChoiceDate />}
           </div>
         </div>

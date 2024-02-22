@@ -1,20 +1,25 @@
-.sendOrders {
-    width: 400px;
+.sendOrders,.cancellation {
+    // width: 400px;
     form {
         width: 400px;
         margin: 0 10px;
+        @media screen and (max-width: 500px) {
+          width: 100%;
+          margin: 0;
+        }
         h4 {
             font-size: 20px;
             margin: 0 0 20px 0;
             font-weight: 600;
         }
+        
         input, textarea {
             backdrop-filter: blur(15px);
             border: 1px solid #d8e2ef;
             border-radius: 5px;
             color: #344050;
             height: 45px;
-            min-width: 300px;
+            min-width: 280px;
             font-size: 18px;
             padding: 0px 10px;
             width: 100%;
@@ -68,6 +73,9 @@
             background: #e484ba;
             box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
             margin: 40px auto;
+            @media screen and (max-width: 440px) {
+              margin: 20px auto;
+            }
         }
     }
 }

@@ -40,6 +40,18 @@ const TypesNav = () => {
     speed: 500,
     nextArrow: <Prev />,
     prevArrow: <Next />,
+    initialSlide: 0,
+    beforeChange: (oldIndex, newIndex) => {
+      console.log(newIndex + 1, "newIndex");
+      dispatch(changeTypeLookSevices(+newIndex + 1));
+      const newData = listBtns.map((button) => {
+        return {
+          ...button,
+          bool: +newIndex + 1 === +button.id,
+        };
+      });
+      dispatch(changeListBtns(newData));
+    },
   };
 
   const clickBtn = (id) => {
@@ -52,6 +64,7 @@ const TypesNav = () => {
     });
     dispatch(changeListBtns(newData));
   };
+
   return (
     <>
       <div className="typesNavDesc">

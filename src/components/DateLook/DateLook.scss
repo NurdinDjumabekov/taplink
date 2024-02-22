@@ -1,4 +1,9 @@
 .dateLook {
+  @media screen and (max-width: 450px) {
+    .container {
+      padding: 0;
+    }
+  }
   h3{
     font-size: 30px;
     font-weight: 700;
@@ -7,7 +12,7 @@
     margin: 0 0 20px 0;
     color: #222;
     @media screen and (max-width: 500px) {
-      font-size: 25px;
+      font-size: 22px;
     }
   }
   &__inner {
@@ -17,17 +22,14 @@
     flex-wrap: wrap;
     padding: 0 0 20px 0;
     gap: 20px;
-    @media screen and (max-width: 1200px) {
-      height: 50vh;
-      overflow-y: scroll;
-    }
-    
+    height: 65vh;
+    overflow-y: scroll;
   }
   &__every {
     // background: green;
     width: 100%;
     // width: 440px;
-    background-color:rgba(255, 255, 255, 0.342);
+    background-color:rgba(255, 255, 255, 0.590);
     padding: 0px 0px 10px;
     border-radius: 8px;
     box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 50px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
@@ -79,7 +81,7 @@
         box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
         color: rgba(50, 88, 226, 0.83);
         @media screen and (max-width: 620px) {
-          padding: 10px 3px 10px 50px ;
+          padding: 5px 3px 5px 40px;
           font-size: 18px;
         }
         &:hover {

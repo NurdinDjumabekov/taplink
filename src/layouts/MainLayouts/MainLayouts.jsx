@@ -36,7 +36,7 @@ const MainLayouts = () => {
       <div className="mainContent">
         <Outlet />
         <CallBtns />
-        <Basket />
+        {/* <Basket /> */}
       </div>
     </div>
   );

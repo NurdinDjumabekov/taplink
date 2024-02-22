@@ -22,7 +22,8 @@
             font-size: 25px;
             font-weight: 700;
             color: #be84c9;
-
+            @media screen and (max-width: 380px) {
+            }
         }
       }
       .react-calendar__tile--now {

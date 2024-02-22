@@ -14,6 +14,9 @@ import BasketPage from "../pages/BasketPage/BasketPage";
 import CommentsPage from "../pages/CommentsPage/CommentsPage";
 import { changeLookDate } from "../store/reducers/stateSlice";
 import DateLook from "../components/DateLook/DateLook";
+import Certificate from "../pages/Certificate/Certificate";
+import CancellationPage from "../pages/CancellationPage/CancellationPage";
+import ConfirmPage from "../pages/ConfirmPage/ConfirmPage";
 // import Alerts from '../components/Alerts/Alerts';
 
 const MainRoutes = () => {
@@ -25,8 +28,8 @@ const MainRoutes = () => {
   const { typeLookSevices, listBtns, lookDate } = useSelector(
     (state) => state.stateSlice
   );
-  console.log(typeLookSevices, "typeLookSevices");
-  console.log(basketUser, "basketUser");
+  // console.log(typeLookSevices, "typeLookSevices");
+  // console.log(basketUser, "basketUser");
   // console.log(listBtns, "listBtns");
 
   React.useEffect(() => {
@@ -41,6 +44,9 @@ const MainRoutes = () => {
           <Route path="/zap" element={<LookAction />} />
           <Route path="/det/:id" element={<EstabPage />} />
           <Route path="/com" element={<CommentsPage />} />
+          <Route path="/cer" element={<Certificate />} />
+          <Route path="/canc" element={<CancellationPage />} />
+          <Route path="/confirm" element={<ConfirmPage />} />
           <Route path="/basket" element={<BasketPage />} />
         </Route>
       </Routes>

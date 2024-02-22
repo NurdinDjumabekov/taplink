@@ -39,7 +39,7 @@ const Alerts = () => {
             state: false,
           })
         );
-      }, 30000);
+      }, 2000);
 
       // Сохраняем идентификатор таймера в состоянии
       setTimerId(timer);
@@ -56,11 +56,14 @@ const Alerts = () => {
   const styleText = {
     color: "#222",
     fontFamily: "Kurale, sans-serif",
-    fontSize: "30px",
+    fontSize: window.innerWidth <= 530 ? "20px" : "30px",
     fontStyle: "normal",
     fontWeight: 700,
     lineHeight: "normal",
     textAlign: "center",
+    "@media (max-width: 500px)": {
+      fontSize: "16px",
+    },
   };
 
   return (

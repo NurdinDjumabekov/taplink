@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  basketUser: { master: [], service: [] },
+  basketUser: { master: [], service: [], certificate: [] },
 };
 
 const saveDataSlice = createSlice({
@@ -38,6 +38,39 @@ const saveDataSlice = createSlice({
         master: newData,
       };
     },
+    addCertificate: (state, action) => {
+      const { codeid } = action.payload;
+      if (!state.basketUser.certificate) {
+        state.basketUser.certificate = [];
+      }
+      const existingCertificate = state.basketUser.certificate.find(
+        (cert) => cert && cert.codeid === codeid
+      );
+      if (existingCertificate) {
+        existingCertificate.count += 1;
+      } else {
+        state.basketUser.certificate = [
+          ...state.basketUser.certificate,
+          { ...action.payload, count: 1 },
+        ];
+      }
+    },
+
+    deleteCertificate: (state, action) => {
+      if (action.payload) {
+        const { codeid } = action.payload;
+        state.basketUser.certificate = state.basketUser.certificate.map(
+          (cert) =>
+            cert && cert.codeid === codeid
+              ? { ...cert, count: cert.count - 1 }
+              : cert
+        );
+
+        state.basketUser.certificate = state.basketUser.certificate.filter(
+          (cert) => cert && cert.count > 0
+        );
+      }
+    },
   },
 });
 export const {
@@ -45,6 +78,8 @@ export const {
   addBasketService,
   deleteBasketService,
   deleteTimeMaster,
+  addCertificate,
+  deleteCertificate,
 } = saveDataSlice.actions;
 
 export default saveDataSlice.reducer;

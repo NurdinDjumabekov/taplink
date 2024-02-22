@@ -10,34 +10,29 @@ const MainPage = () => {
   const pageList = [
     {
       id: 1,
-      link: "zap",
-      text: "Записаться",
+      link: "/zap",
+      text: "Услуги",
       img: "https://images.pexels.com/photos/3993293/pexels-photo-3993293.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       id: 2,
-      link: "zap",
+      link: "/cer",
       text: "Подарочные сертификаты",
     },
     {
       id: 3,
-      link: "zap",
+      link: "canc",
       text: "Перенос или отмена записи",
     },
     {
       id: 4,
-      link: "zap",
+      link: "confirm",
       text: "Подтвердить запись",
     },
     {
       id: 5,
-      link: "zap",
-      text: "Обратная взять",
-    },
-    {
-      id: 6,
-      link: "zap",
-      text: "Информация о нас",
+      link: "basket",
+      text: "Ваша корзина",
     },
   ];
 

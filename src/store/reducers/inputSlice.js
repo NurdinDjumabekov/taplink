@@ -7,6 +7,16 @@ const initialState = {
     number: "+996",
     warn: true,
   },
+  cancellation: {
+    name: "",
+    rejection: "",
+    number: "+996",
+  },
+  confirm: {
+    name: "",
+    rejection: "",
+    number: "+996",
+  },
 };
 
 const inputSlice = createSlice({
@@ -16,9 +26,16 @@ const inputSlice = createSlice({
     changeDataUser: (state, action) => {
       state.dataUser = action.payload;
     },
+    changeCancellation: (state, action) => {
+      state.cancellation = action.payload;
+    },
+    changeConfirm: (state, action) => {
+      state.confirm = action.payload;
+    },
   },
 });
 
-export const { changeDataUser } = inputSlice.actions;
+export const { changeDataUser, changeCancellation, changeConfirm } =
+  inputSlice.actions;
 
 export default inputSlice.reducer;

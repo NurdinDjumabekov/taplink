@@ -12,8 +12,6 @@ const SendOrders = ({ lookSend, setLookSend }) => {
 
   const changeInput = (e) => {
     const { name, value } = e.target;
-    console.log(e);
-
     dispatch(changeDataUser({ ...dataUser, [name]: value }));
   };
   const sendNum = (e) => {
@@ -78,7 +76,7 @@ const SendOrders = ({ lookSend, setLookSend }) => {
             </label>
           </div>
           <button className="sendData" type="submit">
-            Отправить код
+            Отправить
           </button>
         </form>
       </Modals>
