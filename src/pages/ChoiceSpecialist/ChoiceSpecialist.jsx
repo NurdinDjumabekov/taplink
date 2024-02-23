@@ -10,6 +10,7 @@ import {
   changeLookDate,
 } from "../../store/reducers/stateSlice";
 import { useNavigate } from "react-router-dom";
+import { listMasters } from "../../store/reducers/requestSlice";
 
 const ChoiceSpecialist = () => {
   // const [lookDate, setLookdate] = React.useState(false);
@@ -25,6 +26,7 @@ const ChoiceSpecialist = () => {
     dispatch(changeIdForDate(id));
     navigate("/com");
   };
+
 
   return (
     <>

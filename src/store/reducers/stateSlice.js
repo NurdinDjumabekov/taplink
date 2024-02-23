@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  typeLookSevices: 2, // для отображения (2)работников, (3)дат и (1)услуг
+  typeLookSevices: 1, // для отображения (2)работников, (3)дат и (1)услуг
   idForDate: 0, // id для отображения времени заказа
   lookDate: false, // для модалки даты каждого мастера
   alertText: {

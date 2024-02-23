@@ -49,6 +49,9 @@ const MainPage = () => {
               {page?.text}
             </button>
           ))}
+          <a href="https://wa.me/996700754454" target="_blank">
+            <button>Связаться с нами</button>
+          </a>
         </div>
       </div>
     </div>

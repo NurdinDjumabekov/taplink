@@ -93,10 +93,8 @@ const ChoiceService = () => {
                       >
                         <img src={delWhite} alt="like" />
                       </button>
-                      {/* <button className="actionsBtn__check">
-                        <img src={like} alt="like" />
-                      </button>
-                      <button className="actionsBtn__basket">Убрать</button> */}
+
+                      {/* <button className="actionsBtn__basket">Убрать</button> */}
                     </div>
                   ) : (
                     ""

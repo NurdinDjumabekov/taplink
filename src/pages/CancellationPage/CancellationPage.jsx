@@ -22,7 +22,7 @@ const CancellationPage = () => {
       <div className="container">
         <div className="cancellation__inner">
           <form onSubmit={cancellationZakaz}>
-            <a href="https://wa.me/996700754464" target="_blank">
+            <a href="https://wa.me/996700754454" target="_blank">
               {" "}
               Написать нам в WhatsApp
             </a>

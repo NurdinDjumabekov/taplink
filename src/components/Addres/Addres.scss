@@ -95,32 +95,36 @@
             }
           }
         }
-        button {
-          padding: 3px 30px 5px;
-          position: absolute;
-          right: 10px;
-          bottom: 10px;
-          background: #a7cce4;
-          color: #fff;
-          border-radius: 5px;
-          font-size: 20px;
-          font-weight: 600;
-          font-family: "Kurale", serif;
-          font-style: normal;
-          line-height: normal;
-          @media screen and (max-width: 1450px) {
-            position: static;
-            margin: 10px 0 0 0px;
-            @media screen and (max-width: 860px) {
-              font-size: 16px;
+        .linkBtn {
+          display: flex;
+          justify-content: right;
+          button {
+            padding: 3px 30px 5px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background: #e484ba;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: "Kurale", serif;
+            font-style: normal;
+            line-height: normal;
+            @media screen and (max-width: 1450px) {
+              position: static;
+              margin: 10px 0 0 0px;
+              @media screen and (max-width: 860px) {
+                font-size: 16px;
+              }
+  
             }
-
-          }
-
-          &:hover {
-            background: #83b7d9;
-            transition: 0.5s;
-          }
+  
+            &:hover {
+              background: #83b7d9;
+              transition: 0.5s;
+            }
+        }
         }
       }
     }

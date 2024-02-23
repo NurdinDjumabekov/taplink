@@ -21,52 +21,70 @@ const SelectTypeService = () => {
     setActive(!active);
   };
 
+  const searchInputRef = React.useRef(null);
+
+  const searchData = (e) => {
+    e.preventDefault();
+
+    if (searchInputRef.current) {
+      searchInputRef.current.blur();
+    }
+  };
+
   return (
-    <>
-      <div className="serviceChoice__type">
-        {typesService?.map((type) => (
-          <button
-            key={type?.codeid}
-            onClick={() => clickType(type?.codeid)}
-            className={type?.bool ? "activeBtnType" : ""}
-          >
-            {type?.categ_name}
-          </button>
-        ))}
+    <div className="typesSel">
+      <div className="typesSelDesc">
+        <div className="serviceChoice__type">
+          {typesService?.map((type) => (
+            <button
+              key={type?.codeid}
+              onClick={() => clickType(type?.codeid)}
+              className={type?.bool ? "activeBtnType" : ""}
+            >
+              {type?.categ_name}
+            </button>
+          ))}
+        </div>
+        <form onSubmit={searchData}>
+          <input type="text" placeholder="Поиск" ref={searchInputRef} />
+          <button type="submit"></button>
+        </form>
       </div>
-      <div className="serviceChoice__type__mobile">
-        {typesService?.map((type) => (
-          <button
-            key={type?.codeid}
-            onClick={() => clickType(type?.codeid)}
-            className={type?.bool ? "activeBtnTypeMobile" : "none"}
-          >
-            <p>{type?.categ_name}</p>
-            {type?.bool && (
-              <img
-                src={arrow}
-                alt="arrow"
-                className={active ? "activeBtn" : "disactiveBtn"}
-              />
-            )}
-          </button>
-        ))}
-        {active && (
-          <div className="choice">
-            {typesService?.map((type) => (
-              <button
-                key={type?.codeid}
-                onClick={() => clickType(type?.codeid)}
-              >
-                <p className={type?.bool ? "activeInner" : ""}>
-                  {type?.categ_name}
-                </p>
-              </button>
-            ))}
-          </div>
-        )}
+      <div className="serviceChoice__parent">
+        <div className="serviceChoice__type__mobile">
+          {typesService?.map((type) => (
+            <button
+              key={type?.codeid}
+              onClick={() => clickType(type?.codeid)}
+              className={type?.bool ? "activeBtnTypeMobile" : "none"}
+            >
+              <p>{type?.categ_name}</p>
+              {type?.bool && (
+                <img
+                  src={arrow}
+                  alt="arrow"
+                  className={active ? "activeBtn" : "disactiveBtn"}
+                />
+              )}
+            </button>
+          ))}
+          {active && (
+            <div className="choice">
+              {typesService?.map((type) => (
+                <button
+                  key={type?.codeid}
+                  onClick={() => clickType(type?.codeid)}
+                >
+                  <p className={type?.bool ? "activeInner" : ""}>
+                    {type?.categ_name}
+                  </p>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

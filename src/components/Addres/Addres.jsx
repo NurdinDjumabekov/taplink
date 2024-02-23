@@ -3,20 +3,30 @@ import { listAdres } from "../../helpers/dataArr";
 import "./Addres.scss";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { listMasters } from "../../store/reducers/requestSlice";
 
 const Addres = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { listFilials } = useSelector((state) => state.requestSlice);
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(listMasters());
+  }, []);
+  // console.log(listFilials, "listFilials");
+
   return (
     <div className="addres">
       <div className="container">
         <div className="addres__inner">
           <YMaps>
-            {listAdres?.map((point) => (
+            {listFilials?.map((point) => (
               <div key={point.codeid} className="map">
                 <div className="map__inner">
                   <Map
                     defaultState={{
-                      center: [point?.coordinates?.x, point?.coordinates?.y],
+                      center: [point?.coordinatesX, point?.coordinatesY],
                       zoom: 14,
                     }}
                     style={{
@@ -25,12 +35,12 @@ const Addres = () => {
                       height: "100%",
                     }}
                   >
-                    {point?.listPoint?.map((placemark) => (
-                      <Placemark
-                        key={placemark.id}
-                        defaultGeometry={placemark.geometry}
-                      />
-                    ))}
+                    <Placemark
+                      defaultGeometry={[
+                        point?.coordinatesX,
+                        point?.coordinatesY,
+                      ]}
+                    />
                   </Map>
                 </div>
                 <div className="map__contects">
@@ -39,17 +49,14 @@ const Addres = () => {
                     График работы: <span>{point?.schedule}</span>
                   </p>
                   <p>
-                    Контакты:{" "}
-                    {point?.contacts?.map((con, ind) => (
-                      <span key={ind}>
-                        {con}
-                        {ind !== point.contacts.length - 1 && ", "}
-                      </span>
-                    ))}
+                    Контакты: <span>{point?.contacts1}</span>,{" "}
+                    <span>{point?.contacts2}</span>
                   </p>
-                  <button onClick={() => navigate(`/det/${point?.codeid}`)}>
-                    Перейти
-                  </button>
+                  <div className="linkBtn">
+                    <button onClick={() => navigate(`/det/${point?.codeid}`)}>
+                      Перейти
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

@@ -47,14 +47,14 @@ const DateLook = ({ lookDate, setLookdate }) => {
         })
       );
     } else {
-      dispatch(changeTypeLookSevices(1));
+      dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
       setLookdate(false);
       navigate(`/det/${listDate?.[0]?.codeid_addres}`);
       dispatch(
         changeListBtns([
-          { id: 1, title: "Выбрать услуги", bool: true },
-          { id: 2, title: "Выбрать специалиста", bool: false },
-          { id: 3, title: "Выбрать дату и время", bool: false },
+          { id: 1, title: "Выбрать специалиста и дату", bool: false },
+          { id: 2, title: "Выбрать услуги", bool: true },
+          { id: 3, title: "Выбрать свою дату и время", bool: false },
         ])
       );
     }

@@ -1,110 +1,153 @@
-.serviceChoice__type {
-    align-items: center;
-    background: #f9fafd;
-    border: 1px solid #edf2f9;
+.typesSel {
+  .typesSelDesc {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    width: 780px;
-    border-radius: 8px;
     margin: 15px 0px 0px;
-    @media screen and (max-width: 830px) {
-      max-width: 650px;
+    @media screen and (max-width: 1160px) {
+      display: block;
       @media screen and (max-width: 690px) {
-        display: none;
-      }
-    } 
-    > button {
-      padding: 12px 15px;
-      font-size: 20px;
-      font-weight: 600;
-      @media screen and (max-width: 830px) {
-        font-size: 18px;
-        padding: 6px 15px;
-      } 
-    }
-    .activeBtnType {
-      background: #e484ba;
-      border-radius: 8px;
-      padding: 12px 15px;
-      color: #fff;
-      @media screen and (max-width: 830px) {
-        padding: 6px 15px;
+        margin:0px;
       }
     }
-  }
-  .serviceChoice__type__mobile {
-    display: none;
-    position: relative;
-    @media screen and (max-width: 690px) {
-        display: block;
-        margin: 10px 0 0 0;
-    }
-    .activeBtnTypeMobile {
-        background: #e484ba;
-        background: linear-gradient(to right, #be84c9,  rgb(211 195 218));
-
-        border-radius: 8px;
-        padding: 4px 5px 8px;
-        width: 190px;
-        color: #fff;
-        line-height: normal;
-        display: flex;
+    .serviceChoice__type {
         align-items: center;
-        justify-content: center;
-        gap: 5px;
-        p {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            width: 130px;
+        background: #f9fafd;
+        border: 1px solid #edf2f9;
+        display: flex;
+        justify-content: space-between;
+        width: 780px;
+        border-radius: 8px;
+        @media screen and (max-width: 830px) {
+          max-width: 650px;
+          @media screen and (max-width: 690px) {
+            display: none;
+          }
+        } 
+        > button {
+          padding: 12px 15px;
+          font-size: 20px;
+          font-weight: 600;
+          @media screen and (max-width: 830px) {
+            font-size: 18px;
+            padding: 6px 15px;
+          } 
         }
-        img {
-            width: 25px;
-            height: 25px;
-            margin: 3px 0 0 0;
-        }
-        .activeBtn {
-            transform: rotate(90deg);
-            transition: 0.5s;
-        }
-        .disactiveBtn {
-            transform: rotate(270deg);
-            transition: 0.5s;
+        .activeBtnType {
+          background: #e484ba;
+          border-radius: 8px;
+          padding: 12px 15px;
+          color: #fff;
+          @media screen and (max-width: 830px) {
+            padding: 6px 15px;
+          }
         }
       }
-    .none {
-        display: none;
-    }
-    .choice {
-        display: flex;
-        // align-items: center;
-        flex-direction: column;
-        position: absolute;
-        z-index: 10;
-        top: 43px;
-        left: 0;
-        transition: 0.5s;
-        background: rgba(255, 255, 255, 0.878);
-        width: 200px;
-        border-radius: 8px;
-        opacity: 0;
-        animation: fadeIn 0.5s ease-out 0.1s forwards;
-        padding: 10px 5px;
-        gap: 5px;
-        overflow-y: scroll;
-        height: 150px;
-        button {
-            width: auto;
-        }
-        .activeInner {
-            color: #b32273;
-            border-bottom: 1px solid #b32273;
-            display: inline;
-        }
-        @keyframes fadeIn {
-            to {
-              opacity: 1;
-            }
+  }
+.serviceChoice__parent {
+    display: flex;
+    .serviceChoice__type__mobile {
+      display: none;
+      position: relative;
+      @media screen and (max-width: 690px) {
+          display: block;
+          margin: 10px 0 0 0;
+      }
+      .activeBtnTypeMobile {
+          background: #e484ba;
+          background: linear-gradient(to right, #be84c9,  rgb(211 195 218));
+  
+          border-radius: 8px;
+          padding: 4px 5px 8px;
+          width: 190px;
+          color: #fff;
+          line-height: normal;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          p {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              width: 130px;
           }
+          img {
+              width: 25px;
+              height: 25px;
+              margin: 3px 0 0 0;
+          }
+          .activeBtn {
+              transform: rotate(90deg);
+              transition: 0.5s;
+          }
+          .disactiveBtn {
+              transform: rotate(270deg);
+              transition: 0.5s;
+          }
+        }
+      .none {
+          display: none;
+      }
+      .choice {
+          display: flex;
+          // align-items: center;
+          flex-direction: column;
+          position: absolute;
+          z-index: 10;
+          top: 43px;
+          left: 0;
+          transition: 0.5s;
+          background: rgba(255, 255, 255, 0.878);
+          width: 200px;
+          border-radius: 8px;
+          opacity: 0;
+          animation: fadeIn 0.5s ease-out 0.1s forwards;
+          padding: 10px 5px;
+          gap: 5px;
+          overflow-y: scroll;
+          height: 150px;
+          button {
+              width: auto;
+          }
+          .activeInner {
+              color: #b32273;
+              border-bottom: 1px solid #b32273;
+              display: inline;
+          }
+          @keyframes fadeIn {
+              to {
+                opacity: 1;
+              }
+            }
+      }
     }
   }
+
+  form {
+    input {
+      border: 1px solid #d8e2ef;
+      border-radius: 5px;
+      color: #222;
+      height: 45px;
+      min-width: 330px;
+      font-size: 18px;
+      padding: 0px 10px;
+      width: 100%;
+      background: #fff;
+      color: #000;
+      font-weight: 600;
+      font-family: "Kurale", serif;
+      line-height: 25px;
+      @media screen and (max-width: 1160px) {
+        min-width: 782px;
+        margin: 10px 0 0 0;
+        width: 782px;
+        @media screen and (max-width: 830px) {
+          width: 100%;
+          min-width: auto;
+        }
+      }
+    }
+  }
+}
