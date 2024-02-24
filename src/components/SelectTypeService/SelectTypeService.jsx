@@ -8,10 +8,10 @@ const SelectTypeService = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
 
-  const { typesService } = useSelector((state) => state.requestSlice);
+  const { listTypesService } = useSelector((state) => state.requestSlice);
 
   const clickType = (codeid) => {
-    const newData = typesService.map((button) => {
+    const newData = listTypesService.map((button) => {
       return {
         ...button,
         bool: codeid === button.codeid,
@@ -33,15 +33,15 @@ const SelectTypeService = () => {
 
   return (
     <div className="typesSel">
-      <div className="typesSelDesc">
+      {/* <div className="typesSelDesc">
         <div className="serviceChoice__type">
-          {typesService?.map((type) => (
+          {listTypesService?.map((type) => (
             <button
               key={type?.codeid}
               onClick={() => clickType(type?.codeid)}
               className={type?.bool ? "activeBtnType" : ""}
             >
-              {type?.categ_name}
+              {type?.name}
             </button>
           ))}
         </div>
@@ -49,16 +49,16 @@ const SelectTypeService = () => {
           <input type="text" placeholder="Поиск" ref={searchInputRef} />
           <button type="submit"></button>
         </form>
-      </div>
+      </div> */}
       <div className="serviceChoice__parent">
         <div className="serviceChoice__type__mobile">
-          {typesService?.map((type) => (
+          {listTypesService?.map((type) => (
             <button
               key={type?.codeid}
               onClick={() => clickType(type?.codeid)}
               className={type?.bool ? "activeBtnTypeMobile" : "none"}
             >
-              <p>{type?.categ_name}</p>
+              <p>{type?.name}</p>
               {type?.bool && (
                 <img
                   src={arrow}
@@ -70,19 +70,23 @@ const SelectTypeService = () => {
           ))}
           {active && (
             <div className="choice">
-              {typesService?.map((type) => (
+              {listTypesService?.map((type) => (
                 <button
                   key={type?.codeid}
                   onClick={() => clickType(type?.codeid)}
                 >
                   <p className={type?.bool ? "activeInner" : ""}>
-                    {type?.categ_name}
+                    {type?.name}
                   </p>
                 </button>
               ))}
             </div>
           )}
         </div>
+        <form onSubmit={searchData}>
+          <input type="text" placeholder="Поиск" ref={searchInputRef} />
+          <button type="submit"></button>
+        </form>
       </div>
     </div>
   );

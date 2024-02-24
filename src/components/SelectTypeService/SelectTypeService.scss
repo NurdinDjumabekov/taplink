@@ -46,8 +46,15 @@
   }
 .serviceChoice__parent {
     display: flex;
+    padding: 20px 0px;
+    justify-content: space-between;
+    gap: 50px;
+    @media screen and (max-width: 900px) {
+      flex-direction: column-reverse;
+      gap: 15px;
+    }
     .serviceChoice__type__mobile {
-      display: none;
+      // display: none;
       position: relative;
       @media screen and (max-width: 690px) {
           display: block;
@@ -56,21 +63,24 @@
       .activeBtnTypeMobile {
           background: #e484ba;
           background: linear-gradient(to right, #be84c9,  rgb(211 195 218));
-  
+          height: 50px;
           border-radius: 8px;
-          padding: 4px 5px 8px;
-          width: 190px;
+          padding: 4px 25px 8px;
+          width: 400px;
           color: #fff;
           line-height: normal;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 5px;
+          gap: 20px;
+          @media screen and (max-width: 500px) {
+            width: 100%;
+            height: 47px;
+          }
           p {
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
-              width: 130px;
           }
           img {
               width: 25px;
@@ -95,11 +105,11 @@
           flex-direction: column;
           position: absolute;
           z-index: 10;
-          top: 43px;
+          top: 63px;
           left: 0;
           transition: 0.5s;
           background: rgba(255, 255, 255, 0.878);
-          width: 200px;
+          width: 400px;
           border-radius: 8px;
           opacity: 0;
           animation: fadeIn 0.5s ease-out 0.1s forwards;
@@ -107,6 +117,9 @@
           gap: 5px;
           overflow-y: scroll;
           height: 150px;
+          @media screen and (max-width: 440px) {
+            width: 100%;
+          }
           button {
               width: auto;
           }
@@ -129,9 +142,9 @@
       border: 1px solid #d8e2ef;
       border-radius: 5px;
       color: #222;
-      height: 45px;
-      min-width: 330px;
-      font-size: 18px;
+      height: 48px;
+      min-width: 400px;
+      font-size: 22px;
       padding: 0px 10px;
       width: 100%;
       background: #fff;
@@ -139,13 +152,12 @@
       font-weight: 600;
       font-family: "Kurale", serif;
       line-height: 25px;
-      @media screen and (max-width: 1160px) {
-        min-width: 782px;
-        margin: 10px 0 0 0;
-        width: 782px;
-        @media screen and (max-width: 830px) {
-          width: 100%;
-          min-width: auto;
+      @media screen and (max-width: 830px) {
+        width: 100%;
+        min-width: auto;
+        @media screen and (max-width: 500px) {
+          height: 45px;
+          font-size: 18px;
         }
       }
     }

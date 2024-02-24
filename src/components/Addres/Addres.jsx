@@ -4,7 +4,7 @@ import "./Addres.scss";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { listMasters } from "../../store/reducers/requestSlice";
+import { takeFilials } from "../../store/reducers/requestSlice";
 
 const Addres = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const Addres = () => {
   const { listFilials } = useSelector((state) => state.requestSlice);
   React.useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(listMasters());
+    dispatch(takeFilials());
   }, []);
   // console.log(listFilials, "listFilials");
 
