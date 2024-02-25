@@ -10,7 +10,6 @@
       .logo {
         width: 150px;
         height: 150px;
-      
 
         img {
           border-radius: 50%;
@@ -61,11 +60,11 @@
         }
       }
     }
-   
-    h3{
+
+    h3 {
       font-size: 30px;
       font-weight: 700;
-      font-family: "Kurale", serif;
+      font-family: 'Kurale', serif;
       line-height: 25px;
       margin: 20px 0;
       text-align: left;
@@ -89,11 +88,13 @@
     }
   }
   &__every {
-    max-width: 400px;
-    background-color:rgba(255, 255, 255, 0.590);
+    max-width: 440px;
+    background-color: rgba(255, 255, 255, 0.59);
     padding: 0px 0px 10px;
     border-radius: 8px;
-    box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 50px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
+    box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1),
+      0 2px 50px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07),
+      0 1px 2px 0 rgba(0, 0, 0, 0.08);
     margin: 0 8px;
     @media screen and (max-width: 890px) {
       max-width: 100%;
@@ -101,12 +102,12 @@
 
     h5 {
       padding: 10px;
-      background: rgb(209, 150, 230 ,0.830);
+      background: rgb(209, 150, 230, 0.83);
       color: #fff;
       font-size: 25px;
       border-radius: 8px 8px 0 0;
       text-align: center;
-      font-family: "Kurale", serif;
+      font-family: 'Kurale', serif;
       @media screen and (max-width: 500px) {
         font-size: 20px;
         padding: 5px 0;
@@ -121,7 +122,7 @@
       .busy {
         position: relative;
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0px;
           // color: red;
@@ -134,15 +135,17 @@
       }
       button {
         // background: rgb(255, 255, 255);
-        background-image: url("../../assets/image/dateBack.jpg");
+        background-image: url('../../assets/image/dateBack.jpg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding: 10px 8px 10px 50px ;
+        padding: 10px 8px 10px 50px;
         font-size: 22px;
         border-radius: 8px;
         font-weight: 700;
-        box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
+        box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1),
+          0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07),
+          0 1px 2px 0 rgba(0, 0, 0, 0.08);
         color: rgba(50, 88, 226, 0.83);
         @media screen and (max-width: 620px) {
           padding: 5px 3px 5px 40px;
@@ -152,7 +155,7 @@
           transform: scale(1.03);
           transition: 0.5s;
           // background: #e8e3e3;
-          border: 1px solid rgba(50, 88, 226, 0.83);;
+          border: 1px solid rgba(50, 88, 226, 0.83);
         }
       }
     }
@@ -160,6 +163,7 @@
   .choiceService {
     background: #ad70c3d4;
     color: #fff;
+
     display: block;
     margin: 20px 0;
     padding: 20px 25px;
@@ -170,24 +174,24 @@
     border-radius: 8px;
     font-weight: 600;
     @media screen and (max-width: 620px) {
-        font-size: 16px;
-        padding: 10px 15px;
+      font-size: 16px;
+      padding: 10px 15px;
+      @media screen and (max-width: 500px) {
+        font-size: 14px;
+        padding: 10px 5px;
         @media screen and (max-width: 500px) {
-          font-size: 14px;
+          font-size: 12px;
           padding: 10px 5px;
-          @media screen and (max-width: 500px) {
-            font-size: 12px;
-            padding: 10px 5px;
-            // width: 155px;
-          }
+          // width: 155px;
         }
       }
+    }
   }
   &__actions {
     display: flex;
     justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 20px;
-   
   }
 }

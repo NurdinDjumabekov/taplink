@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 // import { listCertificate } from "../../helpers/dataArr";
-import "./Certificate.scss";
-import { addCertificate } from "../../store/reducers/saveDataSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { changeAlertText } from "../../store/reducers/stateSlice";
-import { takeCertificate } from "../../store/reducers/requestSlice";
+import './Certificate.scss';
+import { addCertificate } from '../../store/reducers/saveDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAlertText } from '../../store/reducers/stateSlice';
+import { takeCertificate } from '../../store/reducers/requestSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Certificate = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { basketUser } = useSelector((state) => state.saveDataSlice);
   const { listCertificate } = useSelector((state) => state.requestSlice);
 
@@ -19,16 +21,16 @@ const Certificate = () => {
     if (basketUser?.certificate?.length >= 4) {
       dispatch(
         changeAlertText({
-          text: "За раз вы можете выбрать только 4 сертификата. Перейдите в корзину, чтобы посмотреть ваш список",
-          backColor: "#c284e4",
+          text: 'За раз вы можете выбрать только 4 сертификата. Перейдите в корзину, чтобы посмотреть ваш список',
+          backColor: '#c284e4',
           state: true,
         })
       );
     } else {
       dispatch(
         changeAlertText({
-          text: "Cертификат добавлен в корзину",
-          backColor: "#e484ba",
+          text: 'Cертификат добавлен в корзину',
+          backColor: '#e484ba',
           state: true,
         })
       );
@@ -79,6 +81,11 @@ const Certificate = () => {
             </div>
           ))}
         </div>
+        {basketUser?.certificate?.length !== 0 && (
+          <button className="zakaz" onClick={() => navigate('/basket')}>
+            Перейти к заказу
+          </button>
+        )}
       </div>
     </div>
   );

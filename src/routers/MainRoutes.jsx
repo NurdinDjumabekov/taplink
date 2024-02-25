@@ -1,22 +1,23 @@
-import React from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import MainPage from "../pages/MainPage/MainPage";
+import React from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import MainPage from '../pages/MainPage/MainPage';
 // import { Preloader } from '../components/Preloader/Preloader';
-import { useDispatch, useSelector } from "react-redux";
-import LookAction from "../pages/LookAction/LookAction";
-import ChoiceSpecialist from "../pages/ChoiceSpecialist/ChoiceSpecialist";
-import MainLayouts from "../layouts/MainLayouts/MainLayouts";
-import ChoiceDate from "../pages/ChoiceDate/ChoiceDate";
-import ChoiceService from "../pages/ChoiceService/ChoiceService";
-import EstabPage from "../pages/EstabPage/EstabPage";
-import Alerts from "../components/Alerts/Alerts";
-import BasketPage from "../pages/BasketPage/BasketPage";
-import CommentsPage from "../pages/CommentsPage/CommentsPage";
-import { changeLookDate } from "../store/reducers/stateSlice";
-import DateLook from "../components/DateLook/DateLook";
-import Certificate from "../pages/Certificate/Certificate";
-import CancellationPage from "../pages/CancellationPage/CancellationPage";
-import ConfirmPage from "../pages/ConfirmPage/ConfirmPage";
+import { useDispatch, useSelector } from 'react-redux';
+import LookAction from '../pages/LookAction/LookAction';
+import ChoiceSpecialist from '../pages/ChoiceSpecialist/ChoiceSpecialist';
+import MainLayouts from '../layouts/MainLayouts/MainLayouts';
+import ChoiceDate from '../pages/ChoiceDate/ChoiceDate';
+import ChoiceService from '../pages/ChoiceService/ChoiceService';
+import EstabPage from '../pages/EstabPage/EstabPage';
+import Alerts from '../components/Alerts/Alerts';
+import BasketPage from '../pages/BasketPage/BasketPage';
+import CommentsPage from '../pages/CommentsPage/CommentsPage';
+import { changeLookDate } from '../store/reducers/stateSlice';
+import DateLook from '../components/DateLook/DateLook';
+import Certificate from '../pages/Certificate/Certificate';
+import CancellationPage from '../pages/CancellationPage/CancellationPage';
+import ConfirmPage from '../pages/ConfirmPage/ConfirmPage';
+import { Preloader } from '../components/Preloader/Preloader';
 // import Alerts from '../components/Alerts/Alerts';
 
 const MainRoutes = () => {
@@ -24,7 +25,7 @@ const MainRoutes = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { basketUser } = useSelector((state) => state.saveDataSlice);
-
+  const { preloader } = useSelector((state) => state.requestSlice);
   const { typeLookSevices, listBtns, lookDate } = useSelector(
     (state) => state.stateSlice
   );
@@ -52,7 +53,7 @@ const MainRoutes = () => {
         </Route>
       </Routes>
       {/* <MoreInfo /> */}
-      {/* {preloader && <Preloader />} */}
+      {preloader && <Preloader />}
       <Alerts />
     </>
   );

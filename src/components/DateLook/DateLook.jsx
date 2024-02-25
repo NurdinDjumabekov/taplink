@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import Modals from "../Modals/Modals";
-import { useDispatch, useSelector } from "react-redux";
-import { listDate } from "../../helpers/dataArr";
-import star from "../../assets/icons/star.svg";
+import React, { useState } from 'react';
+import Modals from '../Modals/Modals';
+import { useDispatch, useSelector } from 'react-redux';
+import { listDate } from '../../helpers/dataArr';
+import star from '../../assets/icons/star.svg';
 
-import "./DateLook.scss";
+import './DateLook.scss';
 import {
   addBasketMaster,
   deleteTimeMaster,
-} from "../../store/reducers/saveDataSlice";
+} from '../../store/reducers/saveDataSlice';
 import {
   changeAlertText,
   changeListBtns,
   changeLookDate,
   changeTypeLookSevices,
-} from "../../store/reducers/stateSlice";
-import { useNavigate, useParams } from "react-router-dom";
-import { takeEveryMaster } from "../../store/reducers/requestSlice";
-import { renderStars } from "../../helpers/renderStars";
+} from '../../store/reducers/stateSlice';
+import { useNavigate, useParams } from 'react-router-dom';
+import { takeEveryMaster } from '../../store/reducers/requestSlice';
+import { renderStars } from '../../helpers/renderStars';
 
 const DateLook = ({ lookDate, setLookdate }) => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const DateLook = ({ lookDate, setLookdate }) => {
   const { id } = useParams();
   const { basketUser } = useSelector((state) => state.saveDataSlice);
   const { everyMaster } = useSelector((state) => state.requestSlice);
-  console.log(everyMaster, "everyMaster");
+  console.log(everyMaster, 'everyMaster');
 
   const clickAddDate = (obj) => {
     // if (+basketUser?.master?.length === 1) {
@@ -40,13 +40,13 @@ const DateLook = ({ lookDate, setLookdate }) => {
     //   // navigate("/basket");
     // } else {
     // }
-    // dispatch(addBasketMaster(obj));
+    dispatch(addBasketMaster(obj));
     navigate(`/det/${listDate?.[0]?.codeid_addres}`);
     dispatch(
       changeListBtns([
-        { id: 1, title: "Выбрать специалиста и дату", bool: false },
-        { id: 2, title: "Выбрать услуги", bool: true },
-        { id: 3, title: "Выбрать свою дату и время", bool: false },
+        { id: 1, title: 'Выбрать специалиста и дату', bool: false },
+        { id: 2, title: 'Выбрать услуги', bool: true },
+        { id: 3, title: 'Выбрать свою дату и время', bool: false },
       ])
     );
     dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
@@ -61,8 +61,8 @@ const DateLook = ({ lookDate, setLookdate }) => {
     if (+basketUser?.master?.length === 0) {
       dispatch(
         changeAlertText({
-          text: "Выберите время для записи!",
-          backColor: "#ab89bce0",
+          text: 'Выберите время для записи!',
+          backColor: '#ab89bce0',
           state: true,
         })
       );
@@ -71,16 +71,16 @@ const DateLook = ({ lookDate, setLookdate }) => {
       navigate(`/det/${listDate?.[0]?.codeid_addres}`);
       dispatch(
         changeListBtns([
-          { id: 1, title: "Выбрать специалиста и дату", bool: false },
-          { id: 2, title: "Выбрать услуги", bool: true },
-          { id: 3, title: "Выбрать свою дату и время", bool: false },
+          { id: 1, title: 'Выбрать специалиста и дату', bool: false },
+          { id: 2, title: 'Выбрать услуги', bool: true },
+          { id: 3, title: 'Выбрать свою дату и время', bool: false },
         ])
       );
     }
   };
 
   const navBasket = () => {
-    navigate("/basket");
+    navigate('/basket');
     dispatch(changeLookDate(false));
   };
 
@@ -120,13 +120,13 @@ const DateLook = ({ lookDate, setLookdate }) => {
                 {dat?.timeList?.map((i) => (
                   <button
                     key={i?.id}
-                    // className={
-                    //   basketUser?.master?.some(
-                    //     (item) => item?.obj?.id === i?.id
-                    //   )
-                    //     ? "busy"
-                    //     : ""
-                    // }
+                    className={
+                      basketUser?.master?.some(
+                        (item) => item?.obj?.id === i?.id
+                      )
+                        ? 'busy'
+                        : ''
+                    }
                     onClick={() => {
                       const isAlreadySelected = basketUser?.master?.some(
                         (item) => item?.obj?.id === i?.id

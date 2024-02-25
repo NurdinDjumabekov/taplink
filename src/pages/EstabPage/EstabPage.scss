@@ -2,38 +2,6 @@
   padding: 20px 0px;
   &__inner {
     position: relative;
-      
-  .zakaz {
-    position: fixed;
-    z-index: 99;
-    right: 180px;
-    bottom: 150px;
-    cursor: pointer;
-    width: 200px;
-    height: 45px;
-    background: #e484ba;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: "Kurale", serif;
-    font-style: normal;
-    line-height: normal;
-    animation: zakazAnimation 3s infinite; 
-  }
-
-  @keyframes zakazAnimation {
-      0% {
-        opacity: 1;
-        background-color: rgb(218, 155, 166);
-        color: #fff;
-        border: 1px solid #fff;
-        transform: scale(1.02);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
   }
 
   &__logo {

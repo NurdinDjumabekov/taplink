@@ -8,7 +8,7 @@
   background: transparent;
   // font-family: "PT Sans", sans-serif;
   // font-style: normal;
-  font-family: "Kurale", serif;
+  font-family: 'Kurale', serif;
   line-height: normal;
 }
 html {
@@ -34,7 +34,7 @@ button {
   font-size: 18px;
   font-weight: 400;
   // font-family: 'Geologica', sans-serif;
-  font-family: "Kurale", serif;
+  font-family: 'Kurale', serif;
 }
 
 .container {
@@ -65,5 +65,37 @@ button {
   text-align: center;
   @media screen and (max-width: 460px) {
     font-size: 20px;
+  }
 }
+
+.zakaz {
+  position: fixed;
+  z-index: 99;
+  right: 180px;
+  bottom: 150px;
+  cursor: pointer;
+  width: 200px;
+  height: 45px;
+  background: #e484ba;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Kurale', serif;
+  font-style: normal;
+  line-height: normal;
+  animation: zakazAnimation 3s infinite;
+}
+
+@keyframes zakazAnimation {
+  0% {
+    opacity: 1;
+    background-color: rgb(218, 155, 166);
+    color: #fff;
+    border: 1px solid #fff;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+  }
 }

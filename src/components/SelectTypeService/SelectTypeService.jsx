@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   changeTypesService,
   searchService,
   takeListService,
-} from "../../store/reducers/requestSlice";
-import { useDispatch, useSelector } from "react-redux";
-import "./SelectTypeService.scss";
-import arrow from "../../assets/icons/arrow.svg";
-import { changeSearchService } from "../../store/reducers/inputSlice";
-import debounce from "debounce";
+} from '../../store/reducers/requestSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import './SelectTypeService.scss';
+import arrow from '../../assets/icons/arrow.svg';
+import { changeSearchService } from '../../store/reducers/inputSlice';
+import debounce from 'debounce';
 
 const SelectTypeService = () => {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const SelectTypeService = () => {
     }
   }, 500);
 
-  console.log(searchInput, "searchInput");
+  console.log(searchInput, 'searchInput');
 
   return (
     <div className="typesSel">
@@ -52,15 +52,15 @@ const SelectTypeService = () => {
           {listTypesService?.map((type) => (
             <button
               key={type?.codeid}
-              onClick={() => clickType(type?.codeid)}
-              className={type?.bool ? "activeBtnTypeMobile" : "none"}
+              onClick={() => setActive(!active)}
+              className={type?.bool ? 'activeBtnTypeMobile' : 'none'}
             >
               <p>{type?.name}</p>
               {type?.bool && (
                 <img
                   src={arrow}
                   alt="arrow"
-                  className={active ? "activeBtn" : "disactiveBtn"}
+                  className={active ? 'activeBtn' : 'disactiveBtn'}
                 />
               )}
             </button>
@@ -72,7 +72,7 @@ const SelectTypeService = () => {
                   key={type?.codeid}
                   onClick={() => clickType(type?.codeid)}
                 >
-                  <p className={type?.bool ? "activeInner" : ""}>
+                  <p className={type?.bool ? 'activeInner' : ''}>
                     {type?.name}
                   </p>
                 </button>

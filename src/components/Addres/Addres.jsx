@@ -1,13 +1,14 @@
-import React from "react";
-import "./Addres.scss";
-import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { takeFilials } from "../../store/reducers/requestSlice";
+import React from 'react';
+import './Addres.scss';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { takeFilials } from '../../store/reducers/requestSlice';
 import {
   changeListBtns,
   changeTypeLookSevices,
-} from "../../store/reducers/stateSlice";
+} from '../../store/reducers/stateSlice';
+import { changeTemporaryIdFilial } from '../../store/reducers/saveDataSlice';
 
 const Addres = () => {
   const dispatch = useDispatch();
@@ -25,18 +26,19 @@ const Addres = () => {
       changeListBtns([
         {
           id: 1,
-          title: "Выбрать специалиста и дату",
+          title: 'Выбрать специалиста и дату',
           bool: true,
         },
-        { id: 2, title: "Выбрать услуги", bool: false },
+        { id: 2, title: 'Выбрать услуги', bool: false },
         {
           id: 3,
-          title: "Выбрать свою дату и время",
+          title: 'Выбрать свою дату и время',
           bool: false,
         },
       ])
     );
     dispatch(changeTypeLookSevices(1));
+    dispatch(changeTemporaryIdFilial(codeid)); // для временного хранения id филиала, т.к. при откате с корзины надо нужен id филиала, где есть мастер мастера
   };
 
   return (
@@ -53,9 +55,9 @@ const Addres = () => {
                       zoom: 14,
                     }}
                     style={{
-                      borderRadius: "8px",
-                      width: "100%",
-                      height: "100%",
+                      borderRadius: '8px',
+                      width: '100%',
+                      height: '100%',
                     }}
                   >
                     <Placemark
@@ -72,7 +74,7 @@ const Addres = () => {
                     График работы: <span>{point?.schedule}</span>
                   </p>
                   <p>
-                    Контакты: <span>{point?.contacts1}</span>,{" "}
+                    Контакты: <span>{point?.contacts1}</span>,{' '}
                     <span>{point?.contacts2}</span>
                   </p>
                   <div className="linkBtn">
