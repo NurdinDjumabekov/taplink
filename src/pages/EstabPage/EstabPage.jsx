@@ -7,6 +7,7 @@ import ChoiceDate from "../ChoiceDate/ChoiceDate";
 import ChoiceService from "../ChoiceService/ChoiceService";
 import TypesNav from "../../components/TypesNav/TypesNav";
 import {
+  takeListService,
   takeMasters,
   takeTypesService,
 } from "../../store/reducers/requestSlice";
@@ -20,6 +21,7 @@ const EstabPage = () => {
   React.useEffect(() => {
     dispatch(takeMasters(id));
     dispatch(takeTypesService());
+    dispatch(takeListService({ id: 0, text: "" }));
     window.scrollTo(0, 0);
   }, []);
 
@@ -37,6 +39,7 @@ const EstabPage = () => {
             {typeLookSevices === 1 && <ChoiceSpecialist />}
             {typeLookSevices === 2 && <ChoiceService />}
             {typeLookSevices === 3 && <ChoiceDate />}
+            <button className="zakaz">Перейти к заказу</button>
           </div>
         </div>
       </div>

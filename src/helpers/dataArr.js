@@ -291,6 +291,7 @@ export const listService = [
     descr:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptates autem rerum consequatur repellendus sequi, obcaecati ad eveniet tempore, quas, assumenda perspiciatis! Nulla itaque sequi alias placeat eius reiciendis quia necessitatibus praesentium earum velit nostrum numquam illo delectus consequatur hic, animi, dolores doloribus voluptatibus esse quisquam sit architecto amet! Debitis.",
     time: 40,
+    // timeBusy: 40,
   },
 ];
 

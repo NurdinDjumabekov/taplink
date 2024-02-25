@@ -1,10 +1,13 @@
 import React from "react";
-import { listAdres } from "../../helpers/dataArr";
 import "./Addres.scss";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { takeFilials } from "../../store/reducers/requestSlice";
+import {
+  changeListBtns,
+  changeTypeLookSevices,
+} from "../../store/reducers/stateSlice";
 
 const Addres = () => {
   const dispatch = useDispatch();
@@ -15,6 +18,26 @@ const Addres = () => {
     dispatch(takeFilials());
   }, []);
   // console.log(listFilials, "listFilials");
+
+  const clickAddres = (codeid) => {
+    navigate(`/det/${codeid}`);
+    dispatch(
+      changeListBtns([
+        {
+          id: 1,
+          title: "Выбрать специалиста и дату",
+          bool: true,
+        },
+        { id: 2, title: "Выбрать услуги", bool: false },
+        {
+          id: 3,
+          title: "Выбрать свою дату и время",
+          bool: false,
+        },
+      ])
+    );
+    dispatch(changeTypeLookSevices(1));
+  };
 
   return (
     <div className="addres">
@@ -53,7 +76,7 @@ const Addres = () => {
                     <span>{point?.contacts2}</span>
                   </p>
                   <div className="linkBtn">
-                    <button onClick={() => navigate(`/det/${point?.codeid}`)}>
+                    <button onClick={() => clickAddres(point?.codeid)}>
                       Перейти
                     </button>
                   </div>

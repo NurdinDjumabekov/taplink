@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeIdForDate,
   changeLookDate,
+  // delete
 } from "../../store/reducers/stateSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -21,12 +22,13 @@ const ChoiceSpecialist = () => {
   const navigate = useNavigate();
 
   const clickDate = (id) => {
-    dispatch(changeIdForDate(id));
-    dispatch(changeLookDate(true));
+    // dispatch(changeIdForDate(id));
+    // dispatch(changeLookDate(true));
+    navigate(`/date/${id}`);
   };
 
   const clickComents = (id) => {
-    dispatch(changeIdForDate(id));
+    // dispatch(changeIdForDate(id));
     navigate(`/com/${id}`);
   };
   console.log(listMasters, "listMasters");
@@ -34,48 +36,57 @@ const ChoiceSpecialist = () => {
   return (
     <>
       <div className="spec">
-        {listMasters?.map((spec) => (
-          <div key={spec?.codeid} className="spec__every">
-            <div className="spec__content">
-              <div className="spec__content__more">
-                <div className="mainLogo">
-                  <img src={spec?.logo ? spec?.logo : imgAlt} alt="мастер" />
-                </div>
-                <div className="mainText">
-                  <p>
-                    {spec?.schedule?.map((con, ind) => (
-                      <span key={ind}>
-                        {con}
-                        {ind !== spec.schedule.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </p>
-                  <h5>{spec.fio}</h5>
-                  <div className="mainText__rating">
-                    <div className="star">
-                      {renderStars(spec?.rating, star)}
+        {listMasters?.length === 0 ? (
+          <p className="noneDataa">В этом филиале мастера отсутствуют</p>
+        ) : (
+          <>
+            {listMasters?.map((spec) => (
+              <div key={spec?.codeid} className="spec__every">
+                <div className="spec__content">
+                  <div className="spec__content__more">
+                    <div className="mainLogo">
+                      <img
+                        src={spec?.logo ? spec?.logo : imgAlt}
+                        alt="мастер"
+                      />
                     </div>
-                    <span>({spec?.countSchel})</span>
+                    <div className="mainText">
+                      <p>
+                        {spec?.schedule?.map((con, ind) => (
+                          <span key={ind}>
+                            {con}
+                            {ind !== spec.schedule.length - 1 && ", "}
+                          </span>
+                        ))}
+                      </p>
+                      <h5>{spec.fio}</h5>
+                      <div className="mainText__rating">
+                        <div className="star">
+                          {renderStars(spec?.rating, star)}
+                        </div>
+                        <span>({spec?.countSchel})</span>
+                      </div>
+                    </div>
                   </div>
+                  <div></div>
+                </div>
+                <div className="spec__decrip">
+                  <p>
+                    {spec?.description
+                      ? spec?.description
+                      : "Описание отсутствует ..."}
+                  </p>
+                  <h4 onClick={() => clickDate(spec?.codeid)}>
+                    Посмотреть время для записи
+                  </h4>
+                  <h6 onClick={() => clickComents(spec?.codeid)}>
+                    Посмотреть отзывы
+                  </h6>
                 </div>
               </div>
-              <div></div>
-            </div>
-            <div className="spec__decrip">
-              <p>
-                {spec?.description
-                  ? spec?.description
-                  : "Описание отсутствует ..."}
-              </p>
-              <h4 onClick={() => clickDate(spec?.codeid)}>
-                Посмотреть время для записи
-              </h4>
-              <h6 onClick={() => clickComents(spec?.codeid)}>
-                Посмотреть отзывы
-              </h6>
-            </div>
-          </div>
-        ))}
+            ))}
+          </>
+        )}
       </div>
     </>
   );

@@ -182,12 +182,12 @@ const BasketPage = () => {
                         <>
                           <div className="cards" key={i?.codeid}>
                             <div className="cards__img">
-                              <img src={i?.logo} alt="logo" />
+                              <img src={i?.image} alt="logo" />
                             </div>
-                            <h6>{i?.title}</h6>
+                            <h6>{i?.name}</h6>
                             <div className="cards__texts">
                               <p>
-                                Время: <span>{convertTime(i?.time)}</span>
+                                Время: <span>{convertTime(i?.timeBusy)}</span>
                               </p>
                               <p>
                                 Цена: <span>{i?.sum} сом</span>

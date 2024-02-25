@@ -17,6 +17,7 @@ const initialState = {
     rejection: "",
     number: "+996",
   },
+  searchInput: "",
 };
 
 const inputSlice = createSlice({
@@ -32,10 +33,17 @@ const inputSlice = createSlice({
     changeConfirm: (state, action) => {
       state.confirm = action.payload;
     },
+    changeSearchService: (state, action) => {
+      state.searchInput = action.payload;
+    },
   },
 });
 
-export const { changeDataUser, changeCancellation, changeConfirm } =
-  inputSlice.actions;
+export const {
+  changeDataUser,
+  changeCancellation,
+  changeConfirm,
+  changeSearchService,
+} = inputSlice.actions;
 
 export default inputSlice.reducer;

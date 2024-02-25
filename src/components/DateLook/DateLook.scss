@@ -1,39 +1,103 @@
 .dateLook {
-  @media screen and (max-width: 450px) {
-    .container {
-      padding: 0;
+  padding: 30px 0px;
+  &__master {
+    .mainComm {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 0 20px 0;
+
+      .logo {
+        width: 150px;
+        height: 150px;
+      
+
+        img {
+          border-radius: 50%;
+        }
+        @media screen and (max-width: 680px) {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+        }
+      }
+      h5 {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 28px;
+        margin: 0 0 12px 0;
+        @media screen and (max-width: 680px) {
+          font-size: 24px;
+          margin: 0;
+        }
+      }
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .star {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          > img {
+            width: 35px;
+            height: 35px;
+            @media screen and (max-width: 680px) {
+              width: 25px;
+              height: 25px;
+              @media screen and (max-width: 550px) {
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+        }
+        span {
+          font-size: 25px;
+          font-weight: 700;
+          @media screen and (max-width: 680px) {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+   
+    h3{
+      font-size: 30px;
+      font-weight: 700;
+      font-family: "Kurale", serif;
+      line-height: 25px;
+      margin: 20px 0;
+      text-align: left;
+      color: #222;
+      @media screen and (max-width: 500px) {
+        font-size: 22px;
+      }
     }
   }
-  h3{
-    font-size: 30px;
-    font-weight: 700;
-    font-family: "Kurale", serif;
-    line-height: 25px;
-    margin: 0 0 20px 0;
-    color: #222;
-    @media screen and (max-width: 500px) {
-      font-size: 22px;
-    }
-  }
+
   &__inner {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     padding: 0 0 20px 0;
-    gap: 20px;
-    height: 65vh;
-    overflow-y: scroll;
+    gap: 10px;
+    @media screen and (max-width: 1310px) {
+      justify-content: center;
+      gap: 20px;
+    }
   }
   &__every {
-    // background: green;
-    width: 100%;
-    // width: 440px;
+    max-width: 400px;
     background-color:rgba(255, 255, 255, 0.590);
     padding: 0px 0px 10px;
     border-radius: 8px;
     box-shadow: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 50px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08);;
     margin: 0 8px;
+    @media screen and (max-width: 890px) {
+      max-width: 100%;
+    }
 
     h5 {
       padding: 10px;
@@ -74,7 +138,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding: 15px 8px 15px 60px ;
+        padding: 10px 8px 10px 50px ;
         font-size: 22px;
         border-radius: 8px;
         font-weight: 700;

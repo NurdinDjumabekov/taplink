@@ -1,13 +1,15 @@
 import React from "react";
-import { listCertificate } from "../../helpers/dataArr";
+// import { listCertificate } from "../../helpers/dataArr";
 import "./Certificate.scss";
 import { addCertificate } from "../../store/reducers/saveDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { changeAlertText } from "../../store/reducers/stateSlice";
+import { takeCertificate } from "../../store/reducers/requestSlice";
 
 const Certificate = () => {
   const dispatch = useDispatch();
   const { basketUser } = useSelector((state) => state.saveDataSlice);
+  const { listCertificate } = useSelector((state) => state.requestSlice);
 
   const addSertificate = (obj) => {
     const existingCertificate = basketUser?.certificate?.find(
@@ -45,6 +47,13 @@ const Certificate = () => {
       }
     }
   };
+
+  React.useEffect(() => {
+    dispatch(takeCertificate());
+    window.scrollTo(0, 0);
+  }, []);
+
+  // console.log(listCertificate, "listCertificate");
 
   return (
     <div className="certificate">
