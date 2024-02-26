@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ENV } from "../../helpers/ENV";
 import axios from "axios";
+import { transformNumber } from "../../helpers/transformNumber";
+import { transformTextConfim } from "../../helpers/transformTextConfim";
+import { changeAlertText } from "./stateSlice";
 const { REACT_APP_API_URL } = process.env;
 
 /////// takeFilials
@@ -171,6 +174,105 @@ export const takeCertificate = createAsyncThunk(
   }
 );
 
+/////// confirmZakazBD
+export const confirmZakazBD = createAsyncThunk(
+  "confirmZakazBD",
+  async function (number, { dispatch, rejectWithValue }) {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `${REACT_APP_API_URL}/conf`,
+        data: {
+          num: transformNumber(number),
+        },
+      });
+      if (response.status >= 200 && response.status < 300) {
+        // return response?.data?.recordset;
+        // setTimeout(() => {
+        //   dispatch(
+        //     confirmZakazWA({
+        //       text: transformTextConfim(response?.data?.recordset),
+        //       num: transformNumber(number),
+        //     })
+        //   );
+        // }, 1000);
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+/////// confirmZakazWA
+export const confirmZakazWA = createAsyncThunk(
+  "confirmZakazWA",
+  async function (info, { dispatch, rejectWithValue }) {
+    // const { text, num } = info;
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `http://212.112.105.196:3010/api/create_message`,
+        data: {
+          message: "text",
+          from: "7103908708",
+          to: "996700754454",
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.status >= 200 && response.status < 300) {
+        dispatch(
+          changeAlertText({
+            text: "Ожидайте сообщение по WhatsApp",
+            backColor: "#e484ba",
+            state: true,
+          })
+        );
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+/// delete
+
+/////// createZakaz
+export const createZakaz = createAsyncThunk(
+  "createZakaz",
+  async function (id, { rejectWithValue }) {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `${REACT_APP_API_URL}/create`,
+      });
+      if (response.status >= 200 && response.status < 300) {
+        return response?.data?.recordset;
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// @guid uniqueidentifier,
+// 	@code_registrator int,
+// 	@date_from datetime,
+// 	@date_to datetime,
+// 	@code_department int,
+// 	@code_doctor int,
+// 	@code_patient int,
+// 	@comment nvarchar(2000),
+// 	@check_sms int,
+// 	@check_live_turn int,
+// 	@check_vaccination int
+
 const initialState = {
   preloader: false,
   listFilials: [],
@@ -282,6 +384,19 @@ const requestSlice = createSlice({
       state.preloader = false;
     });
     builder.addCase(takeEveryMaster.pending, (state, action) => {
+      state.preloader = true;
+    });
+    ////// confirmZakazWA
+    //////
+    builder.addCase(confirmZakazWA.fulfilled, (state, action) => {
+      state.preloader = false;
+      // state.everyMaster = action?.payload;
+    });
+    builder.addCase(confirmZakazWA.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader = false;
+    });
+    builder.addCase(confirmZakazWA.pending, (state, action) => {
       state.preloader = true;
     });
   },

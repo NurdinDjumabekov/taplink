@@ -102,4 +102,12 @@
     //   border-radius: 6px; /* Скругление углов трека скроллбара */
     // }
   }
+  .allSpec {
+    // background: red;
+    h6 {
+      @media screen and (max-width: 970px) {
+        display: none;
+      }
+    }
+  }
 }

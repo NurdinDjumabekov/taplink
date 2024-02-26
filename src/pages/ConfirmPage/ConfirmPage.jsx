@@ -2,10 +2,13 @@ import React from "react";
 import "./ConfirmPage.scss";
 import InputMask from "react-input-mask";
 import { useDispatch, useSelector } from "react-redux";
+import { changeConfirm } from "../../store/reducers/inputSlice";
 import {
-  changeCancellation,
-  changeConfirm,
-} from "../../store/reducers/inputSlice";
+  confirmZakazBD,
+  confirmZakazWA,
+} from "../../store/reducers/requestSlice";
+import { transformNumber } from "../../helpers/transformNumber";
+import { changeAlertText } from "../../store/reducers/stateSlice";
 
 const ConfirmPage = () => {
   const dispatch = useDispatch();
@@ -18,7 +21,24 @@ const ConfirmPage = () => {
 
   const confirmZakaz = (e) => {
     e.preventDefault();
+    dispatch(confirmZakazWA());
+    // const isValidPhoneNumber = /^\996\d{9}$/g.test(
+    //   transformNumber(confirm?.number)
+    // );
+
+    // if (isValidPhoneNumber) {
+    //   dispatch(confirmZakazBD(confirm?.number));
+    // } else {
+    //   dispatch(
+    //     changeAlertText({
+    //       text: "Введите правильный номер телефона",
+    //       backColor: "#ab89bce0",
+    //       state: true,
+    //     })
+    //   );
+    // }
   };
+
   return (
     <div className="cancellation confirm">
       <div className="container">
@@ -27,7 +47,10 @@ const ConfirmPage = () => {
             <a href="https://wa.me/996700754454" target="_blank">
               Написать нам в WhatsApp
             </a>
-            <h4>Введите ваш номер, чтобы мы отправили вам подтверждение</h4>
+            <h4>
+              Введите ваш номер, чтобы мы отправили вам подтверждение вашего
+              заказа
+            </h4>
             <InputMask
               mask="+999(999)99-99-99"
               placeholder="+996(___)__-__-__"

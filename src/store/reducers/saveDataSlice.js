@@ -1,12 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   basketUser: { master: [], service: [], certificate: [] },
   temporaryIdFilial: 1, /// временный id филиала
+  temporaryIdMaster: 1, /// временный id мастера
 };
 
 const saveDataSlice = createSlice({
-  name: 'saveDataSlice',
+  name: "saveDataSlice",
   initialState,
   reducers: {
     addBasketMaster: (state, action) => {
@@ -74,8 +75,12 @@ const saveDataSlice = createSlice({
     changeTemporaryIdFilial: (state, action) => {
       state.temporaryIdFilial = action?.payload;
     },
+    changeTemporaryIdMaster: (state, action) => {
+      state.temporaryIdMaster = action?.payload;
+    },
   },
 });
+
 export const {
   addBasketMaster,
   addBasketService,
@@ -84,6 +89,7 @@ export const {
   addCertificate,
   deleteCertificate,
   changeTemporaryIdFilial,
+  changeTemporaryIdMaster,
 } = saveDataSlice.actions;
 
 export default saveDataSlice.reducer;

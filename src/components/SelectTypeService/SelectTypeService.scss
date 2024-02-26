@@ -52,6 +52,9 @@
     @media screen and (max-width: 900px) {
       flex-direction: column-reverse;
       gap: 15px;
+      @media screen and (max-width: 500px) {
+        padding: 10px 0px;
+      }
     }
     .serviceChoice__type__mobile {
       // display: none;
@@ -59,6 +62,9 @@
       @media screen and (max-width: 690px) {
           display: block;
           margin: 10px 0 0 0;
+          @media screen and (max-width: 500px) {
+            margin: 0;
+          }
       }
       .activeBtnTypeMobile {
           background: #e484ba;
@@ -75,7 +81,7 @@
           gap: 20px;
           @media screen and (max-width: 500px) {
             width: 100%;
-            height: 47px;
+            height: 40px;
           }
           p {
               overflow: hidden;
@@ -117,8 +123,9 @@
           gap: 5px;
           overflow-y: scroll;
           height: 150px;
-          @media screen and (max-width: 440px) {
+          @media screen and (max-width: 500px) {
             width: 100%;
+            top: 45px;
           }
           button {
               width: auto;

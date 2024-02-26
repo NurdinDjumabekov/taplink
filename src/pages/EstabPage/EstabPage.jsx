@@ -1,16 +1,16 @@
-import React from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import './EstabPage.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import ChoiceSpecialist from '../ChoiceSpecialist/ChoiceSpecialist';
-import ChoiceDate from '../ChoiceDate/ChoiceDate';
-import ChoiceService from '../ChoiceService/ChoiceService';
-import TypesNav from '../../components/TypesNav/TypesNav';
+import React from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import "./EstabPage.scss";
+import { useDispatch, useSelector } from "react-redux";
+import ChoiceSpecialist from "../ChoiceSpecialist/ChoiceSpecialist";
+import ChoiceDate from "../ChoiceDate/ChoiceDate";
+import ChoiceService from "../ChoiceService/ChoiceService";
+import TypesNav from "../../components/TypesNav/TypesNav";
 import {
   takeListService,
   takeMasters,
   takeTypesService,
-} from '../../store/reducers/requestSlice';
+} from "../../store/reducers/requestSlice";
 
 const EstabPage = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const EstabPage = () => {
   React.useEffect(() => {
     dispatch(takeMasters(id));
     dispatch(takeTypesService());
-    dispatch(takeListService({ id: 0, text: '' }));
+    dispatch(takeListService({ id: 0, text: "" }));
     window.scrollTo(0, 0);
   }, []);
 
@@ -42,7 +42,7 @@ const EstabPage = () => {
             {typeLookSevices === 3 && <ChoiceDate />}
             {basketUser?.master?.length !== 0 &&
               basketUser?.service?.length !== 0 && (
-                <button className="zakaz" onClick={() => navigate('/basket')}>
+                <button className="zakaz" onClick={() => navigate("/basket")}>
                   Перейти к заказу
                 </button>
               )}

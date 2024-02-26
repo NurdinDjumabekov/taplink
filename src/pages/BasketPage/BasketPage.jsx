@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
-import './BasketPage.scss';
-import './BasketPage.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { renderStars } from '../../helpers/renderStars';
-import del from '../../assets/icons/delBtn.svg';
-import more from '../../assets/icons/more.svg';
-import star from '../../assets/icons/star.svg';
-import edit from '../../assets/icons/edit.svg';
-import { convertTime } from '../../helpers/convertTime';
+import React, { useState } from "react";
+import "./BasketPage.scss";
+import "./BasketPage.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { renderStars } from "../../helpers/renderStars";
+import del from "../../assets/icons/delBtn.svg";
+import more from "../../assets/icons/more.svg";
+import star from "../../assets/icons/star.svg";
+import edit from "../../assets/icons/edit.svg";
+import { convertTime } from "../../helpers/convertTime";
 import {
   addCertificate,
   deleteBasketService,
   deleteCertificate,
-} from '../../store/reducers/saveDataSlice';
+} from "../../store/reducers/saveDataSlice";
 import {
+  changeAlertText,
   changeListBtns,
   changeLookDate,
   changeSummOrders,
   changeTypeLookSevices,
-} from '../../store/reducers/stateSlice';
-import { NavLink, useNavigate } from 'react-router-dom';
-import SendOrders from '../../components/SendOrders/SendOrders';
+} from "../../store/reducers/stateSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import SendOrders from "../../components/SendOrders/SendOrders";
+import { createZakaz } from "../../store/reducers/requestSlice";
 
 const BasketPage = () => {
   const dispatch = useDispatch();
@@ -47,9 +49,9 @@ const BasketPage = () => {
     navigate(`/det/${temporaryIdFilial}`);
     dispatch(
       changeListBtns([
-        { id: 1, title: 'Выбрать специалиста и дату', bool: true },
-        { id: 2, title: 'Выбрать услуги', bool: false },
-        { id: 3, title: 'Выбрать свою дату и время', bool: false },
+        { id: 1, title: "Выбрать специалиста и дату", bool: true },
+        { id: 2, title: "Выбрать услуги", bool: false },
+        { id: 3, title: "Выбрать свою дату и время", bool: false },
       ])
     );
   };
@@ -58,8 +60,25 @@ const BasketPage = () => {
     dispatch(changeLookDate(true));
   };
 
+  const sendData = () => {
+    if (
+      (basketUser?.master?.length !== 0 && basketUser?.service?.length !== 0) ||
+      basketUser?.certificate?.length !== 0
+    ) {
+      setLookSend(true);
+    } else {
+      dispatch(
+        changeAlertText({
+          text: "Ваша корзина не полная",
+          backColor: "#ab89bce0",
+          state: true,
+        })
+      );
+    }
+  };
+
   const clearBasket = () => {
-    navigate('/');
+    navigate("/");
     localStorage.clear();
     window.location.reload();
   };
@@ -79,7 +98,7 @@ const BasketPage = () => {
                     <button className="edit" onClick={editMaster}>
                       <img src={edit} alt="edit" />
                       <p>
-                        Выбрать {basketUser?.master?.length !== 0 && 'другого'}{' '}
+                        Выбрать {basketUser?.master?.length !== 0 && "другого"}{" "}
                         мастера
                       </p>
                     </button>
@@ -112,14 +131,14 @@ const BasketPage = () => {
                         <div className="times">
                           <div
                             className="editAndMain timeMaster"
-                            style={{ gap: '0px' }}
+                            style={{ gap: "0px" }}
                           >
                             <span>
                               {basketUser?.master
                                 ?.map(
                                   (i) => `Время: ${i?.obj?.time} (${i?.date})`
                                 )
-                                .join(', ')}
+                                .join(", ")}
                             </span>
                           </div>
                           <button className="edit" onClick={editDateMaster}>
@@ -136,7 +155,7 @@ const BasketPage = () => {
                       <span>
                         {basketUser?.master
                           ?.map((i) => `Время: ${i?.obj?.time} (${i?.date})`)
-                          .join(', ')}
+                          .join(", ")}
                       </span>
                     </div>
                   </div>
@@ -151,28 +170,29 @@ const BasketPage = () => {
               )}
               <div className="services">
                 <div>
-                  {basketUser?.master?.length !== 0 &&
+                  {/* {basketUser?.master?.length !== 0 &&
                     basketUser?.service?.length !== 0 &&
-                    basketUser?.certificate?.length !== 0 && (
-                      <div className="mainInfo">
-                        <h5>Ваша корзина</h5>
-                        <div className="result">
-                          <button onClick={() => setLookSend(true)}>
-                            Записаться
-                          </button>
-                          <button onClick={clearBasket}>
-                            Очистить всю корзину
-                          </button>
-                        </div>
-                      </div>
-                    )}
+                    basketUser?.certificate?.length !== 0 && ( */}
+                  <div className="mainInfo">
+                    <h5>Ваша корзина</h5>
+                    <div className="result">
+                      {/* <button onClick={sendData}>Записаться</button> */}
+                      <button onClick={() => dispatch(createZakaz())}>
+                        Записаться
+                      </button>
+                      <button onClick={clearBasket}>
+                        Очистить всю корзину
+                      </button>
+                    </div>
+                  </div>
+                  {/* )} */}
                 </div>
                 {basketUser?.service?.length === 0 &&
                 basketUser?.certificate?.length === 0 ? (
                   <div className="emptyBasket">
                     <div>
                       <p>Ваша корзина пустая </p>
-                      <NavLink to={'/'}> Перейти на главную страницу</NavLink>
+                      <NavLink to={"/"}> Перейти на главную страницу</NavLink>
                     </div>
                   </div>
                 ) : (

@@ -14,7 +14,6 @@
       bottom: 110px;
       @media screen and (max-width: 500px) {
         left: 40px;
-        bottom: 80px;
       }
     }
   }
@@ -24,7 +23,7 @@
     .actionBtn {
       width: 65px;
       height: 65px;
-      border: 1px solid rgb(73, 70, 70);
+      border: 1px solid rgb(181, 93, 181);
       transition: all 0.3s ease-in-out;
       animation: ripple 1.5s ease-out infinite;
       border-radius: 50%;

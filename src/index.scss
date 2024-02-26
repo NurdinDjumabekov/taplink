@@ -85,6 +85,23 @@ button {
   font-style: normal;
   line-height: normal;
   animation: zakazAnimation 3s infinite;
+  @media screen and (max-width: 900px) {
+    right: 80px;
+    @media screen and (max-width: 620px) {
+      bottom: 110px;
+      font-size: 16px;
+      width: 150px;
+      height: 35px;
+      @media screen and (max-width: 500px) {
+        height: 42px;
+        bottom: 20px;
+        width: 90%;
+        left: 0px;
+        right: 0px;
+        margin: 0 auto;
+      }
+    }
+  }
 }
 
 @keyframes zakazAnimation {

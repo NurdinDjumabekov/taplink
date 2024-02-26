@@ -1,16 +1,13 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './ChoiceService.scss';
-import { changeTypesService } from '../../store/reducers/requestSlice';
-// import { listService } from "../../helpers/dataArr";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./ChoiceService.scss";
 import {
   addBasketService,
   deleteBasketService,
-} from '../../store/reducers/saveDataSlice';
-import { changeAlertText } from '../../store/reducers/stateSlice';
-import like from '../../assets/icons/goodSend.svg';
-import delWhite from '../../assets/icons/delBtnWhite.svg';
-import SelectTypeService from '../../components/SelectTypeService/SelectTypeService';
+} from "../../store/reducers/saveDataSlice";
+import { changeAlertText } from "../../store/reducers/stateSlice";
+import delWhite from "../../assets/icons/delBtnWhite.svg";
+import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
@@ -26,8 +23,8 @@ const ChoiceService = () => {
     if (isServiceInBasket) {
       dispatch(
         changeAlertText({
-          text: 'Такая услуга уже есть у вас в корзине',
-          backColor: '#c284e4',
+          text: "Такая услуга уже есть у вас в корзине",
+          backColor: "#c284e4",
           state: true,
         })
       );
@@ -35,16 +32,16 @@ const ChoiceService = () => {
       if (basketUser?.service?.length === 3) {
         dispatch(
           changeAlertText({
-            text: 'Вы за раз можете выбрать не больше 3х услуг',
-            backColor: '#c284e4',
+            text: "Вы за раз можете выбрать не больше 3х услуг",
+            backColor: "#c284e4",
             state: true,
           })
         );
       } else {
         dispatch(
           changeAlertText({
-            text: 'Мы добавили эту услугу в корзину',
-            backColor: '#e484ba',
+            text: "Мы добавили эту услугу в корзину",
+            backColor: "#e484ba",
             state: true,
           })
         );
@@ -52,9 +49,6 @@ const ChoiceService = () => {
       }
     }
   };
-
-  // console.log(typesService, "typesService");
-  // console.log(basketUser, "basketUser");
 
   return (
     <div>
@@ -103,7 +97,7 @@ const ChoiceService = () => {
                           {/* <button className="actionsBtn__basket">Убрать</button> */}
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                     </div>
                   </div>

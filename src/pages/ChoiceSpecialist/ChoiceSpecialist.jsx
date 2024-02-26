@@ -2,6 +2,7 @@ import React from "react";
 import { listSpecialist } from "../../helpers/dataArr";
 import "./ChoiceSpecialist.scss";
 import star from "../../assets/icons/star.svg";
+import L from "../../assets/image/L.jpg";
 import { renderStars } from "../../helpers/renderStars";
 import DateLook from "../../components/DateLook/DateLook";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +12,7 @@ import {
   // delete
 } from "../../store/reducers/stateSlice";
 import { useNavigate } from "react-router-dom";
+import { changeTemporaryIdMaster } from "../../store/reducers/saveDataSlice";
 
 const ChoiceSpecialist = () => {
   const { listMasters } = useSelector((state) => state.requestSlice);
@@ -25,6 +27,7 @@ const ChoiceSpecialist = () => {
     // dispatch(changeIdForDate(id));
     // dispatch(changeLookDate(true));
     navigate(`/date/${id}`);
+    dispatch(changeTemporaryIdMaster(id));
   };
 
   const clickComents = (id) => {
@@ -40,6 +43,34 @@ const ChoiceSpecialist = () => {
           <p className="noneDataa">В этом филиале мастера отсутствуют</p>
         ) : (
           <>
+            <div className="spec__every allSpec">
+              <div className="spec__content">
+                <div className="spec__content__more">
+                  <div className="mainLogo">
+                    <img
+                      src="https://ap-cosmetics.ru/wp-content/uploads/DLYa-GLAVNOJ-1000x667.jpg"
+                      alt="мастер"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div className="mainText">
+                    <h5>Любой специалист</h5>
+                    <div className="mainText__rating">
+                      <div className="star">{renderStars(5, star)}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="spec__decrip">
+                <p>
+                  Если вы не можете отпределиться с мастером, то мы вам советуем
+                  выбрать этот пункт
+                </p>
+                <h4>Посмотреть время для записи</h4>
+                {/* /// onClick={() => clickDate(spec?.codeid)} */}
+                <h6 style={{ color: "transparent" }}>.</h6>
+              </div>
+            </div>
             {listMasters?.map((spec) => (
               <div key={spec?.codeid} className="spec__every">
                 <div className="spec__content">
