@@ -1,19 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  basketUser: { master: [], service: [], certificate: [] },
+  basketUser: { master: [], service: [], certificate: [] }, //// корзина
+  basketUserCopy: { master: {}, service: [] }, //// временное хранилище
+  typeLookSevices: 0, // для отображения (2)работников, (3)дат и (1)услуг
   temporaryIdFilial: 1, /// временный id филиала
   temporaryIdMaster: 1, /// временный id мастера
+  listBtns: [
+    { id: 1, title: 'Выбрать специалиста и дату', bool: true },
+    { id: 2, title: 'Выбрать услуги', bool: false },
+    { id: 3, title: 'Выбрать свою дату и время', bool: false },
+  ],
 };
 
 const saveDataSlice = createSlice({
-  name: "saveDataSlice",
+  name: 'saveDataSlice',
   initialState,
   reducers: {
     addBasketMaster: (state, action) => {
       state.basketUser = {
         ...state?.basketUser,
         master: [...state?.basketUser?.master, action?.payload],
+      };
+    },
+    copyAddBasketMaster: (state, action) => {
+      state.basketUserCopy = {
+        ...state.basketUserCopy,
+        master: action?.payload,
       };
     },
     addBasketService: (state, action) => {
@@ -28,6 +41,21 @@ const saveDataSlice = createSlice({
       );
       state.basketUser = {
         ...state?.basketUser,
+        service: newData,
+      };
+    },
+    addBasketServiceCopy: (state, action) => {
+      state.basketUserCopy = {
+        ...state?.basketUserCopy,
+        service: [...state.basketUserCopy.service, action.payload],
+      };
+    },
+    deleteBasketServiceCopy: (state, action) => {
+      const newData = state?.basketUserCopy?.service?.filter(
+        (i) => i.codeid !== action?.payload
+      );
+      state.basketUserCopy = {
+        ...state?.basketUserCopy,
         service: newData,
       };
     },
@@ -72,24 +100,43 @@ const saveDataSlice = createSlice({
         );
       }
     },
+    changeBasketUser: (state, action) => {
+      state.basketUser = action?.payload;
+    },
+    changeBasketUserCopy: (state, action) => {
+      state.basketUserCopy = action?.payload;
+    },
+    changeTypeLookSevices: (state, action) => {
+      state.typeLookSevices = action?.payload;
+    },
     changeTemporaryIdFilial: (state, action) => {
       state.temporaryIdFilial = action?.payload;
     },
     changeTemporaryIdMaster: (state, action) => {
       state.temporaryIdMaster = action?.payload;
     },
+    changeListBtns: (state, action) => {
+      state.listBtns = action.payload;
+    },
   },
 });
 
 export const {
   addBasketMaster,
+  copyAddBasketMaster,
   addBasketService,
+  addBasketServiceCopy,
   deleteBasketService,
+  deleteBasketServiceCopy,
+  changeBasketUser,
+  changeBasketUserCopy,
   deleteTimeMaster,
   addCertificate,
   deleteCertificate,
+  changeTypeLookSevices,
   changeTemporaryIdFilial,
   changeTemporaryIdMaster,
+  changeListBtns,
 } = saveDataSlice.actions;
 
 export default saveDataSlice.reducer;

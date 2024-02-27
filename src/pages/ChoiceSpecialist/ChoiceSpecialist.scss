@@ -10,7 +10,7 @@
   }
   &__every {
     width: 453px;
-    background-color: rgba(255, 255, 255, 0.590);
+    background-color: rgba(255, 255, 255, 0.59);
     padding: 10px;
     border-radius: 8px;
     @media screen and (max-width: 970px) {
@@ -105,8 +105,14 @@
   .allSpec {
     // background: red;
     h6 {
+      color: transparent;
       @media screen and (max-width: 970px) {
         display: none;
+      }
+    }
+    .mainLogo {
+      img {
+        object-fit: cover;
       }
     }
   }

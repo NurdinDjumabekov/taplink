@@ -3,29 +3,30 @@ import Modals from '../Modals/Modals';
 import { useDispatch, useSelector } from 'react-redux';
 import { listDate } from '../../helpers/dataArr';
 import star from '../../assets/icons/star.svg';
-
 import './DateLook.scss';
 import {
   addBasketMaster,
-  deleteTimeMaster,
+  copyAddBasketMaster,
 } from '../../store/reducers/saveDataSlice';
 import {
   changeAlertText,
-  changeListBtns,
   changeLookDate,
-  changeTypeLookSevices,
 } from '../../store/reducers/stateSlice';
+import { changeListBtns } from '../../store/reducers/saveDataSlice';
+import { changeTypeLookSevices } from '../../store/reducers/saveDataSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { takeEveryMaster } from '../../store/reducers/requestSlice';
 import { renderStars } from '../../helpers/renderStars';
+import { dateFormat } from '../../helpers/dateFormat';
 
-const DateLook = ({ lookDate, setLookdate }) => {
+const DateLook = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { basketUser } = useSelector((state) => state.saveDataSlice);
   const { everyMaster } = useSelector((state) => state.requestSlice);
-  console.log(everyMaster, 'everyMaster');
+  const { basketUser, basketUserCopy } = useSelector(
+    (state) => state.saveDataSlice
+  );
 
   const clickAddDate = (obj) => {
     // if (+basketUser?.master?.length === 1) {
@@ -84,6 +85,29 @@ const DateLook = ({ lookDate, setLookdate }) => {
     dispatch(changeLookDate(false));
   };
 
+  const addTime = (obj, timeCode) => {
+    dispatch(copyAddBasketMaster({ ...everyMaster, time: obj, timeCode }));
+  };
+
+  const deleteTime = () => {
+    dispatch(copyAddBasketMaster({}));
+  };
+
+  const goZakaz = () => {
+    dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
+    dispatch(
+      changeListBtns([
+        { id: 1, title: 'Выбрать специалиста и дату', bool: false },
+        { id: 2, title: 'Выбрать услуги', bool: true },
+        { id: 3, title: 'Выбрать свою дату и время', bool: false },
+      ])
+    );
+    navigate(`/det/${everyMaster?.codeid_addres}`);
+  };
+
+  // console.log(everyMaster, 'everyMaster');
+  // console.log(basketUserCopy, 'basketUserCopy');
+  // console.log(listDate, 'listDate');
   return (
     <div className="dateLook">
       <div className="container">
@@ -115,35 +139,27 @@ const DateLook = ({ lookDate, setLookdate }) => {
         <div className="dateLook__inner">
           {listDate?.map((dat) => (
             <div key={dat?.codeid} className="dateLook__every">
-              <h5>{dat?.date}</h5>
+              <h5>{dateFormat(dat?.timeList?.[0]?.time1, 'date')}</h5>
               <div className="dateLook__every__times">
                 {dat?.timeList?.map((i) => (
                   <button
                     key={i?.id}
                     className={
-                      basketUser?.master?.some(
-                        (item) => item?.obj?.id === i?.id
-                      )
+                      +basketUserCopy?.master?.time?.id === +i?.id &&
+                      +basketUserCopy?.master?.timeCode === +dat?.codeid
                         ? 'busy'
                         : ''
                     }
                     onClick={() => {
-                      const isAlreadySelected = basketUser?.master?.some(
-                        (item) => item?.obj?.id === i?.id
-                      );
-                      if (isAlreadySelected) {
-                        dispatch(deleteTimeMaster(i?.id));
+                      const isTrue =
+                        +basketUserCopy?.master?.time?.id === +i?.id &&
+                        +basketUserCopy?.master?.timeCode === +dat?.codeid
+                          ? true
+                          : false;
+                      if (isTrue) {
+                        deleteTime();
                       } else {
-                        clickAddDate({
-                          obj: i,
-                          codeid: dat?.codeid,
-                          date: dat?.date,
-                          codeUser: dat?.codeUser,
-                          nameUser: dat?.nameUser,
-                          rating: dat?.rating,
-                          countSchel: dat?.countSchel,
-                          logo: dat?.logo,
-                        });
+                        addTime(i, dat?.codeid);
                       }
                     }}
                   >
@@ -154,14 +170,19 @@ const DateLook = ({ lookDate, setLookdate }) => {
             </div>
           ))}
         </div>
-        <div className="dateLook__actions">
+        {Object.keys(basketUserCopy?.master).length !== 0 && (
+          <button className="zakaz" onClick={goZakaz}>
+            Перейти к услугам
+          </button>
+        )}
+        {/* <div className="dateLook__actions">
           <button className="choiceService" onClick={clickService}>
             Выбрать услугу
           </button>
           <button className="choiceService" onClick={navBasket}>
             Посмотреть корзину
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

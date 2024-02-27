@@ -1,14 +1,16 @@
-import React from "react";
-import Modals from "../Modals/Modals";
-import InputMask from "react-input-mask";
-import "./SendOrders.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { changeDataUser } from "../../store/reducers/inputSlice";
-import like from "../../assets/icons/goodSend.svg";
+import React from 'react';
+import Modals from '../Modals/Modals';
+import InputMask from 'react-input-mask';
+import './SendOrders.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeDataUser } from '../../store/reducers/inputSlice';
+import like from '../../assets/icons/goodSend.svg';
+import { addSumTimes } from '../../helpers/addSumTimes';
 
 const SendOrders = ({ lookSend, setLookSend }) => {
   const dispatch = useDispatch();
   const { dataUser } = useSelector((state) => state.inputSlice);
+  const { basketUser } = useSelector((state) => state.saveDataSlice);
 
   const changeInput = (e) => {
     const { name, value } = e.target;
@@ -16,6 +18,20 @@ const SendOrders = ({ lookSend, setLookSend }) => {
   };
   const sendNum = (e) => {
     e.preventDefault();
+    const data = {
+      fio: dataUser.name,
+      phone: dataUser.number,
+      date_from: basketUser?.master?.[0]?.time?.time1,
+      date_to: addSumTimes(
+        basketUser?.master?.[0]?.time?.time1,
+        basketUser?.service?.[0]?.timeBusy
+      ),
+      code_department: '', /// ????
+      code_doctor: basketUser?.master?.[0]?.codeid,
+      code_patient: '', //// ????
+      guid: '', //// ????
+      comment: dataUser.more_info,
+    };
     // const phoneNumberPattern = /^\+\d{3}\(\d{3}\)\d{2}-\d{2}-\d{2}$/;
     // if (phoneNumberPattern.test(dataUser?.numberPhone)) {
     //   dispatch(sendNumAuth(dataUser));
@@ -30,10 +46,18 @@ const SendOrders = ({ lookSend, setLookSend }) => {
     //     })
     //   );
     // }
-    setLookSend(false);
+    // setLookSend(false);
+    // console.log(basketUser);
+    // console.log(
+    //   addSumTimes(
+    //     basketUser?.master?.[0]?.time?.time1,
+    //     basketUser?.service?.[0]?.timeBusy
+    //   )
+    // );
+    console.log(data, 'data');
   };
 
-  console.log(dataUser, "dataUser");
+  console.log(dataUser, 'dataUser');
 
   return (
     <div className="sendOrders">

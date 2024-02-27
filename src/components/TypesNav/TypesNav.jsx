@@ -3,10 +3,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeListBtns,
-  changeTypeLookSevices,
-} from '../../store/reducers/stateSlice';
+import { changeListBtns } from '../../store/reducers/saveDataSlice';
+import { changeTypeLookSevices } from '../../store/reducers/saveDataSlice';
 import './TypesNav.scss';
 import arrow from '../../assets/icons/arrow.svg';
 
@@ -30,17 +28,21 @@ function Prev(props) {
 const TypesNav = () => {
   const dispatch = useDispatch();
 
-  const { listBtns } = useSelector((state) => state.stateSlice);
+  const { listBtns, typeLookSevices } = useSelector(
+    (state) => state.saveDataSlice
+  );
+
+  // console.log(typeLookSevices, 'typeLookSevices');
 
   const settings = {
     dots: false,
     infinite: true,
     variableWidth: true,
     centerPadding: '10px',
-    speed: 500,
+    speed: 1000,
     nextArrow: <Prev />,
     prevArrow: <Next />,
-    initialSlide: 0,
+    initialSlide: typeLookSevices - 1,
     beforeChange: (oldIndex, newIndex) => {
       dispatch(changeTypeLookSevices(+newIndex + 1));
       const newData = listBtns.map((button) => {
