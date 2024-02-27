@@ -1,11 +1,14 @@
-import React from 'react';
-import Modals from '../Modals/Modals';
-import InputMask from 'react-input-mask';
-import './SendOrders.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeDataUser } from '../../store/reducers/inputSlice';
-import like from '../../assets/icons/goodSend.svg';
-import { addSumTimes } from '../../helpers/addSumTimes';
+import React from "react";
+import Modals from "../Modals/Modals";
+import InputMask from "react-input-mask";
+import "./SendOrders.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { changeDataUser } from "../../store/reducers/inputSlice";
+import like from "../../assets/icons/goodSend.svg";
+import { addSumTimes } from "../../helpers/addSumTimes";
+import { createZakaz } from "../../store/reducers/requestSlice";
+import { transformNumber } from "../../helpers/transformNumber";
+import { changeAlertText } from "../../store/reducers/stateSlice";
 
 const SendOrders = ({ lookSend, setLookSend }) => {
   const dispatch = useDispatch();
@@ -16,48 +19,43 @@ const SendOrders = ({ lookSend, setLookSend }) => {
     const { name, value } = e.target;
     dispatch(changeDataUser({ ...dataUser, [name]: value }));
   };
+
   const sendNum = (e) => {
     e.preventDefault();
-    const data = {
-      fio: dataUser.name,
-      phone: dataUser.number,
-      date_from: basketUser?.master?.[0]?.time?.time1,
-      date_to: addSumTimes(
-        basketUser?.master?.[0]?.time?.time1,
-        basketUser?.service?.[0]?.timeBusy
-      ),
-      code_department: '', /// ????
-      code_doctor: basketUser?.master?.[0]?.codeid,
-      code_patient: '', //// ????
-      guid: '', //// ????
-      comment: dataUser.more_info,
-    };
-    // const phoneNumberPattern = /^\+\d{3}\(\d{3}\)\d{2}-\d{2}-\d{2}$/;
-    // if (phoneNumberPattern.test(dataUser?.numberPhone)) {
-    //   dispatch(sendNumAuth(dataUser));
-    //   setStateSendNum(2);
-    //   setTime("03:00");
-    // } else {
-    //   dispatch(
-    //     chnageAlertText({
-    //       text: "Введите правильно номер телефона!",
-    //       backColor: "#ffc12e",
-    //       state: true,
-    //     })
-    //   );
-    // }
-    // setLookSend(false);
-    // console.log(basketUser);
-    // console.log(
-    //   addSumTimes(
-    //     basketUser?.master?.[0]?.time?.time1,
-    //     basketUser?.service?.[0]?.timeBusy
-    //   )
-    // );
-    console.log(data, 'data');
+    const isValidPhoneNumber = /^\996\d{9}$/g.test(
+      transformNumber(dataUser?.number)
+    );
+    if (isValidPhoneNumber) {
+      const data = {
+        fio: dataUser.name,
+        phone: dataUser.number,
+        date_from: basketUser?.master?.[0]?.time?.time1,
+        date_to: addSumTimes(
+          basketUser?.master?.[0]?.time?.time1,
+          (+basketUser?.service?.[0]?.timeBusy || 0) +
+            (+basketUser?.service?.[1]?.timeBusy || 0) +
+            (+basketUser?.service?.[2]?.timeBusy || 0)
+        ),
+        code_department: basketUser?.service?.[0]?.code_department,
+        code_doctor: basketUser?.master?.[0]?.codeid,
+        arr: [...basketUser?.service],
+        comment: dataUser?.more_info,
+      };
+      dispatch(createZakaz(data));
+      setLookSend(false);
+    } else {
+      dispatch(
+        changeAlertText({
+          text: "Введите правильный номер телефона",
+          backColor: "#ab89bce0",
+          state: true,
+        })
+      );
+    }
   };
 
-  console.log(dataUser, 'dataUser');
+  console.log(dataUser, "dataUser");
+  console.log(basketUser, "basketUser");
 
   return (
     <div className="sendOrders">
@@ -85,6 +83,7 @@ const SendOrders = ({ lookSend, setLookSend }) => {
             placeholder="Комментарий к записи"
             value={dataUser.more_info}
             onChange={changeInput}
+            required
           ></textarea>
           <div
             className="warn"

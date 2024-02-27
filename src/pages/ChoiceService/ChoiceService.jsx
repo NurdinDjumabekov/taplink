@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './ChoiceService.scss';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./ChoiceService.scss";
 import {
   addBasketServiceCopy,
   changeBasketUser,
@@ -8,11 +8,11 @@ import {
   changeListBtns,
   changeTypeLookSevices,
   deleteBasketServiceCopy,
-} from '../../store/reducers/saveDataSlice';
-import { changeAlertText } from '../../store/reducers/stateSlice';
-import delWhite from '../../assets/icons/delBtnWhite.svg';
-import SelectTypeService from '../../components/SelectTypeService/SelectTypeService';
-import { useNavigate } from 'react-router-dom';
+} from "../../store/reducers/saveDataSlice";
+import { changeAlertText } from "../../store/reducers/stateSlice";
+import delWhite from "../../assets/icons/delBtnWhite.svg";
+import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
+import { useNavigate } from "react-router-dom";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
@@ -31,8 +31,8 @@ const ChoiceService = () => {
     if (isServiceInBasket) {
       dispatch(
         changeAlertText({
-          text: 'Такая услуга уже есть у вас в корзине',
-          backColor: '#c284e4',
+          text: "Такая услуга уже есть у вас в корзине",
+          backColor: "#c284e4",
           state: true,
         })
       );
@@ -40,16 +40,16 @@ const ChoiceService = () => {
       if (basketUserCopy?.service?.length === 3) {
         dispatch(
           changeAlertText({
-            text: 'Вы за раз можете выбрать не больше 3х услуг',
-            backColor: '#c284e4',
+            text: "Вы за раз можете выбрать не больше 3х услуг",
+            backColor: "#c284e4",
             state: true,
           })
         );
       } else {
         dispatch(
           changeAlertText({
-            text: 'Мы добавили эту услугу в корзину',
-            backColor: '#e484ba',
+            text: "Мы добавили эту услугу в корзину",
+            backColor: "#e484ba",
             state: true,
           })
         );
@@ -63,9 +63,9 @@ const ChoiceService = () => {
       dispatch(changeTypeLookSevices(1)); //// Выбрать мастера
       dispatch(
         changeListBtns([
-          { id: 1, title: 'Выбрать специалиста и дату', bool: true },
-          { id: 2, title: 'Выбрать услуги', bool: false },
-          { id: 3, title: 'Выбрать свою дату и время', bool: false },
+          { id: 1, title: "Выбрать специалиста и дату", bool: true },
+          { id: 2, title: "Выбрать услуги", bool: false },
+          { id: 3, title: "Выбрать свою дату и время", bool: false },
         ])
       );
       // navigate(`/det/${everyMaster?.codeid_addres}`);
@@ -77,7 +77,7 @@ const ChoiceService = () => {
           service: basketUserCopy?.service,
         })
       );
-      navigate('/basket');
+      navigate("/basket");
       dispatch(changeBasketUserCopy({ master: {}, service: [] }));
     }
   };
@@ -126,7 +126,7 @@ const ChoiceService = () => {
                         </button>
                       </div>
                     ) : (
-                      ''
+                      ""
                     )}
                   </div>
                 </div>
@@ -136,7 +136,7 @@ const ChoiceService = () => {
         </div>
         {basketUserCopy?.service?.length !== 0 && (
           <button className="zakaz" onClick={addBasketZakaz}>
-            Перейти к заказу
+            Перейти к заказуe
           </button>
         )}
       </div>

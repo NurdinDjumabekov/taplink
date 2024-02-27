@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import './BasketPage.scss';
-import './BasketPage.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { renderStars } from '../../helpers/renderStars';
-import del from '../../assets/icons/delBtn.svg';
-import more from '../../assets/icons/more.svg';
-import star from '../../assets/icons/star.svg';
-import edit from '../../assets/icons/edit.svg';
-import { convertTime } from '../../helpers/convertTime';
+import React, { useState } from "react";
+import "./BasketPage.scss";
+import "./BasketPage.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { renderStars } from "../../helpers/renderStars";
+import del from "../../assets/icons/delBtn.svg";
+import more from "../../assets/icons/more.svg";
+import star from "../../assets/icons/star.svg";
+import edit from "../../assets/icons/edit.svg";
+import { convertTime } from "../../helpers/convertTime";
 import {
   addCertificate,
   deleteBasketService,
   deleteCertificate,
   changeListBtns,
   changeTypeLookSevices,
-} from '../../store/reducers/saveDataSlice';
+} from "../../store/reducers/saveDataSlice";
 import {
   changeAlertText,
   changeLookDate,
   changeSummOrders,
-} from '../../store/reducers/stateSlice';
-import { NavLink, useNavigate } from 'react-router-dom';
-import SendOrders from '../../components/SendOrders/SendOrders';
-import { createZakaz } from '../../store/reducers/requestSlice';
+} from "../../store/reducers/stateSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import SendOrders from "../../components/SendOrders/SendOrders";
+import { createZakaz } from "../../store/reducers/requestSlice";
 
 const BasketPage = () => {
   const dispatch = useDispatch();
@@ -34,24 +34,34 @@ const BasketPage = () => {
   );
   const { summOrders } = useSelector((state) => state.stateSlice);
 
-  React.useEffect(() => {
-    const totalSum = basketUser?.service?.reduce((acc, item) => {
-      return +acc + (+item?.sum || 0); // Убедимся, что item?.sum определено
-    }, 0);
+  // React.useEffect(() => {
+  //   const totalSum = basketUser?.service?.reduce((acc, item) => {
+  //     return +acc + (+item?.sum || 0); // Убедимся, что item?.sum определено
+  //   }, 0);
 
-    dispatch(changeSummOrders(totalSum));
+  //   dispatch(changeSummOrders(totalSum));
 
-    window.scrollTo(0, 0);
-  }, [basketUser?.service]);
+  //   window.scrollTo(0, 0);
+  // }, [basketUser?.service]);
+
+  // React.useEffect(() => {
+  //   const totalSum = basketUser?.service?.reduce((acc, item) => {
+  //     return +acc + (+item?.sum || 0); // Убедимся, что item?.sum определено
+  //   }, 0);
+
+  //   dispatch(changeSummOrders(totalSum));
+
+  //   window.scrollTo(0, 0);
+  // }, [basketUser?.service]);
 
   const editMaster = () => {
     dispatch(changeTypeLookSevices(1));
     navigate(`/det/${temporaryIdFilial}`);
     dispatch(
       changeListBtns([
-        { id: 1, title: 'Выбрать специалиста и дату', bool: true },
-        { id: 2, title: 'Выбрать услуги', bool: false },
-        { id: 3, title: 'Выбрать свою дату и время', bool: false },
+        { id: 1, title: "Выбрать специалиста и дату", bool: true },
+        { id: 2, title: "Выбрать услуги", bool: false },
+        { id: 3, title: "Выбрать свою дату и время", bool: false },
       ])
     );
   };
@@ -65,8 +75,8 @@ const BasketPage = () => {
     } else {
       dispatch(
         changeAlertText({
-          text: 'Ваша корзина не полная',
-          backColor: '#ab89bce0',
+          text: "Ваша корзина не полная",
+          backColor: "#ab89bce0",
           state: true,
         })
       );
@@ -74,7 +84,7 @@ const BasketPage = () => {
   };
 
   const clearBasket = () => {
-    navigate('/');
+    navigate("/");
     localStorage.clear();
     window.location.reload();
   };
@@ -94,7 +104,7 @@ const BasketPage = () => {
                     <button className="edit" onClick={editMaster}>
                       <img src={edit} alt="edit" />
                       <p>
-                        Выбрать {basketUser?.master?.length !== 0 && 'другого'}{' '}
+                        Выбрать {basketUser?.master?.length !== 0 && "другого"}{" "}
                         мастера
                       </p>
                     </button>
@@ -105,7 +115,14 @@ const BasketPage = () => {
                   <div className="basketPage__master">
                     <div className="basketPage__inner__master__data">
                       <div>
-                        <img src={basketUser?.master?.[0]?.logo} alt="logo" />
+                        <img
+                          src={
+                            basketUser?.master?.[0]?.logo
+                              ? basketUser?.master?.[0]?.logo
+                              : ""
+                          }
+                          alt="logo"
+                        />
                       </div>
                       <div>
                         <div className="editAndMain">
@@ -120,7 +137,7 @@ const BasketPage = () => {
                         <div className="times">
                           <div
                             className="editAndMain timeMaster"
-                            style={{ gap: '0px' }}
+                            style={{ gap: "0px" }}
                           >
                             {/* <span>
                               {basketUser?.master
@@ -178,7 +195,7 @@ const BasketPage = () => {
                   <div className="emptyBasket">
                     <div>
                       <p>Ваша корзина пустая </p>
-                      <NavLink to={'/'}> Перейти на главную страницу</NavLink>
+                      <NavLink to={"/"}> Перейти на главную страницу</NavLink>
                     </div>
                   </div>
                 ) : (

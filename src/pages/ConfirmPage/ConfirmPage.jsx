@@ -3,10 +3,7 @@ import "./ConfirmPage.scss";
 import InputMask from "react-input-mask";
 import { useDispatch, useSelector } from "react-redux";
 import { changeConfirm } from "../../store/reducers/inputSlice";
-import {
-  confirmZakazBD,
-  confirmZakazWA,
-} from "../../store/reducers/requestSlice";
+import { confirmZakazBD } from "../../store/reducers/requestSlice";
 import { transformNumber } from "../../helpers/transformNumber";
 import { changeAlertText } from "../../store/reducers/stateSlice";
 
@@ -21,22 +18,21 @@ const ConfirmPage = () => {
 
   const confirmZakaz = (e) => {
     e.preventDefault();
-    dispatch(confirmZakazWA());
-    // const isValidPhoneNumber = /^\996\d{9}$/g.test(
-    //   transformNumber(confirm?.number)
-    // );
+    const isValidPhoneNumber = /^\996\d{9}$/g.test(
+      transformNumber(confirm?.number)
+    );
 
-    // if (isValidPhoneNumber) {
-    //   dispatch(confirmZakazBD(confirm?.number));
-    // } else {
-    //   dispatch(
-    //     changeAlertText({
-    //       text: "Введите правильный номер телефона",
-    //       backColor: "#ab89bce0",
-    //       state: true,
-    //     })
-    //   );
-    // }
+    if (isValidPhoneNumber) {
+      dispatch(confirmZakazBD(confirm?.number));
+    } else {
+      dispatch(
+        changeAlertText({
+          text: "Введите правильный номер телефона",
+          backColor: "#ab89bce0",
+          state: true,
+        })
+      );
+    }
   };
 
   return (

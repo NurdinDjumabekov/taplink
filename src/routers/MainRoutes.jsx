@@ -28,7 +28,7 @@ const MainRoutes = () => {
   // console.log(typeLookSevices, "typeLookSevices");
   // console.log(basketUser, "basketUser");
   // console.log(listBtns, "listBtns");
-  // console.log(temporaryIdFilial, "temporaryIdFilial");
+  console.log(temporaryIdFilial, "temporaryIdFilial");
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
