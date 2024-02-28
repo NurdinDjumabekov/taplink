@@ -179,9 +179,11 @@ export const confirmZakazBD = createAsyncThunk(
   "confirmZakazBD",
   async function (number, { dispatch, rejectWithValue }) {
     try {
-      const response = await axios.get(
-        `${REACT_APP_API_URL}/conf?num=${transformNumber(number)}`
-      );
+      const response = await axios({
+        method: "POST",
+        url: `${REACT_APP_API_URL}/conf`,
+        data: { num: transformNumber(number) },
+      });
       if (response.status >= 200 && response.status < 300) {
         console.log(response.data);
       } else {

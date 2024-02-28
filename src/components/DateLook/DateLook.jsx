@@ -50,7 +50,7 @@ const DateLook = () => {
       changeListBtns([
         { id: 1, title: "Выбрать специалиста и дату", bool: false },
         { id: 2, title: "Выбрать услуги", bool: true },
-        { id: 3, title: "Выбрать свою дату и время", bool: false },
+        // { id: 3, title: "Выбрать свою дату и время", bool: false },
       ])
     );
     dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
@@ -77,7 +77,7 @@ const DateLook = () => {
         changeListBtns([
           { id: 1, title: "Выбрать специалиста и дату", bool: false },
           { id: 2, title: "Выбрать услуги", bool: true },
-          { id: 3, title: "Выбрать свою дату и время", bool: false },
+          // { id: 3, title: "Выбрать свою дату и время", bool: false },
         ])
       );
     }
@@ -102,7 +102,7 @@ const DateLook = () => {
       changeListBtns([
         { id: 1, title: "Выбрать специалиста и дату", bool: false },
         { id: 2, title: "Выбрать услуги", bool: true },
-        { id: 3, title: "Выбрать свою дату и время", bool: false },
+        // { id: 3, title: "Выбрать свою дату и время", bool: false },
       ])
     );
     navigate(`/det/${everyMaster?.codeid_addres}`);

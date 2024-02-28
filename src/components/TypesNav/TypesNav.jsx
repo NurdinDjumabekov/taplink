@@ -1,17 +1,17 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeListBtns } from '../../store/reducers/saveDataSlice';
-import { changeTypeLookSevices } from '../../store/reducers/saveDataSlice';
-import './TypesNav.scss';
-import arrow from '../../assets/icons/arrow.svg';
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useDispatch, useSelector } from "react-redux";
+import { changeListBtns } from "../../store/reducers/saveDataSlice";
+import { changeTypeLookSevices } from "../../store/reducers/saveDataSlice";
+import "./TypesNav.scss";
+import arrow from "../../assets/icons/arrow.svg";
 
 function Next(props) {
   const { className, onClick } = props;
   return (
-    <div className={className} style={{ display: 'none' }} onClick={onClick} />
+    <div className={className} style={{ display: "none" }} onClick={onClick} />
   );
 }
 
@@ -19,7 +19,7 @@ function Prev(props) {
   const { className, style, onClick } = props;
   return (
     <>
-      <div className={className} style={{ ...style, display: 'none' }}></div>
+      <div className={className} style={{ ...style, display: "none" }}></div>
       <img onClick={onClick} src={arrow} alt=">" className="arrowSlider" />
     </>
   );
@@ -38,7 +38,7 @@ const TypesNav = () => {
     dots: false,
     infinite: true,
     variableWidth: true,
-    centerPadding: '10px',
+    centerPadding: "10px",
     speed: 1000,
     nextArrow: <Prev />,
     prevArrow: <Next />,
@@ -73,7 +73,7 @@ const TypesNav = () => {
           <button
             key={i.id}
             onClick={() => clickBtn(i?.id)}
-            className={i?.bool ? 'activeBtnChioce' : ''}
+            className={i?.bool ? "activeBtnChioce" : ""}
           >
             {i?.title}
           </button>
@@ -84,7 +84,7 @@ const TypesNav = () => {
           <div
             key={i.id}
             onClick={() => clickBtn(i?.id)}
-            className={`btnSlider ${i?.bool ? 'activeBtnChioceMob' : ''}`}
+            className={`btnSlider ${i?.bool ? "activeBtnChioceMob" : ""}`}
           >
             {i?.title}
           </div>

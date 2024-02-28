@@ -1,14 +1,14 @@
-import React from 'react';
-import './Addres.scss';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { takeFilials } from '../../store/reducers/requestSlice';
+import React from "react";
+import "./Addres.scss";
+import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { takeFilials } from "../../store/reducers/requestSlice";
 import {
   changeListBtns,
   changeTemporaryIdFilial,
   changeTypeLookSevices,
-} from '../../store/reducers/saveDataSlice';
+} from "../../store/reducers/saveDataSlice";
 
 const Addres = () => {
   const dispatch = useDispatch();
@@ -26,15 +26,15 @@ const Addres = () => {
       changeListBtns([
         {
           id: 1,
-          title: 'Выбрать специалиста и дату',
+          title: "Выбрать специалиста и дату",
           bool: true,
         },
-        { id: 2, title: 'Выбрать услуги', bool: false },
-        {
-          id: 3,
-          title: 'Выбрать свою дату и время',
-          bool: false,
-        },
+        { id: 2, title: "Выбрать услуги", bool: false },
+        // {
+        //   id: 3,
+        //   title: "Выбрать свою дату и время",
+        //   bool: false,
+        // },
       ])
     );
     dispatch(changeTypeLookSevices(1));
@@ -45,47 +45,51 @@ const Addres = () => {
     <div className="addres">
       <div className="container">
         <div className="addres__inner">
-          <YMaps>
-            {listFilials?.map((point) => (
-              <div key={point.codeid} className="map">
-                <div className="map__inner">
-                  <Map
-                    defaultState={{
-                      center: [point?.coordinatesX, point?.coordinatesY],
-                      zoom: 14,
-                    }}
-                    style={{
-                      borderRadius: '8px',
-                      width: '100%',
-                      height: '100%',
-                    }}
-                  >
-                    <Placemark
-                      defaultGeometry={[
-                        point?.coordinatesX,
-                        point?.coordinatesY,
-                      ]}
-                    />
-                  </Map>
-                </div>
-                <div className="map__contects">
-                  <h3>{point?.addres}</h3>
-                  <p>
-                    График работы: <span>{point?.schedule}</span>
-                  </p>
-                  <p>
-                    Контакты: <span>{point?.contacts1}</span>,{' '}
-                    <span>{point?.contacts2}</span>
-                  </p>
-                  <div className="linkBtn">
-                    <button onClick={() => clickAddres(point?.codeid)}>
-                      Перейти
-                    </button>
+          {listFilials?.length === 0 ? (
+            <p className="noneDataa">Филиалы отсутствуют</p>
+          ) : (
+            <YMaps>
+              {listFilials?.map((point) => (
+                <div key={point.codeid} className="map">
+                  <div className="map__inner">
+                    <Map
+                      defaultState={{
+                        center: [point?.coordinatesX, point?.coordinatesY],
+                        zoom: 14,
+                      }}
+                      style={{
+                        borderRadius: "8px",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Placemark
+                        defaultGeometry={[
+                          point?.coordinatesX,
+                          point?.coordinatesY,
+                        ]}
+                      />
+                    </Map>
+                  </div>
+                  <div className="map__contects">
+                    <h3>{point?.addres}</h3>
+                    <p>
+                      График работы: <span>{point?.schedule}</span>
+                    </p>
+                    <p>
+                      Контакты: <span>{point?.contacts1}</span>,{" "}
+                      <span>{point?.contacts2}</span>
+                    </p>
+                    <div className="linkBtn">
+                      <button onClick={() => clickAddres(point?.codeid)}>
+                        Перейти
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </YMaps>
+              ))}
+            </YMaps>
+          )}
         </div>
       </div>
     </div>
