@@ -73,6 +73,36 @@ export const takeComments = createAsyncThunk(
   }
 );
 
+/////// addComments
+export const addComments = createAsyncThunk(
+  "addComments",
+  async function (info, { dispatch, rejectWithValue }) {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `${REACT_APP_API_URL}/addcomment`,
+        data: { ...info },
+      });
+      if (response.status >= 200 && response.status < 300) {
+        dispatch(
+          changeAlertText({
+            text: "Ваш комментарий был успешно добавлен",
+            backColor: "#e484ba",
+            state: true,
+          })
+        );
+        setTimeout(() => {
+          dispatch(takeComments(info?.codeid_user));
+        }, 1000);
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 /////// takeTypesService
 export const takeTypesService = createAsyncThunk(
   "takeTypesService",

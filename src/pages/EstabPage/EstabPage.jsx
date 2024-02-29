@@ -16,9 +16,8 @@ const EstabPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { basketUser, typeLookSevices } = useSelector(
-    (state) => state.saveDataSlice
-  );
+  const { typeLookSevices } = useSelector((state) => state.saveDataSlice);
+  const { everyFilial } = useSelector((state) => state.requestSlice);
 
   React.useEffect(() => {
     dispatch(takeMasters(id));
@@ -27,16 +26,23 @@ const EstabPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  console.log(everyFilial, "everyFilial");
+
   return (
     <>
       <div className="establishment">
         <div className="container">
           <div className="establishment__inner">
-            {/* <div className="establishment__logo">
+            <div className="establishment__logo">
               <div>
-                <h3>Ж/м Кок-Жар, ул. Новая 22</h3>
+                <h3>
+                  {everyFilial?.addres
+                    ? everyFilial?.addres.charAt(0).toUpperCase() +
+                      everyFilial?.addres.slice(1)
+                    : ""}
+                </h3>
               </div>
-            </div> */}
+            </div>
             <TypesNav />
             {typeLookSevices === 1 && <ChoiceSpecialist />}
             {typeLookSevices === 2 && <ChoiceService />}

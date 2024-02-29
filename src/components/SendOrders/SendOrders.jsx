@@ -28,7 +28,7 @@ const SendOrders = ({ lookSend, setLookSend }) => {
     if (isValidPhoneNumber) {
       const data = {
         fio: dataUser.name,
-        phone: dataUser.number,
+        phone: transformNumber(dataUser.number),
         date_from: basketUser?.master?.[0]?.time?.time1,
         date_to: addSumTimes(
           basketUser?.master?.[0]?.time?.time1,
@@ -108,21 +108,3 @@ const SendOrders = ({ lookSend, setLookSend }) => {
 };
 
 export default SendOrders;
-
-// const sendNum = (e) => {
-//     e.preventDefault();
-//     const phoneNumberPattern = /^\+\d{3}\(\d{3}\)\d{2}-\d{2}-\d{2}$/;
-//     if (phoneNumberPattern.test(dataUser?.numberPhone)) {
-//       dispatch(sendNumAuth(dataUser));
-//       setStateSendNum(2);
-//       setTime("03:00");
-//     } else {
-//       dispatch(
-//         chnageAlertText({
-//           text: "Введите правильно номер телефона!",
-//           backColor: "#ffc12e",
-//           state: true,
-//         })
-//       );
-//     }
-//   };

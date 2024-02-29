@@ -136,7 +136,7 @@ const ChoiceService = () => {
         </div>
         {basketUserCopy?.service?.length !== 0 && (
           <button className="zakaz" onClick={addBasketZakaz}>
-            Перейти к заказуe
+            Перейти к заказу
           </button>
         )}
       </div>

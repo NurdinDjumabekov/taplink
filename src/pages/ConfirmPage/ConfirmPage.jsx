@@ -6,9 +6,11 @@ import { changeConfirm } from "../../store/reducers/inputSlice";
 import { confirmZakazBD } from "../../store/reducers/requestSlice";
 import { transformNumber } from "../../helpers/transformNumber";
 import { changeAlertText } from "../../store/reducers/stateSlice";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { confirm } = useSelector((state) => state.inputSlice);
 
   const changeInput = (e) => {
@@ -24,6 +26,17 @@ const ConfirmPage = () => {
 
     if (isValidPhoneNumber) {
       dispatch(confirmZakazBD(confirm?.number));
+      dispatch(
+        changeAlertText({
+          text: "Мы отправили подтверждение на ваш номер WhatsApp",
+          backColor: "#e484ba",
+          state: true,
+        })
+      );
+      dispatch(changeConfirm({ confirm: { number: "+996" } }));
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } else {
       dispatch(
         changeAlertText({

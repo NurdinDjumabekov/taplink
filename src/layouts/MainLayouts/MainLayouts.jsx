@@ -30,12 +30,13 @@ const MainLayouts = () => {
     });
   }, []);
 
+  console.log(location?.pathname, "location");
   return (
     <div className="mainLayouts">
       <div className="animation" id="vanta"></div>
       <div className="mainContent">
         <Outlet />
-        <CallBtns />
+        {location?.pathname !== "/basket" && <CallBtns />}
         {/* <Basket /> */}
       </div>
     </div>

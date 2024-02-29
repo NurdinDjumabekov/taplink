@@ -13,8 +13,6 @@ const initialState = {
     number: "+996",
   },
   confirm: {
-    name: "",
-    rejection: "",
     number: "+996",
   },
   searchInput: "",

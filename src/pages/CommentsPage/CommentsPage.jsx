@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 // import { listComments } from "../../helpers/dataArr";
 import { renderStars } from "../../helpers/renderStars";
 import "./CommentsPage.scss";
 import star from "../../assets/icons/star.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { takeComments } from "../../store/reducers/requestSlice";
+import { addComments, takeComments } from "../../store/reducers/requestSlice";
+import Modals from "../../components/Modals/Modals";
+import { getNowDate } from "../../helpers/getNowDate";
 
 const CommentsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [lookModal, setLookModal] = useState(false);
+  const [data, setData] = useState({
+    codeid_user: 0,
+    name: "",
+    description: "",
+  });
   const { everyMasterInComment, listComments } = useSelector(
     (state) => state.requestSlice
   );
@@ -19,8 +27,23 @@ const CommentsPage = () => {
     dispatch(takeComments(id));
   }, []);
 
-  console.log(everyMasterInComment, "everyMasterInComment");
-  console.log(listComments, "listComments");
+  const changeInput = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const sendNum = (e) => {
+    e.preventDefault();
+    dispatch(
+      addComments({
+        name: data?.name,
+        description: data?.description,
+        date: getNowDate(),
+        codeid_user: +id,
+      })
+    );
+    setLookModal(false);
+  };
 
   return (
     <div className="commentsPage">
@@ -74,6 +97,33 @@ const CommentsPage = () => {
             </div>
           </div>
         </div>
+        <button className="zakaz" onClick={() => setLookModal(true)}>
+          Оставить комментарий
+        </button>
+      </div>
+      <div className="sendOrders">
+        <Modals openModal={lookModal} setOpenModal={() => setLookModal()}>
+          <form onSubmit={sendNum}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Ваше ФИО"
+              onChange={changeInput}
+              value={data.name}
+              required
+            />
+            <textarea
+              name="description"
+              placeholder="Ваш комментарий"
+              value={data.description}
+              onChange={changeInput}
+              required
+            ></textarea>
+            <button className="sendData" type="submit">
+              Отправить
+            </button>
+          </form>
+        </Modals>
       </div>
     </div>
   );

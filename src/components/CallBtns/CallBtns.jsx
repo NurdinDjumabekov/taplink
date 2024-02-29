@@ -1,9 +1,9 @@
-import React from 'react';
-import './CallBtns.scss';
-import call from '../../assets/icons/callMe.svg';
-import { Zoom } from '@mui/material';
-import bag from '../../assets/icons/bag.svg';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
+import "./CallBtns.scss";
+import call from "../../assets/icons/callMe.svg";
+import { Zoom } from "@mui/material";
+import bag from "../../assets/icons/bag.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // import { Zoom } from '@mui/material';
 
@@ -13,8 +13,8 @@ const CallBtns = () => {
   const navigate = useNavigate();
 
   const arr = [
-    { id: 1, url: 'adssa' },
-    { id: 2, url: 'adssa' },
+    { id: 1, url: "adssa" },
+    { id: 2, url: "adssa" },
   ];
 
   return (
@@ -41,9 +41,8 @@ const CallBtns = () => {
           className="linkBtn"
           onClick={() => {
             setRotate(!rotate);
-            navigate('/basket');
+            navigate("/basket");
           }}
-          disabled={location?.pathname === '/basket' ? true : false}
         >
           <img src={bag} alt="call" />
         </div>
