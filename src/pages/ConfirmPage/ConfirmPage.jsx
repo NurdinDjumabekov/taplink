@@ -12,6 +12,7 @@ const ConfirmPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { confirm } = useSelector((state) => state.inputSlice);
+  const { numberSalon } = useSelector((state) => state.stateSlice);
 
   const changeInput = (e) => {
     const { name, value } = e.target;
@@ -53,7 +54,7 @@ const ConfirmPage = () => {
       <div className="container">
         <div className="cancellation__inner">
           <form onSubmit={confirmZakaz}>
-            <a href="https://wa.me/996700754454" target="_blank">
+            <a href={`https://wa.me/${numberSalon}`} target="_blank">
               Написать нам в WhatsApp
             </a>
             <h4>

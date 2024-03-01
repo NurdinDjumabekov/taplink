@@ -35,6 +35,9 @@
                 width: 335px;
                 @media screen and (max-width: 720px) {
                   width: 300px;
+                  @media screen and (max-width: 460px) {
+                    width: 100%;
+                  }
                 }
             }
           }
@@ -70,7 +73,7 @@
           font-size: 22px;
           font-weight: 600;
           line-height: 20px;
-          height: 45px;
+          height: 43px;
           overflow: hidden;
           display: -webkit-box;
           -webkit-line-clamp: 2; /* Количество отображаемых строк текста */

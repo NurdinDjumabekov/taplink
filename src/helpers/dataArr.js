@@ -183,26 +183,28 @@ export const listSpecialist = [
 //   },
 // ];
 
+const start = 9;
+const end = 21;
 export const listDate = [
   {
     codeid: 1,
-    timeList: generationDate(0), // сегодня
+    timeList: generationDate(0, start, end), // сегодня
   },
   {
     codeid: 2,
-    timeList: generationDate(1), // завтра
+    timeList: generationDate(1, start, end), // завтра
   },
   {
     codeid: 3,
-    timeList: generationDate(2), // послезавтра
+    timeList: generationDate(2, start, end), // послезавтра
   },
   {
     codeid: 4,
-    timeList: generationDate(3),
+    timeList: generationDate(3, start, end),
   },
   {
     codeid: 5,
-    timeList: generationDate(4),
+    timeList: generationDate(4, start, end),
   },
 ];
 

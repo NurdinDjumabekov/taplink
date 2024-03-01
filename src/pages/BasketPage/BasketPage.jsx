@@ -23,6 +23,7 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import SendOrders from "../../components/SendOrders/SendOrders";
 import { createZakaz } from "../../store/reducers/requestSlice";
+import imgAlt from "../../assets/image/masterAlt.jpg";
 
 const BasketPage = () => {
   const dispatch = useDispatch();
@@ -119,7 +120,7 @@ const BasketPage = () => {
                           src={
                             basketUser?.master?.[0]?.logo
                               ? basketUser?.master?.[0]?.logo
-                              : ""
+                              : imgAlt
                           }
                           alt="logo"
                         />

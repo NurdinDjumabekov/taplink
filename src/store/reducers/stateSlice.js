@@ -1,18 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   idForDate: 0, // id для отображения времени заказа
   lookDate: false, // для модалки даты каждого мастера
   alertText: {
-    text: '',
-    backColor: '',
+    text: "",
+    backColor: "",
     state: false,
   },
   summOrders: 0,
+  numberSalon: "996555202195",
 };
 
 const stateSlice = createSlice({
-  name: 'stateSlice',
+  name: "stateSlice",
   initialState,
   reducers: {
     changeIdForDate: (state, action) => {

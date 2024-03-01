@@ -1,38 +1,50 @@
 import React from "react";
 import "./MainPage.scss";
-import { ENV } from "../../helpers/ENV";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
-  // console.log(ENV());
   const navigate = useNavigate();
+  const { numberSalon } = useSelector((state) => state.stateSlice);
 
   const pageList = [
     {
       id: 1,
       link: "/zap",
       text: "Услуги",
-      img: "https://images.pexels.com/photos/3993293/pexels-photo-3993293.jpeg?auto=compress&cs=tinysrgb&w=600",
+      type: 1,
     },
     {
       id: 2,
       link: "/cer",
       text: "Подарочные сертификаты",
+      type: 1,
     },
     {
       id: 3,
       link: "canc",
       text: "Перенос или отмена записи",
+      type: 2,
+      path: `https://wa.me/${numberSalon}`,
     },
     {
       id: 4,
       link: "confirm",
       text: "Подтвердить запись",
+      type: 1,
     },
     {
       id: 5,
       link: "basket",
       text: "Ваша корзина",
+      type: 1,
+    },
+    {
+      id: 6,
+      link: "basket",
+      text: "Связаться с нами",
+      type: 2,
+      path: `https://wa.me/${numberSalon}`,
     },
   ];
 
@@ -44,14 +56,17 @@ const MainPage = () => {
     <div className="mainPage">
       <div className="container">
         <div className="mainPage__inner">
-          {pageList?.map((page) => (
-            <button key={page?.id} onClick={() => navigate(page?.link)}>
-              {page?.text}
-            </button>
-          ))}
-          <a href="https://wa.me/996700754454" target="_blank">
-            <button>Связаться с нами</button>
-          </a>
+          {pageList?.map((page) =>
+            page?.type === 1 ? (
+              <button key={page?.id} onClick={() => navigate(page?.link)}>
+                {page?.text}
+              </button>
+            ) : (
+              <a href={page?.path} target="_blank">
+                <button>{page?.text}</button>
+              </a>
+            )
+          )}
         </div>
       </div>
     </div>
