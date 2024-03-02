@@ -43,7 +43,7 @@ const MainRoutes = () => {
           <Route path="/det/:id" element={<EstabPage />} />
           <Route path="/date/:id" element={<DateLook />} />
           <Route path="/com/:id" element={<CommentsPage />} />
-          <Route path="/cer" element={<Certificate />} />
+          {/* <Route path="/cer" element={<Certificate />} /> */}
           <Route path="/canc" element={<CancellationPage />} />
           <Route path="/confirm" element={<ConfirmPage />} />
           <Route path="/basket" element={<BasketPage />} />

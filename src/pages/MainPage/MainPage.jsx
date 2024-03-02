@@ -14,12 +14,12 @@ const MainPage = () => {
       text: "Услуги",
       type: 1,
     },
-    {
-      id: 2,
-      link: "/cer",
-      text: "Подарочные сертификаты",
-      type: 1,
-    },
+    // {
+    //   id: 2,
+    //   link: "/cer",
+    //   text: "Подарочные сертификаты",
+    //   type: 1,
+    // },
     {
       id: 3,
       link: "canc",
