@@ -10,6 +10,12 @@ const initialState = {
   },
   summOrders: 0,
   numberSalon: "996555202195",
+  numberBoss: "996700754454",
+  typeColor: "white", /// black
+  activeMapBtn: [
+    { key: 1, btn: "Список", active: true },
+    { key: 2, btn: "На карте", active: false },
+  ],
 };
 
 const stateSlice = createSlice({
@@ -29,15 +35,25 @@ const stateSlice = createSlice({
     changeLookDate: (state, action) => {
       state.lookDate = action.payload;
     },
+    changTypeColor: (state, action) => {
+      state.typeColor = action.payload;
+    },
+    changActiveMapBtn: (state, action) => {
+      state.activeMapBtn = state.activeMapBtn.map((i) => ({
+        ...i,
+        active: i.key === action.payload,
+      }));
+    },
   },
 });
 
 export const {
   changeIdForDate,
   changeAlertText,
-
   changeSummOrders,
   changeLookDate,
+  changTypeColor,
+  changActiveMapBtn,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

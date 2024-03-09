@@ -3,14 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 18px;
-  // font-family: 'Geologica', sans-serif;
-  // line-height: 20px;
-  background: transparent;
-  // font-family: "PT Sans", sans-serif;
-  // font-style: normal;
-  font-family: 'Kurale', serif;
-  line-height: normal;
-  // color: #222;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  // font-family: "Inter", sans-serif;
 }
 
 html {
@@ -35,8 +32,7 @@ button {
   cursor: pointer;
   font-size: 18px;
   font-weight: 400;
-  // font-family: 'Geologica', sans-serif;
-  font-family: 'Kurale', serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .container {
@@ -83,7 +79,7 @@ button {
   border-radius: 5px;
   font-size: 20px;
   font-weight: 600;
-  font-family: 'Kurale', serif;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   line-height: normal;
   animation: zakazAnimation 3s infinite;

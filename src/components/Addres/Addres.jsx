@@ -18,7 +18,7 @@ const Addres = () => {
     window.scrollTo(0, 0);
     dispatch(takeFilials());
   }, []);
-  // console.log(listFilials, "listFilials");
+  console.log(listFilials, "listFilials");
 
   const clickAddres = (codeid) => {
     navigate(`/det/${codeid}`);
@@ -72,14 +72,19 @@ const Addres = () => {
                     </Map>
                   </div>
                   <div className="map__contects">
-                    <h3>{point?.addres}</h3>
-                    <p>
+                    <div>
+                      <h3>{point?.name}</h3>
+                      <p>
+                        Адрес: <span>{point?.addres}</span>
+                      </p>
+                    </div>
+                    {/* <p>
                       График работы: <span>{point?.schedule}</span>
-                    </p>
-                    <p>
+                    </p> */}
+                    {/* <p>
                       Контакты: <span>{point?.contacts1}</span>,{" "}
                       <span>{point?.contacts2}</span>
-                    </p>
+                    </p> */}
                     <div className="linkBtn">
                       <button onClick={() => clickAddres(point?.codeid)}>
                         Перейти

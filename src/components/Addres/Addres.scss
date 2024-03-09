@@ -9,8 +9,7 @@
     .map {
       background: #e6dbe1e8;
       width: 47%;
-      padding: 10px;
-      border-radius: 8px;
+      border-radius: 8px !important;
       @media screen and (max-width: 1450px) {
         width: 500px;
         @media screen and (max-width: 1100px) {
@@ -46,21 +45,20 @@
         padding: 20px 10px 10px 10px;
         border-radius: 0 0 8px 8px;
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         @media screen and (max-width: 490px) {
           font-size: 19px;
           padding: 10px 8px 8px 8px;
           background: #ffffff91;
         }
         h3 {
-          font-size: 26px;
-          // font-weight: 700;
-          // font-family: 'Geologica', sans-serif;
-          line-height: 25px;
-          margin: 0 0 8px 0;
-          color: #222;
-          font-family: "Kurale", serif;
-          font-weight: 800;
           font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 20px;
+          color: #292b33;
           @media screen and (max-width: 530px) {
             font-size: 22px;
             @media screen and (max-width: 490px) {
@@ -69,63 +67,7 @@
           }
 
         }
-        p {
-          font-size: 20px;
-          font-family: "Kurale", serif;
-          font-weight: 600;
-          font-style: normal;
-          color: #222;
-          @media screen and (max-width: 530px) {
-            font-size: 18px;
-            @media screen and (max-width: 490px) {
-              font-size: 16px;
-            }
-          }
-        }
-        span {
-          font-size: 18px;
-          font-family: "Kurale", serif;
-          font-weight: 600;
-          line-height: 25px;
-          color: #5e6e82;
-          @media screen and (max-width: 530px) {
-            font-size: 18px;
-            @media screen and (max-width: 490px) {
-              font-size: 14px;
-            }
-          }
-        }
-        .linkBtn {
-          display: flex;
-          justify-content: right;
-          button {
-            padding: 3px 30px 5px;
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            background: #e484ba;
-            color: #fff;
-            border-radius: 5px;
-            font-size: 20px;
-            font-weight: 600;
-            font-family: "Kurale", serif;
-            font-style: normal;
-            line-height: normal;
-            @media screen and (max-width: 1450px) {
-              position: static;
-              margin: 10px 0 0 0px;
-              @media screen and (max-width: 860px) {
-                font-size: 16px;
-              }
-  
-            }
-  
-            &:hover {
-              background: #83b7d9;
-              transition: 0.5s;
-            }
-        }
-        }
+      
       }
     }
   }
