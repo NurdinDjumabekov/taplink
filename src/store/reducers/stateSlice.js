@@ -16,6 +16,11 @@ const initialState = {
     { key: 1, btn: "Список", active: true },
     { key: 2, btn: "На карте", active: false },
   ],
+  listBtns: [
+    { id: 1, title: "Выбрать специалиста", bool: true, link: "spec" },
+    { id: 2, title: "Выбрать услуги", bool: false, link: "service" },
+    { id: 3, title: "Выбрать свою дату и время", bool: false, link: "date" },
+  ],
 };
 
 const stateSlice = createSlice({
@@ -44,6 +49,9 @@ const stateSlice = createSlice({
         active: i.key === action.payload,
       }));
     },
+    changeListBtns: (state, action) => {
+      state.listBtns = action.payload;
+    },
   },
 });
 
@@ -54,6 +62,7 @@ export const {
   changeLookDate,
   changTypeColor,
   changActiveMapBtn,
+  changeListBtns,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

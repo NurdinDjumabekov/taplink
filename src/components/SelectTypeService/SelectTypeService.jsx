@@ -25,7 +25,7 @@ const SelectTypeService = () => {
       };
     });
     dispatch(changeTypesService(newData));
-    dispatch(takeListService({ id: codeid, text: searchInput }));
+    // dispatch(takeListService({ id: codeid, text: searchInput }));
     setActive(!active);
   };
 

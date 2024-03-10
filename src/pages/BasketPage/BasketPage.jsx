@@ -12,9 +12,9 @@ import {
   addCertificate,
   deleteBasketService,
   deleteCertificate,
-  changeListBtns,
   changeTypeLookSevices,
 } from "../../store/reducers/saveDataSlice";
+import { changeListBtns } from "../../store/reducers/stateSlice";
 import {
   changeAlertText,
   changeLookDate,
@@ -58,13 +58,6 @@ const BasketPage = () => {
   const editMaster = () => {
     dispatch(changeTypeLookSevices(1));
     navigate(`/det/${temporaryIdFilial}`);
-    dispatch(
-      changeListBtns([
-        { id: 1, title: "Выбрать специалиста", bool: true },
-        { id: 2, title: "Выбрать услуги", bool: false },
-        { id: 3, title: "Выбрать свою дату и время", bool: false },
-      ])
-    );
   };
 
   const sendData = () => {

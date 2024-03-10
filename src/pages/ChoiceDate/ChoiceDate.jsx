@@ -16,7 +16,7 @@ const ChoiceDate = () => {
     <div className="dateChoice">
       <div className="dateChoice__inner">
         <Calendar onChange={onChange} value={date} />
-        <i>Для каждого индивидуальный, пока что отключили!</i>
+        <p>Для каждого индивидуальный, пока что отключили!</p>
       </div>
     </div>
   );

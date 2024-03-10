@@ -1,37 +1,59 @@
 .spec {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px 0px;
-  cursor: pointer;
-  gap: 20px;
-  @media screen and (max-width: 1440px) {
-    justify-content: space-around;
+  &__inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0px;
+    cursor: pointer;
+    gap: 20px;
   }
-  &__every {
-    width: 453px;
-    background-color: rgba(255, 255, 255, 0.59);
-    padding: 10px;
-    border-radius: 8px;
-    @media screen and (max-width: 970px) {
-      width: 560px;
-    }
 
-    &:hover {
-      transition: 0.5s;
-      transform: scale(1.03);
+  &__everybody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+    padding: 20px 16px;
+    border-radius: 24px;
+    box-shadow: 10px 15px 40px rgba(41, 43, 51, 0.123);
+
+    .mainLogo {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      padding: 8px;
+      img {
+        border-radius: 50%;
+      }
     }
+  }
+
+  &__every {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.59);
+    border-radius: 24px;
+    padding: 20px 16px;
+    box-shadow: 10px 15px 40px rgba(41, 43, 51, 0.123);
   }
   &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     &__more {
       display: flex;
       align-items: center;
       gap: 15px;
-
       .mainLogo {
         width: 80px;
         height: 80px;
         border-radius: 50%;
+        @media screen and (max-width: 600px) {
+          width: 55px;
+          height: 55px;
+        }
         > img {
           border-radius: 50%;
           object-fit: contain;
@@ -41,10 +63,16 @@
         display: flex;
         flex-direction: column;
         gap: 0px;
+        > h5 {
+          font-family: "Inter", sans-serif;
+          font-size: 18px;
+          font-weight: 500;
+        }
         &__rating {
           display: flex;
           align-items: center;
           gap: 8px;
+          margin: 5px 0 0 0;
           .star {
             display: flex;
             align-items: center;
@@ -52,68 +80,21 @@
             > img {
               width: 25px;
               height: 25px;
+              @media screen and (max-width: 600px) {
+                width: 15px;
+                height: 15px;
+              }
             }
+          }
+          > span {
+            font-size: 12px;
           }
         }
       }
     }
-  }
-  &__decrip {
-    padding: 15px 5px;
-
-    .times {
-      display: none;
-      height: 150px;
-    }
-    p {
-      height: 82px; /* Максимальная высота блока */
-      overflow-y: hidden; /* Скрытие вертикального скроллбара, текст выходит за границы */
-      display: -webkit-box;
-      -webkit-line-clamp: 4; /* Количество отображаемых строк текста */
-      -webkit-box-orient: vertical;
-      margin: 0 0 20px 0;
-      position: relative;
-      line-height: 20px;
-    }
-    h4,
-    h6 {
-      margin: 5px 0 0 0;
-      font-size: 20px;
-      &:hover {
-        color: red;
-        font-size: 21px;
-        transition: 0.5s;
-        text-decoration: underline;
-      }
-    }
-    // p::-webkit-scrollbar {
-    //   width: 10px;
-    //   width: 0;
-    // }
-
-    // p::-webkit-scrollbar-thumb {
-    //   background-color: rgb(233, 165, 177); /* Цвет ползунка скроллбара */
-    //   border-radius: 6px; /* Скругление углов ползунка скроллбара */
-    //   width: 5px;
-    // }
-
-    // p::-webkit-scrollbar-track {
-    //   background-color: #f0f0f0; /* Цвет трека скроллбара */
-    //   border-radius: 6px; /* Скругление углов трека скроллбара */
-    // }
-  }
-  .allSpec {
-    // background: red;
-    h6 {
-      color: transparent;
-      @media screen and (max-width: 970px) {
-        display: none;
-      }
-    }
-    .mainLogo {
-      img {
-        object-fit: cover;
-      }
+    .moreComment {
+      width: 35px;
+      height: 35px;
     }
   }
 }

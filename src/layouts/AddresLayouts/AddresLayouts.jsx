@@ -3,6 +3,7 @@ import "./AddresLayouts.scss";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { takeMasters } from "../../store/reducers/requestSlice";
+import arrowBig from "../../assets/icons/bigArow.svg";
 
 const AddresLayouts = () => {
   const navigate = useNavigate();
@@ -16,16 +17,29 @@ const AddresLayouts = () => {
     dispatch(takeMasters(id));
   }, []);
 
-  //   console.log(location?.pathname, "location");
-  //   console.log(everyFilial, "everyFilial");
+  // console.log(location?.pathname, "location");
+  console.log(id, "id");
+
+  const isOtherPage =
+    location.pathname.includes("service") ||
+    location.pathname.includes("spec") ||
+    location.pathname.includes("date");
 
   return (
-    <div className="addresLayouts">
+    <div className={isOtherPage ? "addresLayouts otherPage" : "addresLayouts"}>
       <div className="addresLayouts__inner">
-        <div className="addresLayouts__addres">
+        <div
+          className="addresLayouts__addres"
+          onClick={() => isOtherPage && navigate(-1)}
+        >
+          <div className="arrowImg">
+            <img src={arrowBig} alt="<" />
+          </div>
           <div className="round"></div>
-          <h4>{everyFilial?.addres}</h4>
-          <p>{everyFilial?.name}</p>
+          <div>
+            <h4>{everyFilial?.addres}</h4>
+            <p>{everyFilial?.name}</p>
+          </div>
         </div>
         <div className="push"></div>
       </div>

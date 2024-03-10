@@ -17,7 +17,7 @@
     margin: 30px 0;
     .everyCom {
       width: 100%;
-      background-color: rgba(255, 255, 255, 0.590);
+      background-color: rgba(255, 255, 255, 0.59);
       padding: 20px 25px 25px;
       border-radius: 8px;
       @media screen and (max-width: 680px) {
@@ -27,7 +27,7 @@
         display: flex;
         align-items: center;
         gap: 15px;
-       
+
         .imgText {
           min-width: 70px;
           height: 70px;
@@ -96,6 +96,7 @@
       font-size: 18px;
     }
   }
+
   .mainText {
     display: flex;
     flex-direction: column;

@@ -6,11 +6,6 @@ const initialState = {
   typeLookSevices: 0, // для отображения (2)работников, (3)дат и (1)услуг
   temporaryIdFilial: 1, /// временный id филиала
   temporaryIdMaster: 1, /// временный id мастера
-  listBtns: [
-    { id: 1, title: "Выбрать специалиста", bool: true, link: "spec" },
-    { id: 2, title: "Выбрать услуги", bool: false, link: "service" },
-    { id: 3, title: "Выбрать свою дату и время", bool: false, link: "date" },
-  ],
 };
 
 const saveDataSlice = createSlice({
@@ -115,9 +110,6 @@ const saveDataSlice = createSlice({
     changeTemporaryIdMaster: (state, action) => {
       state.temporaryIdMaster = action?.payload;
     },
-    changeListBtns: (state, action) => {
-      state.listBtns = action.payload;
-    },
   },
 });
 
@@ -136,7 +128,6 @@ export const {
   changeTypeLookSevices,
   changeTemporaryIdFilial,
   changeTemporaryIdMaster,
-  changeListBtns,
 } = saveDataSlice.actions;
 
 export default saveDataSlice.reducer;

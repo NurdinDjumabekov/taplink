@@ -21,7 +21,7 @@ const EstabPage = () => {
   React.useEffect(() => {
     // dispatch(takeMasters(id));
     // dispatch(takeTypesService());
-    // dispatch(takeListService({ id: 0, text: "" }));
+
     window.scrollTo(0, 0);
   }, []);
 
@@ -40,9 +40,6 @@ const EstabPage = () => {
                 </h3> */}
               </div>
             </div>
-            {/* {typeLookSevices === 1 && <ChoiceSpecialist />}
-            {typeLookSevices === 2 && <ChoiceService />}
-            {typeLookSevices === 3 && <ChoiceDate />} */}
           </div>
         </div>
       </div>

@@ -5,14 +5,17 @@ import {
   addBasketServiceCopy,
   changeBasketUser,
   changeBasketUserCopy,
-  changeListBtns,
   changeTypeLookSevices,
   deleteBasketServiceCopy,
 } from "../../store/reducers/saveDataSlice";
-import { changeAlertText } from "../../store/reducers/stateSlice";
+import {
+  changeAlertText,
+  changeListBtns,
+} from "../../store/reducers/stateSlice";
 import delWhite from "../../assets/icons/delBtnWhite.svg";
 import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
 import { useNavigate } from "react-router-dom";
+import { takeListService } from "../../store/reducers/requestSlice";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
@@ -82,10 +85,15 @@ const ChoiceService = () => {
     }
   };
 
+  React.useEffect(() => {
+    dispatch(takeListService({ id: 0, text: "" }));
+  }, []);
+
+  console.log(listService, "listService");
+
   return (
-    <div>
-      <div className="serviceChoice">
-        <SelectTypeService />
+    <div className="serviceChoice">
+      <div className="containerMini">
         <div className="serviceChoice__inner">
           {listService?.length === 0 ? (
             <p className="noneDataa">Данные отсутствуют</p>
@@ -93,26 +101,16 @@ const ChoiceService = () => {
             <>
               {listService?.map((i) => (
                 <div className="cards" key={i?.codeid}>
-                  <div className="cards__img">
-                    <img src={i?.image} alt="logo" />
-                  </div>
                   <div className="cards__texts">
-                    <h5>{i?.name}</h5>
-                    <div>
-                      <span>
-                        Цена: <b>{i?.sum} сом</b>
-                      </span>
-                    </div>
-                    {/* <p>{i?.descr}</p> */}
+                    <h5>
+                      {i?.name} {i?.timeBusy && <b>{i?.timeBusy} мин.</b>}
+                    </h5>
+                    <span>{i?.sum} сом</span>
                   </div>
-                  <div className="actionsBtn">
-                    <button
-                      className="actionsBtn__basket"
-                      onClick={() => addBasket(i)}
-                    >
-                      Добавить
-                    </button>
-                    {basketUserCopy?.service?.some(
+                  <button className="actionsBtn" onClick={() => addBasket(i)}>
+                    +
+                  </button>
+                  {/* {basketUserCopy?.service?.some(
                       (item) => item?.codeid === i?.codeid
                     ) ? (
                       <div>
@@ -127,8 +125,7 @@ const ChoiceService = () => {
                       </div>
                     ) : (
                       ""
-                    )}
-                  </div>
+                    )} */}
                 </div>
               ))}
             </>

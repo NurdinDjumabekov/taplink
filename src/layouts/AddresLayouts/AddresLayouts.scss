@@ -4,7 +4,11 @@
     position: relative;
     padding: 120px 0 0 0;
     width: 100%;
+    @media screen and (max-width: 600px) {
+      padding: 100px 0 0 0;
+    }
   }
+
   &__addres {
     width: 1400px;
     margin: 0 auto;
@@ -16,6 +20,11 @@
     @media screen and (max-width: 1460px) {
       width: 100%;
       padding: 30px 20px;
+    }
+    .arrowImg {
+      height: 22px;
+      width: 22px;
+      display: none;
     }
     .round {
       width: 100px;
@@ -44,6 +53,39 @@
     height: 150px;
     max-width: 100%;
     background: #f5f5f5;
-    // background: red;
+    @media screen and (max-width: 600px) {
+      height: 100px;
+    }
+  }
+}
+.otherPage {
+  .addresLayouts__inner {
+    padding: 80px 0 0 0;
+  }
+  .addresLayouts__addres {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    .arrowImg {
+      display: block;
+    }
+  }
+  .round {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+  }
+  .push {
+    height: 0;
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 2px 0 0 0;
   }
 }

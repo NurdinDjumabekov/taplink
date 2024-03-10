@@ -1,17 +1,21 @@
 .nav {
-    &__inner {
-        display: flex;
-        align-items: center;
-        gap: 13px;
-        text-align: left;
-        padding: 0;
-        > p {
-            font-family: "Inter", sans-serif !important;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 24px;
-            color: #000e10;
-        }
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-align: left;
+    padding: 0;
+    > img {
+      width: 30px;
+      height: 30px;
     }
+    > p {
+      font-family: "Inter", sans-serif !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 24px;
+      color: #000e10;
+    }
+  }
 }

@@ -40,9 +40,9 @@ const MainRoutes = () => {
           <Route element={<AddresLayouts />}>
             <Route path="/choice/:id" element={<TypesNav />} />
             {/* ///// */}
-            <Route path="/spec" element={<ChoiceSpecialist />} />
-            <Route path="/date" element={<ChoiceDate />} />
-            <Route path="/service" element={<ChoiceService />} />
+            <Route path="/spec/:id" element={<ChoiceSpecialist />} />
+            <Route path="/date/:id" element={<ChoiceDate />} />
+            <Route path="/service/:id" element={<ChoiceService />} />
           </Route>
           <Route path="/com/:id" element={<CommentsPage />} />
           {/* <Route path="/cer" element={<Certificate />} /> */}
