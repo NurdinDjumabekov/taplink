@@ -13,22 +13,18 @@ import Certificate from "../pages/Certificate/Certificate";
 import CancellationPage from "../pages/CancellationPage/CancellationPage";
 import ConfirmPage from "../pages/ConfirmPage/ConfirmPage";
 import { Preloader } from "../components/Preloader/Preloader";
+import TypesNav from "../components/TypesNav/TypesChoice";
+import AddresLayouts from "../layouts/AddresLayouts/AddresLayouts";
+import ChoiceSpecialist from "../pages/ChoiceSpecialist/ChoiceSpecialist";
+import ChoiceService from "../pages/ChoiceService/ChoiceService";
+import ChoiceDate from "../pages/ChoiceDate/ChoiceDate";
 
 const MainRoutes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { basketUser, temporaryIdFilial, listBtns } = useSelector(
-    (state) => state.saveDataSlice
-  );
+
   const { preloader } = useSelector((state) => state.requestSlice);
-  const { typeLookSevices, lookDate } = useSelector(
-    (state) => state.stateSlice
-  );
-  // console.log(typeLookSevices, "typeLookSevices");
-  // console.log(basketUser, "basketUser");
-  // console.log(listBtns, "listBtns");
-  // console.log(temporaryIdFilial, "temporaryIdFilial");
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,7 +37,13 @@ const MainRoutes = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/zap" element={<LookAction />} />
           <Route path="/det/:id" element={<EstabPage />} />
-          <Route path="/date/:id" element={<DateLook />} />
+          <Route element={<AddresLayouts />}>
+            <Route path="/choice/:id" element={<TypesNav />} />
+            {/* ///// */}
+            <Route path="/spec" element={<ChoiceSpecialist />} />
+            <Route path="/date" element={<ChoiceDate />} />
+            <Route path="/service" element={<ChoiceService />} />
+          </Route>
           <Route path="/com/:id" element={<CommentsPage />} />
           {/* <Route path="/cer" element={<Certificate />} /> */}
           <Route path="/canc" element={<CancellationPage />} />

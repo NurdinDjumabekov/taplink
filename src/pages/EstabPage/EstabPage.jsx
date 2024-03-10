@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ChoiceSpecialist from "../ChoiceSpecialist/ChoiceSpecialist";
 import ChoiceDate from "../ChoiceDate/ChoiceDate";
 import ChoiceService from "../ChoiceService/ChoiceService";
-import TypesNav from "../../components/TypesNav/TypesNav";
+import TypesNav from "../../components/TypesNav/TypesChoice";
 import {
   takeListService,
   takeMasters,
@@ -17,16 +17,13 @@ const EstabPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { typeLookSevices } = useSelector((state) => state.saveDataSlice);
-  const { everyFilial } = useSelector((state) => state.requestSlice);
 
   React.useEffect(() => {
-    dispatch(takeMasters(id));
-    dispatch(takeTypesService());
-    dispatch(takeListService({ id: 0, text: "" }));
+    // dispatch(takeMasters(id));
+    // dispatch(takeTypesService());
+    // dispatch(takeListService({ id: 0, text: "" }));
     window.scrollTo(0, 0);
   }, []);
-
-  console.log(everyFilial, "everyFilial");
 
   return (
     <>
@@ -35,24 +32,17 @@ const EstabPage = () => {
           <div className="establishment__inner">
             <div className="establishment__logo">
               <div>
-                <h3>
+                {/* <h3>
                   {everyFilial?.addres
                     ? everyFilial?.addres.charAt(0).toUpperCase() +
                       everyFilial?.addres.slice(1)
                     : ""}
-                </h3>
+                </h3> */}
               </div>
             </div>
-            <TypesNav />
-            {typeLookSevices === 1 && <ChoiceSpecialist />}
+            {/* {typeLookSevices === 1 && <ChoiceSpecialist />}
             {typeLookSevices === 2 && <ChoiceService />}
-            {typeLookSevices === 3 && <ChoiceDate />}
-            {/* {basketUser?.master?.length !== 0 &&
-              basketUser?.service?.length !== 0 && (
-                <button className="zakaz" onClick={() => navigate('/basket')}>
-                  Перейти к заказу
-                </button>
-              )} */}
+            {typeLookSevices === 3 && <ChoiceDate />} */}
           </div>
         </div>
       </div>

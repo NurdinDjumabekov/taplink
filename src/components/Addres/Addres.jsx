@@ -4,6 +4,7 @@ import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { takeFilials } from "../../store/reducers/requestSlice";
+import arrow from "../../assets/icons/arrowGray.svg";
 import {
   changeListBtns,
   changeTemporaryIdFilial,
@@ -18,26 +19,9 @@ const Addres = () => {
     window.scrollTo(0, 0);
     dispatch(takeFilials());
   }, []);
-  console.log(listFilials, "listFilials");
 
   const clickAddres = (codeid) => {
-    navigate(`/det/${codeid}`);
-    dispatch(
-      changeListBtns([
-        {
-          id: 1,
-          title: "Выбрать специалиста и дату",
-          bool: true,
-        },
-        { id: 2, title: "Выбрать услуги", bool: false },
-        // {
-        //   id: 3,
-        //   title: "Выбрать свою дату и время",
-        //   bool: false,
-        // },
-      ])
-    );
-    dispatch(changeTypeLookSevices(1));
+    navigate(`/choice/${codeid}`);
     dispatch(changeTemporaryIdFilial(codeid)); // для временного хранения id филиала, т.к. при откате с корзины надо нужен id филиала, где есть мастер мастера
   };
 
@@ -58,7 +42,6 @@ const Addres = () => {
                         zoom: 14,
                       }}
                       style={{
-                        borderRadius: "8px",
                         width: "100%",
                         height: "100%",
                       }}
@@ -71,8 +54,11 @@ const Addres = () => {
                       />
                     </Map>
                   </div>
-                  <div className="map__contects">
-                    <div>
+                  <div
+                    className="map__contects"
+                    onClick={() => clickAddres(point?.codeid)}
+                  >
+                    <div className="texts">
                       <h3>{point?.name}</h3>
                       <p>
                         Адрес: <span>{point?.addres}</span>
@@ -85,9 +71,9 @@ const Addres = () => {
                       Контакты: <span>{point?.contacts1}</span>,{" "}
                       <span>{point?.contacts2}</span>
                     </p> */}
-                    <div className="linkBtn">
-                      <button onClick={() => clickAddres(point?.codeid)}>
-                        Перейти
+                    <div className="actionLink">
+                      <button>
+                        <img src={arrow} alt=">" />
                       </button>
                     </div>
                   </div>

@@ -44,13 +44,13 @@ const DateLook = () => {
     // }
     dispatch(addBasketMaster(obj));
     navigate(`/det/${listDate?.[0]?.codeid_addres}`);
-    dispatch(
-      changeListBtns([
-        { id: 1, title: "Выбрать специалиста и дату", bool: false },
-        { id: 2, title: "Выбрать услуги", bool: true },
-        // { id: 3, title: "Выбрать свою дату и время", bool: false },
-      ])
-    );
+    // dispatch(
+    //   changeListBtns([
+    //     { id: 1, title: "Выбрать специалиста", bool: false },
+    //     { id: 2, title: "Выбрать услуги", bool: true },
+    //     { id: 3, title: "Выбрать свою дату и время", bool: false },
+    //   ])
+    // );
     dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
   };
 
@@ -69,15 +69,15 @@ const DateLook = () => {
         })
       );
     } else {
-      dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
-      navigate(`/det/${listDate?.[0]?.codeid_addres}`);
-      dispatch(
-        changeListBtns([
-          { id: 1, title: "Выбрать специалиста и дату", bool: false },
-          { id: 2, title: "Выбрать услуги", bool: true },
-          // { id: 3, title: "Выбрать свою дату и время", bool: false },
-        ])
-      );
+      // dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
+      // navigate(`/det/${listDate?.[0]?.codeid_addres}`);
+      // dispatch(
+      //   changeListBtns([
+      //     { id: 1, title: "Выбрать специалиста", bool: false },
+      //     { id: 2, title: "Выбрать услуги", bool: true },
+      //     // { id: 3, title: "Выбрать свою дату и время", bool: false },
+      //   ])
+      // );
     }
   };
 
@@ -96,13 +96,13 @@ const DateLook = () => {
 
   const goZakaz = () => {
     dispatch(changeTypeLookSevices(2)); //// Выбрать услуги
-    dispatch(
-      changeListBtns([
-        { id: 1, title: "Выбрать специалиста и дату", bool: false },
-        { id: 2, title: "Выбрать услуги", bool: true },
-        // { id: 3, title: "Выбрать свою дату и время", bool: false },
-      ])
-    );
+    // dispatch(
+    //   changeListBtns([
+    //     { id: 1, title: "Выбрать специалиста", bool: false },
+    //     { id: 2, title: "Выбрать услуги", bool: true },
+    //     // { id: 3, title: "Выбрать свою дату и время", bool: false },
+    //   ])
+    // );
     navigate(`/det/${temporaryIdFilial}`);
   };
 

@@ -60,9 +60,9 @@ const BasketPage = () => {
     navigate(`/det/${temporaryIdFilial}`);
     dispatch(
       changeListBtns([
-        { id: 1, title: "Выбрать специалиста и дату", bool: true },
+        { id: 1, title: "Выбрать специалиста", bool: true },
         { id: 2, title: "Выбрать услуги", bool: false },
-        // { id: 3, title: "Выбрать свою дату и время", bool: false },
+        { id: 3, title: "Выбрать свою дату и время", bool: false },
       ])
     );
   };

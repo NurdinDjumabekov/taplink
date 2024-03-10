@@ -1,0 +1,49 @@
+.addresLayouts {
+  &__inner {
+    background: #fff;
+    position: relative;
+    padding: 120px 0 0 0;
+    width: 100%;
+  }
+  &__addres {
+    width: 1400px;
+    margin: 0 auto;
+    padding: 30px 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    @media screen and (max-width: 1460px) {
+      width: 100%;
+      padding: 30px 20px;
+    }
+    .round {
+      width: 100px;
+      height: 100px;
+      margin: 0 0 10px 0;
+      background: red;
+      border-radius: 50%;
+    }
+    h4 {
+      font-family: "Inter", sans-serif;
+      color: #001b1f;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    p {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 20px;
+      color: #808080;
+      margin: 5px 0 0 0;
+      font-family: "Inter", sans-serif;
+    }
+  }
+  .push {
+    height: 150px;
+    max-width: 100%;
+    background: #f5f5f5;
+    // background: red;
+  }
+}

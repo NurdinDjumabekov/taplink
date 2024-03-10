@@ -63,9 +63,9 @@ const ChoiceService = () => {
       dispatch(changeTypeLookSevices(1)); //// Выбрать мастера
       dispatch(
         changeListBtns([
-          { id: 1, title: "Выбрать специалиста и дату", bool: true },
+          { id: 1, title: "Выбрать специалиста", bool: true },
           { id: 2, title: "Выбрать услуги", bool: false },
-          // { id: 3, title: "Выбрать свою дату и время", bool: false },
+          { id: 3, title: "Выбрать свою дату и время", bool: false },
         ])
       );
       // navigate(`/det/${everyMaster?.codeid_addres}`);
