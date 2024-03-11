@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./AddresLayouts.scss";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { takeMasters } from "../../store/reducers/requestSlice";
+import { takeMasters, toTakeSchedule } from "../../store/reducers/requestSlice";
 import arrowBig from "../../assets/icons/bigArow.svg";
 
 const AddresLayouts = () => {
@@ -15,15 +15,17 @@ const AddresLayouts = () => {
 
   useEffect(() => {
     dispatch(takeMasters(id));
+    dispatch(toTakeSchedule());
   }, []);
 
   // console.log(location?.pathname, "location");
-  console.log(id, "id");
+  // console.log(id, "id");
 
   const isOtherPage =
     location.pathname.includes("service") ||
     location.pathname.includes("spec") ||
-    location.pathname.includes("date");
+    location.pathname.includes("date") ||
+    location.pathname.includes("basket");
 
   return (
     <div className={isOtherPage ? "addresLayouts otherPage" : "addresLayouts"}>

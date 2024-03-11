@@ -22,6 +22,20 @@ const SendOrders = ({ lookSend, setLookSend }) => {
 
   const sendNum = (e) => {
     e.preventDefault();
+    if (basketUser?.master?.length !== 0 && basketUser?.service?.length !== 0) {
+      checkData();
+    } else {
+      dispatch(
+        changeAlertText({
+          text: "Ваша корзина не полная",
+          backColor: "#008899",
+          state: true,
+        })
+      );
+    }
+  };
+
+  const checkData = () => {
     const isValidPhoneNumber = /^\996\d{9}$/g.test(
       transformNumber(dataUser?.number)
     );
@@ -29,20 +43,22 @@ const SendOrders = ({ lookSend, setLookSend }) => {
       const data = {
         fio: dataUser.name,
         phone: transformNumber(dataUser.number),
-        date_from: basketUser?.master?.[0]?.time?.time1,
-        date_to: addSumTimes(
-          basketUser?.master?.[0]?.time?.time1,
-          (+basketUser?.service?.[0]?.timeBusy || 0) +
-            (+basketUser?.service?.[1]?.timeBusy || 0) +
-            (+basketUser?.service?.[2]?.timeBusy || 0)
-        ),
+        date_from: basketUser?.master?.[0]?.date,
+        // date_to: addSumTimes(
+        //   basketUser?.master?.[0]?.date,
+        //   (+basketUser?.service?.[0]?.timeBusy || 0) +
+        //     (+basketUser?.service?.[1]?.timeBusy || 0) +
+        //     (+basketUser?.service?.[2]?.timeBusy || 0)
+        // ),
         code_department: basketUser?.service?.[0]?.code_department,
         code_doctor: basketUser?.master?.[0]?.codeid,
         arr: [...basketUser?.service],
         comment: dataUser?.more_info,
       };
       dispatch(createZakaz(data));
-      setLookSend(false);
+
+      console.log(dataUser, "dataUser");
+      console.log(basketUser, "basketUser");
     } else {
       dispatch(
         changeAlertText({
@@ -59,9 +75,9 @@ const SendOrders = ({ lookSend, setLookSend }) => {
 
   return (
     <div className="sendOrders">
-      <Modals openModal={lookSend} setOpenModal={() => setLookSend()}>
+      <div className="containerMini">
         <form onSubmit={sendNum}>
-          <h4>Введите ваши данные</h4>
+          <h4>Введите данные</h4>
           <InputMask
             mask="+999(999)99-99-99"
             placeholder="+996(___)__-__-__"
@@ -73,7 +89,7 @@ const SendOrders = ({ lookSend, setLookSend }) => {
           <input
             type="text"
             name="name"
-            placeholder="Ваше ФИО"
+            placeholder="Введите имя"
             onChange={changeInput}
             value={dataUser.name}
             required
@@ -102,10 +118,9 @@ const SendOrders = ({ lookSend, setLookSend }) => {
             Отправить
           </button>
         </form>
-      </Modals>
+      </div>
     </div>
   );
 };
 
 export default SendOrders;
-/// Добрый день, тестируем!

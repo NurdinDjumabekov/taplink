@@ -43,12 +43,12 @@ const MainRoutes = () => {
             <Route path="/spec/:id" element={<ChoiceSpecialist />} />
             <Route path="/date/:id" element={<ChoiceDate />} />
             <Route path="/service/:id" element={<ChoiceService />} />
+            <Route path="/basket/:id" element={<BasketPage />} />
           </Route>
           <Route path="/com/:id" element={<CommentsPage />} />
           {/* <Route path="/cer" element={<Certificate />} /> */}
           <Route path="/canc" element={<CancellationPage />} />
           <Route path="/confirm" element={<ConfirmPage />} />
-          <Route path="/basket" element={<BasketPage />} />
         </Route>
       </Routes>
       {/* <MoreInfo /> */}

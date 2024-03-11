@@ -14,15 +14,18 @@ import {
 } from "../../store/reducers/stateSlice";
 import delWhite from "../../assets/icons/delBtnWhite.svg";
 import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { takeListService } from "../../store/reducers/requestSlice";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
+
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
   );
+  const idMaster = basketUserCopy?.master?.codeid;
   const { listService } = useSelector((state) => state.requestSlice);
 
   const addBasket = (obj) => {
@@ -32,64 +35,39 @@ const ChoiceService = () => {
     );
 
     if (isServiceInBasket) {
-      dispatch(
-        changeAlertText({
-          text: "Такая услуга уже есть у вас в корзине",
-          backColor: "#c284e4",
-          state: true,
-        })
-      );
+      dispatch(deleteBasketServiceCopy(obj?.codeid));
     } else {
       if (basketUserCopy?.service?.length === 3) {
         dispatch(
           changeAlertText({
             text: "Вы за раз можете выбрать не больше 3х услуг",
-            backColor: "#c284e4",
+            backColor: "#008899",
             state: true,
           })
         );
       } else {
-        dispatch(
-          changeAlertText({
-            text: "Мы добавили эту услугу в корзину",
-            backColor: "#e484ba",
-            state: true,
-          })
-        );
         dispatch(addBasketServiceCopy(obj));
       }
     }
   };
 
   const addBasketZakaz = () => {
-    if (Object.keys(basketUserCopy?.master).length === 0) {
-      dispatch(changeTypeLookSevices(1)); //// Выбрать мастера
-      dispatch(
-        changeListBtns([
-          { id: 1, title: "Выбрать специалиста", bool: true },
-          { id: 2, title: "Выбрать услуги", bool: false },
-          { id: 3, title: "Выбрать свою дату и время", bool: false },
-        ])
-      );
-      // navigate(`/det/${everyMaster?.codeid_addres}`);
-    } else {
-      dispatch(
-        changeBasketUser({
-          ...basketUser,
-          master: [basketUserCopy?.master],
-          service: basketUserCopy?.service,
-        })
-      );
-      navigate("/basket");
-      dispatch(changeBasketUserCopy({ master: {}, service: [] }));
-    }
+    dispatch(
+      changeBasketUser({
+        ...basketUser,
+        master: [basketUserCopy?.master],
+        service: basketUserCopy?.service,
+      })
+    );
+    navigate(`/basket/${id}`);
+    dispatch(changeBasketUserCopy({ master: {}, service: [] }));
   };
 
   React.useEffect(() => {
     dispatch(takeListService({ id: 0, text: "" }));
   }, []);
 
-  console.log(listService, "listService");
+  // console.log(listService, "listService");
 
   return (
     <div className="serviceChoice">
@@ -107,25 +85,18 @@ const ChoiceService = () => {
                     </h5>
                     <span>{i?.sum} сом</span>
                   </div>
-                  <button className="actionsBtn" onClick={() => addBasket(i)}>
+                  <button
+                    className={
+                      basketUserCopy?.service?.some(
+                        (item) => item?.codeid === i?.codeid
+                      )
+                        ? "actionsBtn haveService"
+                        : "actionsBtn"
+                    }
+                    onClick={() => addBasket(i)}
+                  >
                     +
                   </button>
-                  {/* {basketUserCopy?.service?.some(
-                      (item) => item?.codeid === i?.codeid
-                    ) ? (
-                      <div>
-                        <button
-                          className="actionsBtn__check moreDel"
-                          onClick={() =>
-                            dispatch(deleteBasketServiceCopy(i?.codeid))
-                          }
-                        >
-                          <img src={delWhite} alt="like" />
-                        </button>
-                      </div>
-                    ) : (
-                      ""
-                    )} */}
                 </div>
               ))}
             </>

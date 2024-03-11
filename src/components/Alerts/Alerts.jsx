@@ -54,7 +54,7 @@ const Alerts = () => {
   }, [alertText?.state]);
 
   const styleText = {
-    color: "#222",
+    color: "#fff",
     fontFamily: "Kurale, sans-serif",
     fontSize: window.innerWidth <= 530 ? "20px" : "30px",
     fontStyle: "normal",

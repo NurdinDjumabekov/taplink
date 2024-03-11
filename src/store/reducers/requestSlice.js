@@ -233,7 +233,7 @@ export const createZakaz = createAsyncThunk(
         dispatch(
           changeAlertText({
             text: "Ваша заявка успешно отправлена!",
-            backColor: "#ab89bce0",
+            backColor: "#008899",
             state: true,
           })
         );
@@ -242,6 +242,26 @@ export const createZakaz = createAsyncThunk(
           window.location.reload();
         }, 2000);
         // return response?.data?.recordset;
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+/////// toTakeSchedule
+export const toTakeSchedule = createAsyncThunk(
+  "toTakeSchedule",
+  async function (info, { dispatch, rejectWithValue }) {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `${REACT_APP_API_URL}/everySchedule`,
+      });
+      if (response.status >= 200 && response.status < 300) {
+        return response?.data?.recordset;
       } else {
         throw Error(`Error: ${response.status}`);
       }
@@ -262,6 +282,7 @@ const initialState = {
   listCertificate: [],
   listService: [],
   everyMaster: {},
+  listSchedule: [],
 };
 
 const requestSlice = createSlice({
@@ -364,6 +385,32 @@ const requestSlice = createSlice({
     builder.addCase(takeEveryMaster.pending, (state, action) => {
       state.preloader = true;
     });
+
+    ////// createZakaz
+    //////
+    builder.addCase(createZakaz.fulfilled, (state, action) => {
+      state.preloader = false;
+    });
+    builder.addCase(createZakaz.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader = false;
+    });
+    builder.addCase(createZakaz.pending, (state, action) => {
+      state.preloader = true;
+    });
+    //////// toTakeSchedule
+    ////////
+    builder.addCase(toTakeSchedule.fulfilled, (state, action) => {
+      state.preloader = false;
+      state.listSchedule = action?.payload;
+    });
+    builder.addCase(toTakeSchedule.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader = false;
+    });
+    builder.addCase(toTakeSchedule.pending, (state, action) => {
+      state.preloader = true;
+    });
   },
   reducers: {
     changePreloader: (state, action) => {
@@ -377,3 +424,55 @@ const requestSlice = createSlice({
 export const { changePreloader, changeTypesService } = requestSlice.actions;
 
 export default requestSlice.reducer;
+// { id: 2, time: "16:00", date: "2024-03-11 16:00:00.000" },
+// { id: 3, time: "17:00", date: "2024-03-11 17:00:00.000" },
+// { id: 4, time: "18:00", date: "2024-03-11 18:00:00.000" },
+// { id: 5, time: "19:00", date: "2024-03-11 19:00:00.000" },
+
+const date = [
+  {
+    time: "15:00",
+    date: "2024-03-11 15:00:00.000",
+    code_department: 4,
+    code_doctor: 2,
+    codeid: 1,
+    date_system: "2024-02-13T18:14:02.370Z",
+
+    monday_start: "1970-01-01T10:00:00.000Z",
+    monday_end: "1970-01-01T19:00:00.000Z",
+    thursday_end: "1970-01-01T19:00:00.000Z",
+    thursday_start: "1970-01-01T10:00:00.000Z",
+    tuesday_end: "1970-01-01T19:00:00.000Z",
+    tuesday_start: "1970-01-01T10:00:00.000Z",
+    wednesday_end: "1970-01-01T19:00:00.000Z",
+    wednesday_start: "1970-01-01T10:00:00.000Z",
+    friday_end: "1970-01-01T19:00:00.000Z",
+    friday_start: "1970-01-01T10:00:00.000Z",
+    saturday_end: "1970-01-01T19:00:00.000Z",
+    saturday_start: "1970-01-01T10:00:00.000Z",
+    sunday_end: "1970-01-01T00:00:00.000Z",
+    sunday_start: "1970-01-01T00:00:00.000Z",
+  },
+  {
+    time: "15:00",
+    date: "2024-03-11 15:00:00.000",
+    code_department: 4,
+    code_doctor: 3,
+    codeid: 2,
+    date_system: "2024-02-13T18:14:02.370Z",
+    monday_end: "1970-01-01T19:00:00.000Z",
+    monday_start: "1970-01-01T10:00:00.000Z",
+    friday_end: "1970-01-01T19:00:00.000Z",
+    friday_start: "1970-01-01T10:00:00.000Z",
+    saturday_end: "1970-01-01T19:00:00.000Z",
+    saturday_start: "1970-01-01T10:00:00.000Z",
+    sunday_end: "1970-01-01T00:00:00.000Z",
+    sunday_start: "1970-01-01T00:00:00.000Z",
+    thursday_end: "1970-01-01T19:00:00.000Z",
+    thursday_start: "1970-01-01T10:00:00.000Z",
+    tuesday_end: "1970-01-01T19:00:00.000Z",
+    tuesday_start: "1970-01-01T10:00:00.000Z",
+    wednesday_end: "1970-01-01T19:00:00.000Z",
+    wednesday_start: "1970-01-01T10:00:00.000Z",
+  },
+];

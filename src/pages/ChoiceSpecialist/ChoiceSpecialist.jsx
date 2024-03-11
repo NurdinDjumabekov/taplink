@@ -4,28 +4,73 @@ import star from "../../assets/icons/star.svg";
 import { renderStars } from "../../helpers/renderStars";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { changeTemporaryIdMaster } from "../../store/reducers/saveDataSlice";
+import { copyAddBasketMaster } from "../../store/reducers/saveDataSlice";
 import { randomId } from "../../helpers/randomId";
 import imgAlt from "../../assets/image/masterAlt.jpg";
 import moreInfo from "../../assets/icons/moreInfo.svg";
 import choicesSpec from "../../assets/icons/choicesSpec.svg";
+import { transformDate } from "../../helpers/transformDate";
+import { daysOfWeek } from "../../helpers/dataArr";
 
 const ChoiceSpecialist = () => {
   const { listMasters } = useSelector((state) => state.requestSlice);
-  console.log(listMasters, "listMasters");
+  const { basketUserCopy } = useSelector((state) => state.saveDataSlice);
+  const { listSchedule } = useSelector((state) => state.requestSlice);
+
+  const idMaster = basketUserCopy?.master?.codeid;
+  const timeMaster = basketUserCopy?.master?.time;
+  // codeid - мастера, id - времени
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const clickDate = (id) => {
-    console.log(id);
-    navigate(`/date/${id}`);
-    dispatch(changeTemporaryIdMaster(id));
-  };
+  const { id } = useParams();
 
   const clickComents = (id) => {
     navigate(`/com/${id}`);
   };
+
+  const choiceTime = (spec, time) => {
+    if (idMaster === spec?.codeid && time === timeMaster) {
+      dispatch(copyAddBasketMaster({})); /// удаляю объект при поаторонмо нажатии
+    } else {
+      dispatch(copyAddBasketMaster({ ...spec, time })); /// добавляю объект
+    }
+  };
+
+  const nextFnService = () => {
+    navigate(`/service/${id}`);
+  };
+
+  const generateTimeIntervals = (startTime, endTime) => {
+    // Массив для хранения интервалов времени
+    const intervals = [];
+
+    // Проверяем, что startTime и endTime не равны 00:00 и не являются null
+    if (startTime && endTime && startTime !== "00:00" && endTime !== "00:00") {
+      // Создаем объекты Date для начального и конечного времени
+      let startDate = new Date(startTime);
+      const end = new Date(endTime);
+
+      // Пока текущий интервал меньше или равен конечному времени
+      while (startDate <= end) {
+        // Преобразуем текущую дату и добавляем ее в массив интервалов
+        intervals.push(transformDate(startDate));
+
+        // Увеличиваем минуты текущего интервала на 30
+        startDate.setMinutes(startDate.getMinutes() + 30);
+      }
+    }
+
+    // Возвращаем массив интервалов
+    return intervals;
+  };
+
+  const today = new Date();
+  const dayWeekNum = today.getDay();
+  const dayOfWeekText = daysOfWeek[dayWeekNum];
+
+  // console.log(basketUserCopy, "basketUserCopy");
+  console.log(listSchedule, "listSchedule");
 
   return (
     <div className="spec">
@@ -82,20 +127,42 @@ const ChoiceSpecialist = () => {
                       <img src={moreInfo} alt="" />
                     </div>
                   </div>
+                  <p>Ближайшее время для записи: </p>
+                  <div className="listtime">
+                    {listSchedule
+                      ?.filter((time) => +time?.code_doctor === +spec?.codeid)
+                      ?.map((time) =>
+                        generateTimeIntervals(
+                          time?.[`${dayOfWeekText}_start`],
+                          time?.[`${dayOfWeekText}_end`]
+                        ).map((i, index) => (
+                          <button
+                            key={index}
+                            onClick={() => choiceTime(spec, i)}
+                            className={
+                              +idMaster === +spec?.codeid && timeMaster === i
+                                ? "activeTime"
+                                : ""
+                            }
+                          >
+                            {i}
+                          </button>
+                        ))
+                      )}
+                  </div>
                 </div>
               ))}
             </>
           )}
         </div>
+        {Object.keys(basketUserCopy?.master).length !== 0 && (
+          <button className="zakaz" onClick={nextFnService}>
+            Перейти к заказу
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
 export default ChoiceSpecialist;
-
-{
-  /* <h4 onClick={() => clickDate(spec?.codeid)}>
-Выбрать время для записи
-</h4> */
-}

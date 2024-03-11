@@ -185,6 +185,7 @@ export const listSpecialist = [
 
 const start = 9;
 const end = 21;
+
 export const listDate = [
   {
     codeid: 1,
@@ -334,3 +335,22 @@ export const listCertificate = [
     count: 0,
   },
 ];
+////////////////////
+
+export const daysOfWeek = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+/// дата приходит вот в таком формате  time: "15:00",
+// date: "2024-03-11 15:00:00.000",
+// code_department: 4,
+// code_doctor: 2,
+// codeid: 1,
+// date_system: "2024-02-13T18:14:02.370Z",
+// monday_end: "1970-01-01T19:00:00.000Z",
+// monday_start: "1970-01-01T10:00:00.000Z",

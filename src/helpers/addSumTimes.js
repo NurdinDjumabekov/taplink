@@ -8,7 +8,7 @@ export const addSumTimes = (start, minutesToAdd) => {
   // Корректируем время с учетом часового пояса
   start1.setMinutes(start1.getMinutes() - timezoneOffset);
 
-  const formattedTime = start1.toISOString().slice(0, 19).replace('T', ' ');
+  const formattedTime = start1.toISOString().slice(0, 19).replace("T", " ");
 
   return formattedTime;
 };

@@ -5,11 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { takeFilials } from "../../store/reducers/requestSlice";
 import arrow from "../../assets/icons/arrowGray.svg";
-import {
-  changeListBtns,
-  changeTemporaryIdFilial,
-  changeTypeLookSevices,
-} from "../../store/reducers/saveDataSlice";
+import { changeTemporaryIdFilial } from "../../store/reducers/saveDataSlice";
 
 const Addres = () => {
   const dispatch = useDispatch();
@@ -88,34 +84,3 @@ const Addres = () => {
 };
 
 export default Addres;
-
-// import { YMaps, Map, Placemark, Panorama } from '@pbe/react-yandex-maps';
-
-// const Addres = () => {
-//   const placemarks = [
-//     { id: 1, geometry: [42.8746, 74.6] },
-//     { id: 2, geometry: [42.8776, 74.605] },
-//     { id: 2, geometry: [42.8766, 74.625] },
-//   ];
-
-//   return (
-//     <YMaps>
-//       <div className="map">
-//         <Map
-//           defaultState={{ center: [42.8746, 74.5998], zoom: 14 }}
-//           width={'100%'}
-//           height={'100%'}
-//         >
-//           {placemarks.map((placemark) => (
-//             <Placemark
-//               key={placemark.id}
-//               defaultGeometry={placemark.geometry}
-//             />
-//           ))}
-//         </Map>
-//       </div>
-//     </YMaps>
-//   );
-// };
-
-// export default Addres;

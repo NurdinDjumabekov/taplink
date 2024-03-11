@@ -30,7 +30,7 @@ const ConfirmPage = () => {
       dispatch(
         changeAlertText({
           text: "Мы отправили подтверждение на ваш номер WhatsApp",
-          backColor: "#e484ba",
+          backColor: "#008899",
           state: true,
         })
       );
@@ -42,7 +42,7 @@ const ConfirmPage = () => {
       dispatch(
         changeAlertText({
           text: "Введите правильный номер телефона",
-          backColor: "#ab89bce0",
+          backColor: "#008899",
           state: true,
         })
       );

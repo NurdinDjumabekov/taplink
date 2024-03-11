@@ -2,41 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   basketUser: { master: [], service: [], certificate: [] }, //// корзина
-  basketUserCopy: { master: {}, service: [] }, //// временное хранилище
   typeLookSevices: 0, // для отображения (2)работников, (3)дат и (1)услуг
   temporaryIdFilial: 1, /// временный id филиала
   temporaryIdMaster: 1, /// временный id мастера
+  /// delete
+  basketUserCopy: { master: {}, service: [] }, //// временное хранилище
 };
 
 const saveDataSlice = createSlice({
   name: "saveDataSlice",
   initialState,
   reducers: {
-    addBasketMaster: (state, action) => {
-      state.basketUser = {
-        ...state?.basketUser,
-        master: [...state?.basketUser?.master, action?.payload],
-      };
-    },
     copyAddBasketMaster: (state, action) => {
       state.basketUserCopy = {
         ...state.basketUserCopy,
         master: action?.payload,
-      };
-    },
-    addBasketService: (state, action) => {
-      state.basketUser = {
-        ...state?.basketUser,
-        service: [...state?.basketUser?.service, action.payload],
-      };
-    },
-    deleteBasketService: (state, action) => {
-      const newData = state?.basketUser?.service?.filter(
-        (i) => i.codeid !== action?.payload
-      );
-      state.basketUser = {
-        ...state?.basketUser,
-        service: newData,
       };
     },
     addBasketServiceCopy: (state, action) => {
@@ -54,6 +34,30 @@ const saveDataSlice = createSlice({
         service: newData,
       };
     },
+
+    /////////
+    addBasketMaster: (state, action) => {
+      state.basketUser = {
+        ...state?.basketUser,
+        master: [...state?.basketUser?.master, action?.payload],
+      };
+    },
+    addBasketService: (state, action) => {
+      state.basketUser = {
+        ...state?.basketUser,
+        service: [...state?.basketUser?.service, action.payload],
+      };
+    },
+    deleteBasketService: (state, action) => {
+      const newData = state?.basketUser?.service?.filter(
+        (i) => i.codeid !== action?.payload
+      );
+      state.basketUser = {
+        ...state?.basketUser,
+        service: newData,
+      };
+    },
+
     deleteTimeMaster: (state, action) => {
       const newData = state?.basketUser?.master?.filter(
         (i) => i.obj?.id !== action?.payload
