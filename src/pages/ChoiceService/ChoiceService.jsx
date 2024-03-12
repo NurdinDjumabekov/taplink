@@ -4,7 +4,6 @@ import "./ChoiceService.scss";
 import {
   addBasketServiceCopy,
   changeBasketUser,
-  changeBasketUserCopy,
   deleteBasketServiceCopy,
 } from "../../store/reducers/saveDataSlice";
 import { changeAlertText } from "../../store/reducers/stateSlice";
@@ -19,6 +18,7 @@ const ChoiceService = () => {
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
   );
+
   const idMaster = basketUserCopy?.master?.codeid;
   const { listService } = useSelector((state) => state.requestSlice);
 
@@ -45,17 +45,8 @@ const ChoiceService = () => {
     }
   };
 
-  const addBasketZakaz = () => {
-    if (Object.keys(basketUserCopy?.master).length === 0) {
-      dispatch(
-        changeAlertText({
-          text: "Сначало выберите мастера!",
-          backColor: "#008899",
-          state: true,
-        })
-      );
-      navigate(`/spec/${id}`);
-    } else {
+  const addBasketZakaz = (departamentId) => {
+    if (basketUserCopy?.master?.fio && basketUserCopy?.master?.date) {
       dispatch(
         changeBasketUser({
           ...basketUser,
@@ -64,6 +55,10 @@ const ChoiceService = () => {
         })
       );
       navigate(`/basket/${id}`);
+    } else if (basketUserCopy?.master?.time && basketUserCopy?.master?.date) {
+      navigate(`/spec_calendar/${id}`);
+    } else {
+      navigate(`/spec/${id}/${basketUserCopy?.service?.[0]?.code_department}`);
     }
     // dispatch(changeBasketUserCopy({ master: {}, service: [] }));
   };
@@ -73,6 +68,7 @@ const ChoiceService = () => {
   }, []);
 
   // console.log(listService, "listService");
+  console.log(basketUserCopy, "basketUserCopy");
 
   return (
     <div className="serviceChoice">
@@ -107,6 +103,7 @@ const ChoiceService = () => {
             </>
           )}
         </div>
+
         {basketUserCopy?.service?.length !== 0 && (
           <button className="zakaz" onClick={addBasketZakaz}>
             Перейти к заказу

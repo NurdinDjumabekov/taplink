@@ -6,6 +6,7 @@ import { renderStars } from "../../helpers/renderStars";
 import dateImg from "../../assets/icons/choiceDate.svg";
 import star from "../../assets/icons/star.svg";
 import edit from "../../assets/icons/edit.svg";
+import del from "../../assets/icons/delBtn.svg";
 import { convertTime } from "../../helpers/convertTime";
 import {
   deleteBasketService,
@@ -16,6 +17,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import SendOrders from "../../components/SendOrders/SendOrders";
 import { createZakaz } from "../../store/reducers/requestSlice";
 import imgAlt from "../../assets/image/masterAlt.jpg";
+import { dateFormat } from "../../helpers/dateFormat";
 
 const BasketPage = () => {
   const dispatch = useDispatch();
@@ -28,11 +30,17 @@ const BasketPage = () => {
   const { summOrders } = useSelector((state) => state.stateSlice);
 
   const editMaster = () => {
-    navigate(`/spec/${id}`);
+    navigate(`/spec/${id}/${basketUser?.service?.[0]?.code_department || 0}`);
   };
 
   const editServise = () => {
     navigate(`/service/${id}/${basketUser?.master?.[0]?.codeid || 0}`);
+  };
+
+  const clearBasket = () => {
+    navigate("/");
+    localStorage.clear();
+    window.location.reload();
   };
 
   console.log(basketUser, "basketUser");
@@ -42,7 +50,12 @@ const BasketPage = () => {
       <div className="basketPage">
         <div className="containerMini">
           <div className="basketPage__inner">
-            <h5>Детали записи</h5>
+            <div className="mainTitleBasket">
+              <h5>Детали записи</h5>
+              <button onClick={clearBasket}>
+                <img src={del} alt="del" />
+              </button>
+            </div>
             <div className="basketPage__inner__master">
               {basketUser?.master?.length === 0 ? (
                 <div></div>
@@ -86,10 +99,11 @@ const BasketPage = () => {
                       <div className="ratingStar">
                         <div className="rating">
                           <span>
-                            Время записи ({basketUser?.master?.[0]?.time})
+                            Дата записи (
+                            {dateFormat(basketUser?.master?.[0]?.date, "date")})
                           </span>
                         </div>
-                        <h4>{basketUser?.master?.[0]?.fio}</h4>
+                        <h4>{basketUser?.master?.[0]?.time}</h4>
                       </div>
                     </div>
                     <button className="editBtn" onClick={editMaster}>
@@ -198,9 +212,3 @@ export default BasketPage;
   </div>
 </div>; */
 }
-
-// const clearBasket = () => {
-//   navigate("/");
-//   localStorage.clear();
-//   window.location.reload();
-// };

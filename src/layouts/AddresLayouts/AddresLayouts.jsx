@@ -15,13 +15,15 @@ const AddresLayouts = () => {
   const dispatch = useDispatch();
   const { everyFilial } = useSelector((state) => state.requestSlice);
 
-  const { id } = useParams();
+  const { id, departamentId } = useParams();
+
+  console.log(departamentId, "departamentId");
 
   useEffect(() => {
-    dispatch(takeMasters(id)); /// беру данные филиала и мастеров
+    dispatch(takeMasters({ id, depId: departamentId || 0 })); /// беру данные филиала и мастеров
     dispatch(toTakeSchedule());
     dispatch(toTakeCheckTime());
-  }, []);
+  }, [departamentId]);
 
   // console.log(location?.pathname, "location");
   // console.log(id, "id");

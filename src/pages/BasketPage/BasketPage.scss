@@ -3,12 +3,22 @@
   background: #fff;
   border-radius: 0 0 20px 20px;
   &__inner {
-    h5 {
-      font-size: 22px;
-      margin: 0px 0 20px 0;
-      padding: 5px 0 0 0;
-      font-weight: 600;
-      color: hsla(186.79245283018867,100%,6%,1);
+    .mainTitleBasket {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      h5 {
+        font-size: 22px;
+        margin: 0px 0 20px 0;
+        padding: 5px 0 0 0;
+        font-weight: 600;
+        color: hsla(186.79245283018867, 100%, 6%, 1);
+      }
+      button {
+        background: transparent;
+        width: 30px;
+        height: 30px;
+      }
     }
 
     .editBtn {
@@ -19,7 +29,7 @@
       padding: 3px;
     }
 
-    &__master {     
+    &__master {
       &__data {
         display: flex;
         gap: 10px;
@@ -122,7 +132,6 @@
         margin: 10px 0 0 0;
         padding: 5px 0 0 0;
         border-top: 1px solid #ececec;
-
       }
 
       &__inner {
@@ -170,7 +179,7 @@
           }
         }
       }
-      
+
       .result {
         margin: 50px 0 0 0;
         p {

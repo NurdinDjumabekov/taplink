@@ -17,7 +17,7 @@ const initialState = {
     { key: 2, btn: "На карте", active: false },
   ],
   listBtns: [
-    { id: 1, title: "Выбрать специалиста", bool: true, link: "spec" }, ///  link2: 0
+    { id: 1, title: "Выбрать специалиста", bool: true, link: "spec", link2: 0 },
     { id: 2, title: "Выбрать услуги", bool: false, link: "service", link2: 0 },
     {
       id: 3,

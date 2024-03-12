@@ -5,7 +5,7 @@ import { renderStars } from "../../helpers/renderStars";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  changeBasketUserCopy,
+  changeBasketUser,
   copyAddBasketMaster,
 } from "../../store/reducers/saveDataSlice";
 import { randomId } from "../../helpers/randomId";
@@ -17,13 +17,29 @@ import { daysOfWeek } from "../../helpers/dataArr";
 
 const ChoiceSpecialist = () => {
   const { listMasters } = useSelector((state) => state.requestSlice);
-  const { basketUserCopy } = useSelector((state) => state.saveDataSlice);
+  const { basketUserCopy, basketUser } = useSelector(
+    (state) => state.saveDataSlice
+  );
   const { listSchedule, listTimes } = useSelector(
     (state) => state.requestSlice
   );
   const today = new Date();
   const dayWeekNum = today.getDay();
   const dayOfWeekText = daysOfWeek[dayWeekNum];
+
+  ///////////////////////////////////////////////
+  // Получаем значения года, месяца и дня
+  const year = today.getFullYear().toString().padStart(4, "0");
+  const month = (today.getMonth() + 1).toString().padStart(2, "0");
+  const day = today.getDate().toString().padStart(2, "0");
+
+  // Получаем значения часов, минут и секунд
+  const hours = today.getHours().toString().padStart(2, "0");
+  const minutes = today.getMinutes().toString().padStart(2, "0");
+  const seconds = today.getSeconds().toString().padStart(2, "0");
+  ///////////////////////////////////////////////
+
+  const dateToday = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000Z`;
 
   const idMaster = basketUserCopy?.master?.codeid;
   const timeMaster = basketUserCopy?.master?.time;
@@ -41,15 +57,24 @@ const ChoiceSpecialist = () => {
     if (idMaster === spec?.codeid && time === timeMaster) {
       dispatch(copyAddBasketMaster({})); /// удаляю объект при поаторонмо нажатии
     } else {
-      dispatch(copyAddBasketMaster({ ...spec, time, date: today })); /// добавляю объект
+      // dispatch(copyAddBasketMaster({ ...spec, time, date: today })); /// добавляю объект
+      dispatch(copyAddBasketMaster({ ...spec, time, date: dateToday })); /// добавляю объект
     }
   };
 
   const nextFnService = () => {
-    const serviceId = basketUserCopy?.master?.codeid;
-    navigate(`/service/${id}/${serviceId}`);
-    /// всегда сбрасываю услуги в корзине
-    dispatch(changeBasketUserCopy({ ...basketUserCopy, service: [] }));
+    if (basketUserCopy?.service?.length === 0) {
+      navigate(`/service/${id}/${idMaster}`);
+    } else {
+      dispatch(
+        changeBasketUser({
+          ...basketUser,
+          master: [basketUserCopy?.master] || basketUser?.master,
+          service: basketUserCopy?.service || basketUser?.service,
+        })
+      );
+      navigate(`/basket/${id}`);
+    }
   };
 
   const generateTimeIntervals = (startTime, endTime, masterId) => {
@@ -101,8 +126,8 @@ const ChoiceSpecialist = () => {
 
   console.log(basketUserCopy, "basketUserCopy");
   // console.log(listSchedule, "listSchedule");
-  console.log(listTimes, "listTimes");
-  // console.log(listMasters, "listMasters");
+  // console.log(listTimes, "listTimes");
+  console.log(listMasters, "listMasters");
 
   return (
     <div className="spec">
@@ -112,7 +137,7 @@ const ChoiceSpecialist = () => {
             <p className="noneDataa">В этом филиале мастера отсутствуют</p>
           ) : (
             <>
-              <div
+              {/* <div
                 className="spec__everybody"
                 // onClick={() => clickDate(randomId(listMasters))}
               >
@@ -120,7 +145,7 @@ const ChoiceSpecialist = () => {
                   <img src={choicesSpec} alt="мастер" />
                 </div>
                 <h5>Любой специалист</h5>
-              </div>
+              </div> */}
               {listMasters?.map((spec) => (
                 <div key={spec?.codeid} className="spec__every">
                   <div
@@ -159,7 +184,7 @@ const ChoiceSpecialist = () => {
                       <img src={moreInfo} alt="" />
                     </div>
                   </div>
-                  <p>Ближайшее время для записи: </p>
+                  <p>Ближайшее время для записи на сегодня: </p>
                   <div className="listtime">
                     {listSchedule
                       ?.filter((time) => +time?.code_doctor === +spec?.codeid)

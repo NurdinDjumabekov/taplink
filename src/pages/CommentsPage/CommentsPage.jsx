@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addComments, takeComments } from "../../store/reducers/requestSlice";
 import Modals from "../../components/Modals/Modals";
 import { getNowDate } from "../../helpers/getNowDate";
+import imgAlt from "../../assets/image/masterAlt.jpg";
+import { dateFormat } from "../../helpers/dateFormat";
 
 const CommentsPage = () => {
   const { id } = useParams();
@@ -52,7 +54,7 @@ const CommentsPage = () => {
           <div className="establishment__logo">
             <div className="mainComm">
               <div className="logo">
-                <img src={everyMasterInComment?.logo} alt="logo" />
+                <img src={everyMasterInComment?.logo || imgAlt} alt="logo" />
               </div>
               <div className="mainText">
                 {/* <p className="week">
@@ -86,7 +88,7 @@ const CommentsPage = () => {
                         </div>
                         <div className="moreText">
                           <h6>{com.name}</h6>
-                          <span>{com?.date}</span>
+                          <span>{dateFormat(com?.date, "date")}</span>
                         </div>
                       </div>
                       <p className="comment">{com?.description}</p>

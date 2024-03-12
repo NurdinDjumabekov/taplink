@@ -106,7 +106,6 @@ button {
   }
 }
 
-
 .listtime {
   display: flex;
   align-items: center;
@@ -122,16 +121,17 @@ button {
     color: #222;
     border: 1px solid #ededed;
     background-color: #fff;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
     cursor: pointer;
     white-space: nowrap;
     width: 32%;
   }
   .activeTime {
-    background: #008899;
+    background: #008899 !important;
     color: #fff;
   }
 }

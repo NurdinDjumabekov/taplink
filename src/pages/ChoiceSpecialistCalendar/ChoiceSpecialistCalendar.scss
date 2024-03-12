@@ -1,0 +1,16 @@
+.more {
+  .spec__every {
+    padding: 0;
+    .spec__content__more {
+      padding: 20px 0 20px 16px;
+      width: 80%;
+    }
+    .moreComment {
+      margin: 0 16px 0 0;
+    }
+    .activeSpec {
+      border: 2px solid hsla(186.79245283018867, 100%, 41.568627450980394%, 1);
+      border-radius: 24px;
+    }
+  }
+}

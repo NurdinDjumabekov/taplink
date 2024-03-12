@@ -30,11 +30,12 @@ export const takeFilials = createAsyncThunk(
 /////// takeMasters
 export const takeMasters = createAsyncThunk(
   "takeMasters",
-  async function (id, { rejectWithValue }) {
+  async function (info, { rejectWithValue }) {
+    const { id, depId } = info;
     try {
       const response = await axios({
         method: "GET",
-        url: `${REACT_APP_API_URL}/masters?id=${id}`,
+        url: `${REACT_APP_API_URL}/masters?id=${id}&depId=${depId}`,
       });
       if (response.status >= 200 && response.status < 300) {
         return {

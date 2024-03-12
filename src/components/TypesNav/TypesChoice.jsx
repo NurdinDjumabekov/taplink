@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeListBtns } from "../../store/reducers/stateSlice";
 import {
+  changeBasketUser,
   changeBasketUserCopy,
   changeTypeLookSevices,
 } from "../../store/reducers/saveDataSlice";
@@ -36,6 +37,12 @@ const TypesNav = () => {
   };
 
   const arrImg = [choicesSpec, choiceDate, choiceService];
+
+  React.useEffect(() => {
+    dispatch(changeBasketUserCopy({ master: {}, service: [] }));
+    dispatch(changeBasketUser({ master: [], service: [], certificate: [] }));
+    ///// очищаю данные
+  }, []);
 
   // console.log(listBtns, "listBtns");
   return (

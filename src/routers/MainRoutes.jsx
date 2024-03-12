@@ -18,6 +18,7 @@ import AddresLayouts from "../layouts/AddresLayouts/AddresLayouts";
 import ChoiceSpecialist from "../pages/ChoiceSpecialist/ChoiceSpecialist";
 import ChoiceService from "../pages/ChoiceService/ChoiceService";
 import ChoiceDate from "../pages/ChoiceDate/ChoiceDate";
+import ChoiceSpecialistCalendar from "../pages/ChoiceSpecialistCalendar/ChoiceSpecialistCalendar";
 
 const MainRoutes = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,11 @@ const MainRoutes = () => {
           <Route element={<AddresLayouts />}>
             <Route path="/choice/:id" element={<TypesNav />} />
             {/* ///// */}
-            <Route path="/spec/:id" element={<ChoiceSpecialist />} />
+            <Route
+              path="/spec/:id/:departamentId"
+              element={<ChoiceSpecialist />}
+            />
+            <Route path="/spec_calendar/:id" element={<ChoiceSpecialistCalendar />} />
             <Route path="/date/:id" element={<ChoiceDate />} />
             <Route path="/service/:id/:serviceId" element={<ChoiceService />} />
             <Route path="/basket/:id" element={<BasketPage />} />
