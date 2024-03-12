@@ -26,9 +26,6 @@ const MapPoint = () => {
           ))}
         </Map>
       </YMaps>
-      <div style={{ width: "80%", height: "80vh", margin: "0px auto" }}>
-        {/* <MapWrapper /> */}
-      </div>
     </div>
   );
 };

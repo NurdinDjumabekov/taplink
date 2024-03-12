@@ -7,5 +7,6 @@ export const transformDate = (dateString) => {
     minute: "2-digit",
     hour12: false,
   };
+  // console.log({ time: date.toLocaleTimeString("en-US", options), date: date });
   return date.toLocaleTimeString("en-US", options);
 };

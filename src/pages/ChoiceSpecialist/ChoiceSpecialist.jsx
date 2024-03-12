@@ -42,26 +42,34 @@ const ChoiceSpecialist = () => {
   };
 
   const generateTimeIntervals = (startTime, endTime) => {
-    // Массив для хранения интервалов времени
     const intervals = [];
 
-    // Проверяем, что startTime и endTime не равны 00:00 и не являются null
     if (startTime && endTime && startTime !== "00:00" && endTime !== "00:00") {
-      // Создаем объекты Date для начального и конечного времени
+      const currentDateTime = new Date(); // Текущая дата и время
+      const currentOffset = currentDateTime.getTimezoneOffset();
+
       let startDate = new Date(startTime);
       const end = new Date(endTime);
 
-      // Пока текущий интервал меньше или равен конечному времени
       while (startDate <= end) {
-        // Преобразуем текущую дату и добавляем ее в массив интервалов
-        intervals.push(transformDate(startDate));
+        // Приводим время к часовому поясу текущей даты
+        const adjustedStartDate = new Date(
+          startDate.getTime() + currentOffset * 60000
+        );
 
-        // Увеличиваем минуты текущего интервала на 30
+        // Сравниваем только часы и минуты
+        if (
+          adjustedStartDate.getHours() > currentDateTime.getHours() ||
+          (adjustedStartDate.getHours() === currentDateTime.getHours() &&
+            adjustedStartDate.getMinutes() >= currentDateTime.getMinutes())
+        ) {
+          intervals.push(transformDate(startDate));
+        }
+
         startDate.setMinutes(startDate.getMinutes() + 30);
       }
     }
 
-    // Возвращаем массив интервалов
     return intervals;
   };
 
