@@ -127,11 +127,12 @@ export const takeTypesService = createAsyncThunk(
 export const takeListService = createAsyncThunk(
   "takeListService",
   async function (info, { rejectWithValue }) {
-    const { id, text } = info;
+    const { id } = info;
     try {
       const response = await axios({
         method: "GET",
-        url: `${REACT_APP_API_URL}/service?id=${id}&text=${text ? text : 0}`,
+        url: `${REACT_APP_API_URL}/service?id=${id}`,
+        // url: `${REACT_APP_API_URL}/service?id=${id ? id : 0}`,
       });
       if (response.status >= 200 && response.status < 300) {
         return response?.data?.recordset;
@@ -271,6 +272,26 @@ export const toTakeSchedule = createAsyncThunk(
   }
 );
 
+/////// toTakeCheckTime
+export const toTakeCheckTime = createAsyncThunk(
+  "toTakeCheckTime",
+  async function (info, { dispatch, rejectWithValue }) {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `${REACT_APP_API_URL}/checkTime`,
+      });
+      if (response.status >= 200 && response.status < 300) {
+        return response?.data?.recordset;
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   preloader: false,
   listFilials: [],
@@ -283,6 +304,7 @@ const initialState = {
   listService: [],
   everyMaster: {},
   listSchedule: [],
+  listTimes: [],
 };
 
 const requestSlice = createSlice({
@@ -411,7 +433,21 @@ const requestSlice = createSlice({
     builder.addCase(toTakeSchedule.pending, (state, action) => {
       state.preloader = true;
     });
+    //////// toTakeCheckTime
+    ////////
+    builder.addCase(toTakeCheckTime.fulfilled, (state, action) => {
+      state.preloader = false;
+      state.listTimes = action?.payload;
+    });
+    builder.addCase(toTakeCheckTime.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader = false;
+    });
+    builder.addCase(toTakeCheckTime.pending, (state, action) => {
+      state.preloader = true;
+    });
   },
+
   reducers: {
     changePreloader: (state, action) => {
       state.preloader = action.payload;

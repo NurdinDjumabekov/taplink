@@ -23,7 +23,7 @@ const MainLayouts = () => {
     }
   }, []);
 
-  console.log(location?.pathname, "location");
+  // console.log(location?.pathname, "location");
 
   return (
     <div className="mainLayouts">

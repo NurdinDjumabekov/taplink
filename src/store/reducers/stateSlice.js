@@ -17,10 +17,17 @@ const initialState = {
     { key: 2, btn: "На карте", active: false },
   ],
   listBtns: [
-    { id: 1, title: "Выбрать специалиста", bool: true, link: "spec" },
-    { id: 2, title: "Выбрать услуги", bool: false, link: "service" },
-    { id: 3, title: "Выбрать свою дату и время", bool: false, link: "date" },
+    { id: 1, title: "Выбрать специалиста", bool: true, link: "spec" }, ///  link2: 0
+    { id: 2, title: "Выбрать услуги", bool: false, link: "service", link2: 0 },
+    {
+      id: 3,
+      title: "Выбрать свою дату и время",
+      bool: false,
+      link: "date",
+      // link2: 0,
+    },
   ],
+  listTimeForCalendare: [],
 };
 
 const stateSlice = createSlice({
@@ -52,6 +59,9 @@ const stateSlice = createSlice({
     changeListBtns: (state, action) => {
       state.listBtns = action.payload;
     },
+    changeListTime: (state, action) => {
+      state.listTimeForCalendare = action.payload;
+    },
   },
 });
 
@@ -63,6 +73,7 @@ export const {
   changTypeColor,
   changActiveMapBtn,
   changeListBtns,
+  changeListTime,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;

@@ -4,7 +4,10 @@ import star from "../../assets/icons/star.svg";
 import { renderStars } from "../../helpers/renderStars";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { copyAddBasketMaster } from "../../store/reducers/saveDataSlice";
+import {
+  changeBasketUserCopy,
+  copyAddBasketMaster,
+} from "../../store/reducers/saveDataSlice";
 import { randomId } from "../../helpers/randomId";
 import imgAlt from "../../assets/image/masterAlt.jpg";
 import moreInfo from "../../assets/icons/moreInfo.svg";
@@ -15,7 +18,12 @@ import { daysOfWeek } from "../../helpers/dataArr";
 const ChoiceSpecialist = () => {
   const { listMasters } = useSelector((state) => state.requestSlice);
   const { basketUserCopy } = useSelector((state) => state.saveDataSlice);
-  const { listSchedule } = useSelector((state) => state.requestSlice);
+  const { listSchedule, listTimes } = useSelector(
+    (state) => state.requestSlice
+  );
+  const today = new Date();
+  const dayWeekNum = today.getDay();
+  const dayOfWeekText = daysOfWeek[dayWeekNum];
 
   const idMaster = basketUserCopy?.master?.codeid;
   const timeMaster = basketUserCopy?.master?.time;
@@ -33,52 +41,68 @@ const ChoiceSpecialist = () => {
     if (idMaster === spec?.codeid && time === timeMaster) {
       dispatch(copyAddBasketMaster({})); /// удаляю объект при поаторонмо нажатии
     } else {
-      dispatch(copyAddBasketMaster({ ...spec, time })); /// добавляю объект
+      dispatch(copyAddBasketMaster({ ...spec, time, date: today })); /// добавляю объект
     }
   };
 
   const nextFnService = () => {
-    navigate(`/service/${id}`);
+    const serviceId = basketUserCopy?.master?.codeid;
+    navigate(`/service/${id}/${serviceId}`);
+    /// всегда сбрасываю услуги в корзине
+    dispatch(changeBasketUserCopy({ ...basketUserCopy, service: [] }));
   };
 
-  const generateTimeIntervals = (startTime, endTime) => {
+  const generateTimeIntervals = (startTime, endTime, masterId) => {
     const intervals = [];
+    const isTrueMaster = listTimes?.some((i) => masterId === i?.code_doctor);
 
     if (startTime && endTime && startTime !== "00:00" && endTime !== "00:00") {
-      const currentDateTime = new Date(); // Текущая дата и время
+      const currentDateTime = new Date();
       const currentOffset = currentDateTime.getTimezoneOffset();
 
       let startDate = new Date(startTime);
       const end = new Date(endTime);
 
       while (startDate <= end) {
-        // Приводим время к часовому поясу текущей даты
         const adjustedStartDate = new Date(
           startDate.getTime() + currentOffset * 60000
         );
 
-        // Сравниваем только часы и минуты
         if (
           adjustedStartDate.getHours() > currentDateTime.getHours() ||
           (adjustedStartDate.getHours() === currentDateTime.getHours() &&
             adjustedStartDate.getMinutes() >= currentDateTime.getMinutes())
         ) {
-          intervals.push(transformDate(startDate));
+          if (isTrueMaster) {
+            const currentTime = transformDate(startDate);
+
+            // Проверяем, находится ли текущее время в промежутке из listTimes
+            const isReservedTime = listTimes?.some(
+              (time) =>
+                masterId === time?.code_doctor &&
+                currentTime >= transformDate(new Date(time?.date_from)) &&
+                currentTime <= transformDate(new Date(time?.date_to))
+            );
+            if (!isReservedTime) {
+              intervals.push(currentTime);
+            }
+          } else {
+            intervals.push(transformDate(startDate));
+          }
         }
 
         startDate.setMinutes(startDate.getMinutes() + 30);
       }
     }
 
+    // console.log(intervals, "intervals");
     return intervals;
   };
 
-  const today = new Date();
-  const dayWeekNum = today.getDay();
-  const dayOfWeekText = daysOfWeek[dayWeekNum];
-
-  // console.log(basketUserCopy, "basketUserCopy");
-  console.log(listSchedule, "listSchedule");
+  console.log(basketUserCopy, "basketUserCopy");
+  // console.log(listSchedule, "listSchedule");
+  console.log(listTimes, "listTimes");
+  // console.log(listMasters, "listMasters");
 
   return (
     <div className="spec">
@@ -142,7 +166,8 @@ const ChoiceSpecialist = () => {
                       ?.map((time) =>
                         generateTimeIntervals(
                           time?.[`${dayOfWeekText}_start`],
-                          time?.[`${dayOfWeekText}_end`]
+                          time?.[`${dayOfWeekText}_end`],
+                          spec?.codeid
                         ).map((i, index) => (
                           <button
                             key={index}
@@ -158,16 +183,16 @@ const ChoiceSpecialist = () => {
                         ))
                       )}
                   </div>
+                  {Object.keys(basketUserCopy?.master).length !== 0 && (
+                    <button className="zakaz" onClick={nextFnService}>
+                      Перейти к услугам
+                    </button>
+                  )}
                 </div>
               ))}
             </>
           )}
         </div>
-        {Object.keys(basketUserCopy?.master).length !== 0 && (
-          <button className="zakaz" onClick={nextFnService}>
-            Перейти к заказу
-          </button>
-        )}
       </div>
     </div>
   );

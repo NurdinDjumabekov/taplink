@@ -42,7 +42,7 @@ const MainRoutes = () => {
             {/* ///// */}
             <Route path="/spec/:id" element={<ChoiceSpecialist />} />
             <Route path="/date/:id" element={<ChoiceDate />} />
-            <Route path="/service/:id" element={<ChoiceService />} />
+            <Route path="/service/:id/:serviceId" element={<ChoiceService />} />
             <Route path="/basket/:id" element={<BasketPage />} />
           </Route>
           <Route path="/com/:id" element={<CommentsPage />} />

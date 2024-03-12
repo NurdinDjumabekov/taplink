@@ -32,7 +32,7 @@ const BasketPage = () => {
   };
 
   const editServise = () => {
-    navigate(`/service/${id}`);
+    navigate(`/service/${id}/${basketUser?.master?.[0]?.codeid || 0}`);
   };
 
   console.log(basketUser, "basketUser");

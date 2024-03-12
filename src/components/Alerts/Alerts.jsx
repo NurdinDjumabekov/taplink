@@ -58,11 +58,12 @@ const Alerts = () => {
     fontFamily: "Kurale, sans-serif",
     fontSize: window.innerWidth <= 530 ? "20px" : "30px",
     fontStyle: "normal",
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: "normal",
     textAlign: "center",
-    "@media (max-width: 500px)": {
+    "@media (max-width: 550px)": {
       fontSize: "16px",
+      fontWeight: 500,
     },
   };
 

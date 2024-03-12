@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import "./AddresLayouts.scss";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { takeMasters, toTakeSchedule } from "../../store/reducers/requestSlice";
+import {
+  takeMasters,
+  toTakeCheckTime,
+  toTakeSchedule,
+} from "../../store/reducers/requestSlice";
 import arrowBig from "../../assets/icons/bigArow.svg";
 
 const AddresLayouts = () => {
@@ -14,8 +18,9 @@ const AddresLayouts = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(takeMasters(id));
+    dispatch(takeMasters(id)); /// беру данные филиала и мастеров
     dispatch(toTakeSchedule());
+    dispatch(toTakeCheckTime());
   }, []);
 
   // console.log(location?.pathname, "location");

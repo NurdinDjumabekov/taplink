@@ -5,22 +5,16 @@ import {
   addBasketServiceCopy,
   changeBasketUser,
   changeBasketUserCopy,
-  changeTypeLookSevices,
   deleteBasketServiceCopy,
 } from "../../store/reducers/saveDataSlice";
-import {
-  changeAlertText,
-  changeListBtns,
-} from "../../store/reducers/stateSlice";
-import delWhite from "../../assets/icons/delBtnWhite.svg";
-import SelectTypeService from "../../components/SelectTypeService/SelectTypeService";
+import { changeAlertText } from "../../store/reducers/stateSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { takeListService } from "../../store/reducers/requestSlice";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, serviceId } = useParams();
 
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
@@ -52,19 +46,30 @@ const ChoiceService = () => {
   };
 
   const addBasketZakaz = () => {
-    dispatch(
-      changeBasketUser({
-        ...basketUser,
-        master: [basketUserCopy?.master],
-        service: basketUserCopy?.service,
-      })
-    );
-    navigate(`/basket/${id}`);
-    dispatch(changeBasketUserCopy({ master: {}, service: [] }));
+    if (Object.keys(basketUserCopy?.master).length === 0) {
+      dispatch(
+        changeAlertText({
+          text: "Сначало выберите мастера!",
+          backColor: "#008899",
+          state: true,
+        })
+      );
+      navigate(`/spec/${id}`);
+    } else {
+      dispatch(
+        changeBasketUser({
+          ...basketUser,
+          master: [basketUserCopy?.master] || basketUser?.master,
+          service: basketUserCopy?.service || basketUser?.service,
+        })
+      );
+      navigate(`/basket/${id}`);
+    }
+    // dispatch(changeBasketUserCopy({ master: {}, service: [] }));
   };
 
   React.useEffect(() => {
-    dispatch(takeListService({ id: 0, text: "" }));
+    dispatch(takeListService({ id: serviceId || 0 }));
   }, []);
 
   // console.log(listService, "listService");

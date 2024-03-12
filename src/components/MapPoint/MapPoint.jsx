@@ -7,7 +7,7 @@ const MapPoint = () => {
   const placemarks = [
     { id: 1, geometry: [42.8746, 74.6] },
     { id: 2, geometry: [42.8776, 74.605] },
-    { id: 2, geometry: [42.8766, 74.625] },
+    { id: 3, geometry: [42.8766, 74.625] },
   ];
 
   return (

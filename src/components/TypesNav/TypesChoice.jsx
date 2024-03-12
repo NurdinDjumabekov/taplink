@@ -1,7 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeListBtns } from "../../store/reducers/stateSlice";
-import { changeTypeLookSevices } from "../../store/reducers/saveDataSlice";
+import {
+  changeBasketUserCopy,
+  changeTypeLookSevices,
+} from "../../store/reducers/saveDataSlice";
 import "./TypesChoice.scss";
 import arrow from "../../assets/icons/arrow.svg";
 import choiceService from "../../assets/icons/choiceService.svg";
@@ -19,7 +22,7 @@ const TypesNav = () => {
 
   // console.log(typeLookSevices, 'typeLookSevices');
 
-  const clickBtn = (codeid, link) => {
+  const clickBtn = (codeid, link, link2) => {
     dispatch(changeTypeLookSevices(codeid));
     const newData = listBtns.map((button) => {
       return {
@@ -28,19 +31,19 @@ const TypesNav = () => {
       };
     });
     dispatch(changeListBtns(newData));
-    console.log(link, "link");
-    navigate(`/${link}/${id}`);
+    navigate(`/${link}/${id}${link2 || +link2 === 0 ? `/${link2}` : ""}`);
+    dispatch(changeBasketUserCopy({ master: {}, service: [] }));
   };
 
   const arrImg = [choicesSpec, choiceDate, choiceService];
 
-  console.log(listBtns, "listBtns");
+  // console.log(listBtns, "listBtns");
   return (
     <div className="typesNav">
       <div className="container">
         <div className="typesNav__inner">
           {listBtns?.map((i) => (
-            <div key={i.id} onClick={() => clickBtn(i?.id, i?.link)}>
+            <div key={i.id} onClick={() => clickBtn(i?.id, i?.link, i?.link2)}>
               <div>
                 <img src={arrImg?.[i.id - 1]} alt="" />
               </div>
