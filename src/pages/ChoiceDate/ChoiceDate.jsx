@@ -46,12 +46,8 @@ const ChoiceDate = () => {
     const month = (value.getMonth() + 1).toString().padStart(2, "0");
     const day = value.getDate().toString().padStart(2, "0");
 
-    // Получаем значения часов, минут и секунд
-    const hours = value.getHours().toString().padStart(2, "0");
-    const minutes = value.getMinutes().toString().padStart(2, "0");
-    const seconds = value.getSeconds().toString().padStart(2, "0");
     ///////////////////////////////////////////////
-    const dateCalendar = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000Z`;
+    const dateCalendar = `${year}-${month}-${day}`;
 
     dispatch(
       changeBasketUserCopy({
@@ -98,7 +94,7 @@ const ChoiceDate = () => {
     if (time === timeMaster) {
       dispatch(copyAddBasketMaster({})); /// удаляю объект при повторном нажатии
     } else {
-      dispatch(copyAddBasketMaster({ time, date: "today" })); /// добавляю объект
+      // dispatch(copyAddBasketMaster({ time, date: "today" })); /// добавляю объект
 
       dispatch(
         changeBasketUserCopy({
@@ -127,12 +123,7 @@ const ChoiceDate = () => {
     const month = (today.getMonth() + 1).toString().padStart(2, "0");
     const day = today.getDate().toString().padStart(2, "0");
 
-    // Получаем значения часов, минут и секунд
-    const hours = today.getHours().toString().padStart(2, "0");
-    const minutes = today.getMinutes().toString().padStart(2, "0");
-    const seconds = today.getSeconds().toString().padStart(2, "0");
-
-    const dateToday = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000Z`;
+    const dateToday = `${year}-${month}-${day}`;
     dispatch(
       changeBasketUserCopy({
         service: [...basketUserCopy?.service],

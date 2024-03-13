@@ -3,9 +3,9 @@
     display: flex;
     align-items: center;
     &__inner {
-        background-color: rgba(255, 255, 255, 0.590);
         padding: 10px;
         border-radius: 10px;
+        background: #f5f5f5  !important;
 
     a {
         display: block;

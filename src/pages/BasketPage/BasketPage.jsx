@@ -43,7 +43,7 @@ const BasketPage = () => {
     window.location.reload();
   };
 
-  console.log(basketUser, "basketUser");
+  // console.log(basketUser, "basketUser");
 
   return (
     <>

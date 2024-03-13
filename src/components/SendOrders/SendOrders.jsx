@@ -40,16 +40,26 @@ const SendOrders = ({ lookSend, setLookSend }) => {
       transformNumber(dataUser?.number)
     );
     if (isValidPhoneNumber) {
+      const formattedDateFrom = `${basketUser?.master?.[0]?.date}${" "}${
+        basketUser?.master?.[0]?.time
+      }:00`;
+
+      const totalMinutes =
+        timeToMinutes(basketUser?.master?.[0]?.time) + /// время 12:00
+        parseInt(basketUser?.service?.[0]?.timeBusy || "0") + // тут 60 (в минутах)
+        parseInt(basketUser?.service?.[1]?.timeBusy || "0") + // тут 60 (в минутах)
+        parseInt(basketUser?.service?.[2]?.timeBusy || "0"); // тут 60 (в минутах)
+      // console.log(minutesToTime(totalMinutes));
+
+      const formattedDateTo = `${
+        basketUser?.master?.[0]?.date
+      }${" "}${minutesToTime(totalMinutes)}:00`;
+
       const data = {
         fio: dataUser.name,
         phone: transformNumber(dataUser.number),
-        date_from: basketUser?.master?.[0]?.date,
-        // date_to: addSumTimes(
-        //   basketUser?.master?.[0]?.date,
-        //   (+basketUser?.service?.[0]?.timeBusy || 0) +
-        //     (+basketUser?.service?.[1]?.timeBusy || 0) +
-        //     (+basketUser?.service?.[2]?.timeBusy || 0)
-        // ),
+        date_from: formattedDateFrom,
+        date_to: formattedDateTo,
         code_department: basketUser?.service?.[0]?.code_department,
         code_doctor: basketUser?.master?.[0]?.codeid,
         arr: [...basketUser?.service],
@@ -57,8 +67,9 @@ const SendOrders = ({ lookSend, setLookSend }) => {
       };
       dispatch(createZakaz(data));
 
-      console.log(dataUser, "dataUser");
-      console.log(basketUser, "basketUser");
+      // console.log(dataUser, "dataUser");
+      // console.log(basketUser, "basketUser");
+      // console.log(data, "data");
     } else {
       dispatch(
         changeAlertText({
@@ -70,9 +81,10 @@ const SendOrders = ({ lookSend, setLookSend }) => {
     }
   };
 
-  console.log(dataUser, "dataUser");
-  console.log(basketUser, "basketUser");
-
+  // console.log(dataUser, "dataUser");
+  // console.log(basketUser, "basketUser");
+  /// addSumTimes
+  // delete
   return (
     <div className="sendOrders">
       <div className="containerMini">
@@ -124,3 +136,21 @@ const SendOrders = ({ lookSend, setLookSend }) => {
 };
 
 export default SendOrders;
+
+// Функция для конвертации времени в минуты
+const timeToMinutes = (time) => {
+  if (typeof time !== "string") {
+    time = time.toString(); // Если time не строка, преобразуем его в строку
+  }
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
+};
+
+const minutesToTime = (totalMinutes) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+    2,
+    "0"
+  )}`;
+};

@@ -20,7 +20,7 @@ const MainPage = () => {
       link: "canc",
       text: "Перенос или отмена записи",
       type: 2,
-      path: `https://wa.me/${numberSalon}`,
+      // path: `https://wa.me/${numberSalon}`,
       minText: "",
     },
     {
@@ -46,13 +46,13 @@ const MainPage = () => {
       path: `https://wa.me/${numberBoss}`,
       minText: "Отзывы / Жалобы / Предложения",
     },
-    {
-      id: 6,
-      link: "/info",
-      text: "Информация",
-      type: 1,
-      minText: "Прайс, адреса, контакты, вакансии и вся другая информация",
-    },
+    // {
+    //   id: 6,
+    //   link: "/info",
+    //   text: "Информация",
+    //   type: 1,
+    //   minText: "Прайс, адреса, контакты, вакансии и вся другая информация",
+    // },
   ];
 
   React.useEffect(() => {

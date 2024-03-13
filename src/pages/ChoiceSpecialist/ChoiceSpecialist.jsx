@@ -14,6 +14,7 @@ import moreInfo from "../../assets/icons/moreInfo.svg";
 import choicesSpec from "../../assets/icons/choicesSpec.svg";
 import { transformDate } from "../../helpers/transformDate";
 import { daysOfWeek } from "../../helpers/dataArr";
+import { getNowDate } from "../../helpers/getNowDate";
 
 const ChoiceSpecialist = () => {
   const { listMasters } = useSelector((state) => state.requestSlice);
@@ -39,8 +40,6 @@ const ChoiceSpecialist = () => {
   const seconds = today.getSeconds().toString().padStart(2, "0");
   ///////////////////////////////////////////////
 
-  const dateToday = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000Z`;
-
   const idMaster = basketUserCopy?.master?.codeid;
   const timeMaster = basketUserCopy?.master?.time;
   // codeid - мастера, id - времени
@@ -58,7 +57,7 @@ const ChoiceSpecialist = () => {
       dispatch(copyAddBasketMaster({})); /// удаляю объект при поаторонмо нажатии
     } else {
       // dispatch(copyAddBasketMaster({ ...spec, time, date: today })); /// добавляю объект
-      dispatch(copyAddBasketMaster({ ...spec, time, date: dateToday })); /// добавляю объект
+      dispatch(copyAddBasketMaster({ ...spec, time, date: getNowDate() })); /// добавляю объект
     }
   };
 

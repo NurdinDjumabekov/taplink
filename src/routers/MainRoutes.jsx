@@ -45,7 +45,10 @@ const MainRoutes = () => {
               path="/spec/:id/:departamentId"
               element={<ChoiceSpecialist />}
             />
-            <Route path="/spec_calendar/:id" element={<ChoiceSpecialistCalendar />} />
+            <Route
+              path="/spec_calendar/:id"
+              element={<ChoiceSpecialistCalendar />}
+            />
             <Route path="/date/:id" element={<ChoiceDate />} />
             <Route path="/service/:id/:serviceId" element={<ChoiceService />} />
             <Route path="/basket/:id" element={<BasketPage />} />
