@@ -21,6 +21,8 @@ const Addres = () => {
     dispatch(changeTemporaryIdFilial(codeid)); // для временного хранения id филиала, т.к. при откате с корзины надо нужен id филиала, где есть мастер мастера
   };
 
+  console.log(listFilials, "listFilials");
+
   return (
     <div className="addres">
       <div className="container">
@@ -33,7 +35,13 @@ const Addres = () => {
                 <div key={point.codeid} className="map">
                   <div className="map__inner">
                     <Map
-                      defaultState={{ center: [42.8746, 74.5998], zoom: 14 }}
+                      defaultState={{
+                        center: [
+                          point?.coordinatesX || 42.8746,
+                          point?.coordinatesY || 74.5998,
+                        ],
+                        zoom: 14,
+                      }}
                       style={{
                         width: "100%",
                         height: "100%",
