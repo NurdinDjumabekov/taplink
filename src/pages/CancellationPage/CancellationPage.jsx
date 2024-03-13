@@ -3,10 +3,16 @@ import "./CancellationPage.scss";
 import InputMask from "react-input-mask";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCancellation } from "../../store/reducers/inputSlice";
+import { useNavigate } from "react-router-dom";
+import { changeAlertText } from "../../store/reducers/stateSlice";
+import { transformNumber } from "../../helpers/transformNumber";
+import { cancellationSend } from "../../store/reducers/requestSlice";
 
 const CancellationPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cancellation } = useSelector((state) => state.inputSlice);
+  const { numberSalon } = useSelector((state) => state.stateSlice);
 
   const changeInput = (e) => {
     const { name, value } = e.target;
@@ -15,6 +21,37 @@ const CancellationPage = () => {
 
   const cancellationZakaz = (e) => {
     e.preventDefault();
+
+    const isValidPhoneNumber = /^\996\d{9}$/g.test(
+      transformNumber(cancellation?.number)
+    );
+    if (isValidPhoneNumber) {
+      dispatch(
+        cancellationSend({
+          ...cancellation,
+          number: transformNumber(cancellation?.number),
+          numberSalon,
+        })
+      );
+      setTimeout(() => {
+        dispatch(
+          changeCancellation({
+            name: "",
+            rejection: "",
+            number: "+996",
+          })
+        );
+        navigate("/");
+      }, 1000);
+    } else {
+      dispatch(
+        changeAlertText({
+          text: "Введите правильный номер телефона",
+          backColor: "#008899",
+          state: true,
+        })
+      );
+    }
   };
 
   return (
@@ -44,7 +81,8 @@ const CancellationPage = () => {
             />
             <textarea
               name="rejection"
-              placeholder="Причина отказа"
+              required
+              placeholder="Причина отказа или переноса"
               value={cancellation.rejection}
               onChange={changeInput}
             ></textarea>

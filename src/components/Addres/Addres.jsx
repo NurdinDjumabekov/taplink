@@ -33,10 +33,7 @@ const Addres = () => {
                 <div key={point.codeid} className="map">
                   <div className="map__inner">
                     <Map
-                      defaultState={{
-                        center: [point?.coordinatesX, point?.coordinatesY],
-                        zoom: 14,
-                      }}
+                      defaultState={{ center: [42.8746, 74.5998], zoom: 14 }}
                       style={{
                         width: "100%",
                         height: "100%",

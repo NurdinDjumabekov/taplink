@@ -2,13 +2,16 @@ import React from "react";
 import { YMaps, Map, Placemark, Panorama } from "@pbe/react-yandex-maps";
 import { load } from "@2gis/mapgl";
 import "./MapPoint.scss";
+import { useSelector } from "react-redux";
 
 const MapPoint = () => {
-  const placemarks = [
-    { id: 1, geometry: [42.8746, 74.6] },
-    { id: 2, geometry: [42.8776, 74.605] },
-    { id: 3, geometry: [42.8766, 74.625] },
-  ];
+  const { listFilials } = useSelector((state) => state.requestSlice);
+  console.log(listFilials, "listFilials");
+
+  const placemarks = listFilials.map((filial) => ({
+    id: filial.id, // Идентификатор метки, можно использовать любое уникальное значение
+    geometry: [filial.coordinatesX, filial.coordinatesY], // Координаты местоположения метки
+  }));
 
   return (
     <div className="mapPoint">
@@ -21,7 +24,7 @@ const MapPoint = () => {
           {placemarks.map((placemark) => (
             <Placemark
               key={placemark.id}
-              defaultGeometry={placemark.geometry}
+              defaultGeometry={placemark.geometry || [42.8746, 74.5998]}
             />
           ))}
         </Map>

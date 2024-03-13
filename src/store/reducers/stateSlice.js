@@ -10,7 +10,7 @@ const initialState = {
   },
   summOrders: 0,
   numberSalon: "996555202195",
-  numberBoss: "996700754454",
+  numberBoss: "996555202195",
   typeColor: "white", /// black
   activeMapBtn: [
     { key: 1, btn: "Список", active: true },

@@ -293,6 +293,36 @@ export const toTakeCheckTime = createAsyncThunk(
   }
 );
 
+///////cancellation отмена или перенос
+export const cancellationSend = createAsyncThunk(
+  "cancellationSend",
+  async function (info, { dispatch, rejectWithValue }) {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `${REACT_APP_API_URL}/cancellation`,
+        data: { ...info },
+      });
+      if (response.status >= 200 && response.status < 300) {
+        dispatch(
+          changeAlertText({
+            text: "Ваша заявка успешно отправлена!",
+            backColor: "#008899",
+            state: true,
+          })
+        );
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        throw Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   preloader: false,
   listFilials: [],
@@ -445,6 +475,18 @@ const requestSlice = createSlice({
       state.preloader = false;
     });
     builder.addCase(toTakeCheckTime.pending, (state, action) => {
+      state.preloader = true;
+    });
+    //////// cancellationSend
+    ////////
+    builder.addCase(cancellationSend.fulfilled, (state, action) => {
+      state.preloader = false;
+    });
+    builder.addCase(cancellationSend.rejected, (state, action) => {
+      state.error = action.payload;
+      state.preloader = false;
+    });
+    builder.addCase(cancellationSend.pending, (state, action) => {
       state.preloader = true;
     });
   },
