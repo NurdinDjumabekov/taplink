@@ -92,7 +92,12 @@ const ChoiceDate = () => {
 
   const choiceTime = (time) => {
     if (time === timeMaster) {
-      dispatch(copyAddBasketMaster({})); /// удаляю объект при повторном нажатии
+      dispatch(
+        changeBasketUserCopy({
+          service: [],
+          master: { date: basketUserCopy?.master?.date },
+        })
+      ); /// удаляю объект при повторном нажатии
     } else {
       // dispatch(copyAddBasketMaster({ time, date: "today" })); /// добавляю объект
 

@@ -8,6 +8,7 @@ import {
   toTakeSchedule,
 } from "../../store/reducers/requestSlice";
 import arrowBig from "../../assets/icons/bigArow.svg";
+import logoImg from "../../assets/icons/logo.jpg";
 
 const AddresLayouts = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const AddresLayouts = () => {
 
   useEffect(() => {
     dispatch(takeMasters({ id, depId: departamentId || 0 })); /// беру данные филиала и мастеров
-    dispatch(toTakeSchedule());
+    dispatch(toTakeSchedule(id));
     dispatch(toTakeCheckTime());
   }, [departamentId]);
 
@@ -44,7 +45,9 @@ const AddresLayouts = () => {
           <div className="arrowImg">
             <img src={arrowBig} alt="<" />
           </div>
-          <div className="round"></div>
+          <div className="round">
+            <img src={logoImg} alt="logo" />
+          </div>
           <div>
             <h4>{everyFilial?.addres}</h4>
             <p>{everyFilial?.name}</p>

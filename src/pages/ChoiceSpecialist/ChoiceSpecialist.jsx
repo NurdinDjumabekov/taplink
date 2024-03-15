@@ -11,7 +11,6 @@ import {
 import { randomId } from "../../helpers/randomId";
 import imgAlt from "../../assets/image/masterAlt.jpg";
 import moreInfo from "../../assets/icons/moreInfo.svg";
-import choicesSpec from "../../assets/icons/choicesSpec.svg";
 import { transformDate } from "../../helpers/transformDate";
 import { daysOfWeek } from "../../helpers/dataArr";
 import { getNowDate } from "../../helpers/getNowDate";
@@ -27,18 +26,6 @@ const ChoiceSpecialist = () => {
   const today = new Date();
   const dayWeekNum = today.getDay();
   const dayOfWeekText = daysOfWeek[dayWeekNum];
-
-  ///////////////////////////////////////////////
-  // Получаем значения года, месяца и дня
-  const year = today.getFullYear().toString().padStart(4, "0");
-  const month = (today.getMonth() + 1).toString().padStart(2, "0");
-  const day = today.getDate().toString().padStart(2, "0");
-
-  // Получаем значения часов, минут и секунд
-  const hours = today.getHours().toString().padStart(2, "0");
-  const minutes = today.getMinutes().toString().padStart(2, "0");
-  const seconds = today.getSeconds().toString().padStart(2, "0");
-  ///////////////////////////////////////////////
 
   const idMaster = basketUserCopy?.master?.codeid;
   const timeMaster = basketUserCopy?.master?.time;
@@ -207,6 +194,9 @@ const ChoiceSpecialist = () => {
                         ))
                       )}
                   </div>
+                  <i onClick={() => navigate(`/date/${id}`)}>
+                    Выбрать другое время
+                  </i>
                   {Object.keys(basketUserCopy?.master).length !== 0 && (
                     <button className="zakaz" onClick={nextFnService}>
                       Перейти к услугам

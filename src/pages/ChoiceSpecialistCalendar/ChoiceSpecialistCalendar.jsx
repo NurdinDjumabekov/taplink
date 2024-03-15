@@ -21,9 +21,7 @@ const ChoiceSpecialistCalendar = () => {
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
   );
-  const { listSchedule, listTimes } = useSelector(
-    (state) => state.requestSlice
-  );
+
   const idMaster = basketUserCopy?.master?.codeid;
 
   const clickComents = (id) => {
@@ -74,7 +72,6 @@ const ChoiceSpecialistCalendar = () => {
               {listMasters?.map((spec) => (
                 <div key={spec?.codeid} className="spec__every">
                   <div
-                    // className="spec__content"
                     className={
                       +idMaster === +spec?.codeid
                         ? "spec__content activeSpec"

@@ -256,11 +256,11 @@ export const createZakaz = createAsyncThunk(
 /////// toTakeSchedule
 export const toTakeSchedule = createAsyncThunk(
   "toTakeSchedule",
-  async function (info, { dispatch, rejectWithValue }) {
+  async function (id, { dispatch, rejectWithValue }) {
     try {
       const response = await axios({
         method: "GET",
-        url: `${REACT_APP_API_URL}/everySchedule`,
+        url: `${REACT_APP_API_URL}/everySchedule?id=${id}`,
       });
       if (response.status >= 200 && response.status < 300) {
         return response?.data?.recordset;

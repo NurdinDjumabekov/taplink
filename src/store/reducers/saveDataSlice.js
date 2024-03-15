@@ -19,6 +19,12 @@ const saveDataSlice = createSlice({
         master: action?.payload,
       };
     },
+    // addBasketServiceCopy: (state, action) => {
+    //   state.basketUserCopy = {
+    //     ...state?.basketUserCopy,
+    //     service: [...state.basketUserCopy.service, action.payload],
+    //   };
+    // },
     addBasketServiceCopy: (state, action) => {
       state.basketUserCopy = {
         ...state?.basketUserCopy,

@@ -9,6 +9,7 @@ import {
 import { changeAlertText } from "../../store/reducers/stateSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { takeListService } from "../../store/reducers/requestSlice";
+import { convertTime } from "../../helpers/convertTime";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ const ChoiceService = () => {
     (state) => state.saveDataSlice
   );
 
-  const idMaster = basketUserCopy?.master?.codeid;
   const { listService } = useSelector((state) => state.requestSlice);
 
   const addBasket = (obj) => {
@@ -45,7 +45,7 @@ const ChoiceService = () => {
     }
   };
 
-  const addBasketZakaz = (departamentId) => {
+  const addBasketZakaz = () => {
     if (basketUserCopy?.master?.fio && basketUserCopy?.master?.date) {
       dispatch(
         changeBasketUser({
@@ -56,7 +56,9 @@ const ChoiceService = () => {
       );
       navigate(`/basket/${id}`);
     } else if (basketUserCopy?.master?.time && basketUserCopy?.master?.date) {
-      navigate(`/spec_calendar/${id}`);
+      navigate(
+        `/spec_calendar/${id}/${basketUserCopy?.service?.[0]?.code_department}`
+      );
     } else {
       navigate(`/spec/${id}/${basketUserCopy?.service?.[0]?.code_department}`);
     }
@@ -67,8 +69,8 @@ const ChoiceService = () => {
     dispatch(takeListService({ id: serviceId || 0 }));
   }, []);
 
-  // console.log(listService, "listService");
-  console.log(basketUserCopy, "basketUserCopy");
+  console.log(listService, "listService");
+  // console.log(basketUserCopy, "basketUserCopy");
 
   return (
     <div className="serviceChoice">
@@ -82,7 +84,8 @@ const ChoiceService = () => {
                 <div className="cards" key={i?.codeid}>
                   <div className="cards__texts">
                     <h5>
-                      {i?.name} {i?.timeBusy && <b>{i?.timeBusy} мин.</b>}
+                      {i?.name}{" "}
+                      {i?.timeBusy && <b>{convertTime(i?.timeBusy)}</b>}
                     </h5>
                     <span>{i?.sum} сом</span>
                   </div>

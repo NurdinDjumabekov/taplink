@@ -8,8 +8,8 @@ import EstabPage from "../pages/EstabPage/EstabPage";
 import Alerts from "../components/Alerts/Alerts";
 import BasketPage from "../pages/BasketPage/BasketPage";
 import CommentsPage from "../pages/CommentsPage/CommentsPage";
-import DateLook from "../components/DateLook/DateLook";
-import Certificate from "../pages/Certificate/Certificate";
+// import DateLook from "../components/DateLook/DateLook";
+// import Certificate from "../pages/Certificate/Certificate";
 import CancellationPage from "../pages/CancellationPage/CancellationPage";
 import ConfirmPage from "../pages/ConfirmPage/ConfirmPage";
 import { Preloader } from "../components/Preloader/Preloader";
@@ -46,7 +46,7 @@ const MainRoutes = () => {
               element={<ChoiceSpecialist />}
             />
             <Route
-              path="/spec_calendar/:id"
+              path="/spec_calendar/:id/:departamentId"
               element={<ChoiceSpecialistCalendar />}
             />
             <Route path="/date/:id" element={<ChoiceDate />} />
@@ -59,7 +59,6 @@ const MainRoutes = () => {
           <Route path="/confirm" element={<ConfirmPage />} />
         </Route>
       </Routes>
-      {/* <MoreInfo /> */}
       {preloader && <Preloader />}
       <Alerts />
     </>
