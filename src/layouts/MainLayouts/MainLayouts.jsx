@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
 import "./MainLayouts.scss";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import CallBtns from "../../components/CallBtns/CallBtns";
+import { Outlet } from "react-router-dom";
 
 const MainLayouts = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
-
   useEffect(() => {
     const prefersDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -23,14 +17,11 @@ const MainLayouts = () => {
     }
   }, []);
 
-  // console.log(location?.pathname, "location");
-
   return (
     <div className="mainLayouts">
       <div className="animation" id="vanta"></div>
       <div className="mainContent">
         <Outlet />
-        {/* {location?.pathname !== "/basket" && <CallBtns />} */}
       </div>
     </div>
   );

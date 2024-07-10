@@ -9,24 +9,20 @@ const initialState = {
     state: false,
   },
   summOrders: 0,
-  numberSalon: "996555202195",
-  numberBoss: "996555202195",
+  numberSalon: "996507929607",
+  numberBoss: "996507929607",
   typeColor: "white", /// black
+
   activeMapBtn: [
     { key: 1, btn: "Список", active: true },
     { key: 2, btn: "На карте", active: false },
   ],
+
   listBtns: [
     { id: 1, title: "Выбрать специалиста", bool: true, link: "spec", link2: 0 },
-    { id: 2, title: "Выбрать услуги", bool: false, link: "service", link2: 0 },
-    {
-      id: 3,
-      title: "Выбрать свою дату и время",
-      bool: false,
-      link: "date",
-      // link2: 0,
-    },
+    { id: 3, title: "Выбрать свою дату", bool: false, link: "date" },
   ],
+
   listTimeForCalendare: [],
 };
 

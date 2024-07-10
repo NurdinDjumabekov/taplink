@@ -1,12 +1,10 @@
 import React from "react";
-import { YMaps, Map, Placemark, Panorama } from "@pbe/react-yandex-maps";
-import { load } from "@2gis/mapgl";
+import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import "./MapPoint.scss";
 import { useSelector } from "react-redux";
 
 const MapPoint = () => {
   const { listFilials } = useSelector((state) => state.requestSlice);
-  console.log(listFilials, "listFilials");
 
   const placemarks = listFilials.map((filial) => ({
     id: filial.codeid, // Идентификатор метки, можно использовать любое уникальное значение

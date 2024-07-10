@@ -88,7 +88,7 @@ const Certificate = () => {
         </div>
         {basketUser?.certificate?.length !== 0 && (
           <button className="zakaz" onClick={() => navigate("/basket")}>
-            Перейти к заказу
+            Записаться
           </button>
         )}
       </div>

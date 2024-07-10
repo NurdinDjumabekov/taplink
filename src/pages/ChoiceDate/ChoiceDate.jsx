@@ -6,10 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { daysOfWeek } from "../../helpers/dataArr";
 import { transformDate } from "../../helpers/transformDate";
 import { changeListTime } from "../../store/reducers/stateSlice";
-import {
-  changeBasketUserCopy,
-  copyAddBasketMaster,
-} from "../../store/reducers/saveDataSlice";
+import { changeBasketUserCopy } from "../../store/reducers/saveDataSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ChoiceDate = () => {
@@ -22,19 +19,16 @@ const ChoiceDate = () => {
 
   const { listTimeForCalendare } = useSelector((state) => state.stateSlice);
   const { basketUserCopy } = useSelector((state) => state.saveDataSlice);
-  const { listTimes, listSchedule } = useSelector(
-    (state) => state.requestSlice
-  );
+  const { listSchedule } = useSelector((state) => state.requestSlice);
   const timeMaster = basketUserCopy?.master?.time;
 
-  const onChange = (newDate) => {
-    setDate(newDate);
-  };
+  const onChange = (newDate) => setDate(newDate);
 
   const tileDisabled = ({ date }) => date < yesterday;
 
-  const onClickDay = (value, e) => {
+  const onClickDay = (value) => {
     const dayOfWeek = value.getDay();
+
     checkDate(
       listSchedule,
       `${daysOfWeek?.[dayOfWeek]}_start`,
@@ -58,8 +52,6 @@ const ChoiceDate = () => {
   };
 
   const checkDate = (list, start, end) => {
-    // console.log(list, "list");
-
     const transformAndCheck = (value) =>
       transformDate(value) === null || transformDate(value) === "24:00"
         ? ""
@@ -68,15 +60,15 @@ const ChoiceDate = () => {
     let firstTime = "23:59";
     let lastTime = "00:00";
 
-    list.forEach((i) => {
+    list?.forEach((i) => {
       const startTime = transformAndCheck(i?.[start]);
       const endTime = transformAndCheck(i?.[end]);
 
-      if (startTime !== "" && startTime < firstTime) {
+      if (startTime !== "" && startTime < firstTime && startTime !== "00:00") {
         firstTime = startTime;
       }
 
-      if (endTime !== "" && endTime > lastTime) {
+      if (endTime !== "" && endTime > lastTime && endTime !== "00:00") {
         lastTime = endTime;
       }
     });
@@ -110,9 +102,8 @@ const ChoiceDate = () => {
     }
   };
 
-  const nextFnService = () => {
-    navigate(`/service/${id}/${0}`);
-  };
+  const nextFnService = () =>
+    navigate(`/spec_calendar/${basketUserCopy?.master?.date}`);
 
   React.useEffect(() => {
     if (listSchedule.length > 0) {
@@ -137,11 +128,6 @@ const ChoiceDate = () => {
     );
   }, [listSchedule]);
 
-  console.log(basketUserCopy, "basketUserCopy");
-  // console.log(listTimes, "listTimes");
-  // console.log(listSchedule, "listSchedule");
-  // console.log(listTimeForCalendare, "listTimeForCalendare");
-
   return (
     <div className="dateChoice">
       <div className="dateChoice__inner">
@@ -152,20 +138,20 @@ const ChoiceDate = () => {
           onClickDay={onClickDay}
         />
         <div className="containerMini">
-          <div className="dateChoice__times">
+          {/* <div className="dateChoice__times">
             <div className="listtime">
               {listTimeForCalendare?.map((i, index) => (
                 <button
                   key={index}
                   onClick={() => choiceTime(i)}
-                  className={timeMaster === i ? "activeTime" : ""}
+                  className={timeMaster == i ? "activeTime" : ""}
                 >
                   {i}
                 </button>
               ))}
             </div>
-          </div>
-          {basketUserCopy?.master?.time && basketUserCopy?.master?.date && (
+          </div> */}
+          {basketUserCopy?.master?.date && (
             <button className="zakaz" onClick={nextFnService}>
               Перейти к услугам
             </button>

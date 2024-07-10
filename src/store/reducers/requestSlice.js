@@ -32,6 +32,7 @@ export const takeMasters = createAsyncThunk(
   "takeMasters",
   async function (info, { rejectWithValue }) {
     const { id, depId } = info;
+    ////// change
     try {
       const response = await axios({
         method: "GET",
@@ -133,7 +134,6 @@ export const takeListService = createAsyncThunk(
       const response = await axios({
         method: "GET",
         url: `${REACT_APP_API_URL}/service?id=${id}`,
-        // url: `${REACT_APP_API_URL}/service?id=${id ? id : 0}`,
       });
       if (response.status >= 200 && response.status < 300) {
         return response?.data?.recordset;
@@ -254,16 +254,18 @@ export const createZakaz = createAsyncThunk(
 );
 
 /////// toTakeSchedule
+/////// беру данные всех мастеров определенного филиала
 export const toTakeSchedule = createAsyncThunk(
   "toTakeSchedule",
-  async function (id, { dispatch, rejectWithValue }) {
+  async function (props, { dispatch, rejectWithValue }) {
+    const { filial, dayOfWeekText, date } = props;
     try {
       const response = await axios({
         method: "GET",
-        url: `${REACT_APP_API_URL}/everySchedule?id=${id}`,
+        url: `${REACT_APP_API_URL}/everySchedule?filial=${filial}&dayOfWeekText=${dayOfWeekText}&date=${date}`,
       });
       if (response.status >= 200 && response.status < 300) {
-        return response?.data?.recordset;
+        return response?.data;
       } else {
         throw Error(`Error: ${response.status}`);
       }
@@ -278,10 +280,7 @@ export const toTakeCheckTime = createAsyncThunk(
   "toTakeCheckTime",
   async function (info, { dispatch, rejectWithValue }) {
     try {
-      const response = await axios({
-        method: "GET",
-        url: `${REACT_APP_API_URL}/checkTime`,
-      });
+      const response = await axios(`${REACT_APP_API_URL}/checkTime`);
       if (response.status >= 200 && response.status < 300) {
         return response?.data?.recordset;
       } else {
@@ -360,7 +359,6 @@ const requestSlice = createSlice({
     builder.addCase(takeMasters.fulfilled, (state, action) => {
       state.preloader = false;
       state.everyFilial = action.payload?.every;
-      state.listMasters = action?.payload?.list;
     });
     builder.addCase(takeMasters.rejected, (state, action) => {
       state.error = action.payload;
@@ -455,7 +453,7 @@ const requestSlice = createSlice({
     ////////
     builder.addCase(toTakeSchedule.fulfilled, (state, action) => {
       state.preloader = false;
-      state.listSchedule = action?.payload;
+      state.listMasters = action?.payload;
     });
     builder.addCase(toTakeSchedule.rejected, (state, action) => {
       state.error = action.payload;

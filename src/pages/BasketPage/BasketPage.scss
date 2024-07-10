@@ -1,7 +1,7 @@
 .basketPage {
-  padding: 0px 0px 20px 0;
+  padding: 20px 0px 20px 0;
   background: #fff;
-  border-radius: 0 0 20px 20px;
+  border-radius: 20px;
   &__inner {
     .mainTitleBasket {
       display: flex;
@@ -43,6 +43,7 @@
           border-radius: 50%;
           img {
             border-radius: 50%;
+            object-fit: cover;
           }
           .moreImg {
             background: #e5e3e3;

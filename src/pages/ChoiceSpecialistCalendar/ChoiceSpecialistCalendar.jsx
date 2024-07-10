@@ -16,7 +16,7 @@ import {
 const ChoiceSpecialistCalendar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { date, id } = useParams();
   const { listMasters } = useSelector((state) => state.requestSlice);
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
@@ -24,9 +24,7 @@ const ChoiceSpecialistCalendar = () => {
 
   const idMaster = basketUserCopy?.master?.codeid;
 
-  const clickComents = (id) => {
-    navigate(`/com/${id}`);
-  };
+  const clickComents = (id) => navigate(`/com/${id}`);
 
   const clickSpec = (obj) => {
     if (idMaster === obj?.codeid) {
@@ -57,10 +55,9 @@ const ChoiceSpecialistCalendar = () => {
         service: basketUserCopy?.service || basketUser?.service,
       })
     );
-    navigate(`/basket/${id}`);
+    // navigate(`/basket/${id}`);
   };
 
-  console.log(basketUserCopy, "basketUserCopy");
   return (
     <div className="spec more">
       <div className="containerMini">

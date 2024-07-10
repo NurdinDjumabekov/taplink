@@ -1,42 +1,32 @@
+//////// hooks
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changeListBtns } from "../../store/reducers/stateSlice";
-import {
-  changeBasketUser,
-  changeBasketUserCopy,
-  changeTypeLookSevices,
-} from "../../store/reducers/saveDataSlice";
-import "./TypesChoice.scss";
-import arrow from "../../assets/icons/arrow.svg";
-import choiceService from "../../assets/icons/choiceService.svg";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+/////// fns
+import { changeBasketUser } from "../../store/reducers/saveDataSlice";
+import { changeBasketUserCopy } from "../../store/reducers/saveDataSlice";
+
+/////// imgs
 import choiceDate from "../../assets/icons/choiceDate.svg";
 import choicesSpec from "../../assets/icons/choicesSpec.svg";
-import { useNavigate, useParams } from "react-router-dom";
+
+/////// scss
+import "./TypesChoice.scss";
+import { getNowDate } from "../../helpers/getNowDate";
+import { daysOfWeek } from "../../helpers/dataArr";
 
 const TypesNav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { typeLookSevices } = useSelector((state) => state.saveDataSlice);
-  const { listBtns } = useSelector((state) => state.stateSlice);
+  const today = new Date();
+  const dayWeekNum = today.getDay();
+  const dayOfWeekText = daysOfWeek?.[dayWeekNum];
 
-  // console.log(typeLookSevices, 'typeLookSevices');
-
-  const clickBtn = (codeid, link, link2) => {
-    dispatch(changeTypeLookSevices(codeid));
-    const newData = listBtns.map((button) => {
-      return {
-        ...button,
-        bool: codeid === button.id,
-      };
-    });
-    dispatch(changeListBtns(newData));
-    navigate(`/${link}/${id}${link2 || +link2 === 0 ? `/${link2}` : ""}`);
-    dispatch(changeBasketUserCopy({ master: {}, service: [] }));
-  };
-
-  const arrImg = [choicesSpec, choiceDate, choiceService];
+  const navServices = () =>
+    navigate(`/spec/1/${getNowDate()}/${id}/${dayOfWeekText}`);
 
   React.useEffect(() => {
     dispatch(changeBasketUserCopy({ master: {}, service: [] }));
@@ -44,12 +34,11 @@ const TypesNav = () => {
     ///// очищаю данные
   }, []);
 
-  // console.log(listBtns, "listBtns");
   return (
     <div className="typesNav">
       <div className="container">
         <div className="typesNav__inner">
-          {listBtns?.map((i) => (
+          {/* {listBtns?.map((i) => (
             <div key={i.id} onClick={() => clickBtn(i?.id, i?.link, i?.link2)}>
               <div>
                 <img src={arrImg?.[i.id - 1]} alt="" />
@@ -58,7 +47,19 @@ const TypesNav = () => {
                 {i?.title}
               </button>
             </div>
-          ))}
+          ))} */}
+          <div onClick={navServices}>
+            <div>
+              <img src={choicesSpec} alt="choicesSpec" />
+            </div>
+            <button>Выбрать специалиста</button>
+          </div>
+          <div onClick={navServices}>
+            <div>
+              <img src={choiceDate} alt="choiceDate" />
+            </div>
+            <button>Выбрать свою дату</button>
+          </div>
         </div>
       </div>
     </div>

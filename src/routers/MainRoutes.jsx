@@ -1,15 +1,13 @@
 import React from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MainPage from "../pages/MainPage/MainPage";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LookAction from "../pages/LookAction/LookAction";
 import MainLayouts from "../layouts/MainLayouts/MainLayouts";
 import EstabPage from "../pages/EstabPage/EstabPage";
 import Alerts from "../components/Alerts/Alerts";
 import BasketPage from "../pages/BasketPage/BasketPage";
 import CommentsPage from "../pages/CommentsPage/CommentsPage";
-// import DateLook from "../components/DateLook/DateLook";
-// import Certificate from "../pages/Certificate/Certificate";
 import CancellationPage from "../pages/CancellationPage/CancellationPage";
 import ConfirmPage from "../pages/ConfirmPage/ConfirmPage";
 import { Preloader } from "../components/Preloader/Preloader";
@@ -20,11 +18,11 @@ import ChoiceService from "../pages/ChoiceService/ChoiceService";
 import ChoiceDate from "../pages/ChoiceDate/ChoiceDate";
 import ChoiceSpecialistCalendar from "../pages/ChoiceSpecialistCalendar/ChoiceSpecialistCalendar";
 
-const MainRoutes = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
+///// на будущее
+// import DateLook from "../components/DateLook/DateLook";
+// import Certificate from "../pages/Certificate/Certificate";
 
+const MainRoutes = () => {
   const { preloader } = useSelector((state) => state.requestSlice);
 
   React.useEffect(() => {
@@ -40,17 +38,20 @@ const MainRoutes = () => {
           <Route path="/det/:id" element={<EstabPage />} />
           <Route element={<AddresLayouts />}>
             <Route path="/choice/:id" element={<TypesNav />} />
-            {/* ///// */}
+
             <Route
-              path="/spec/:id/:departamentId"
+              path="/spec/:id/:date/:filial/:dayOfWeekText"
               element={<ChoiceSpecialist />}
             />
-            <Route
-              path="/spec_calendar/:id/:departamentId"
+
+            {/*<Route
+              path="/spec_calendar/:date"
               element={<ChoiceSpecialistCalendar />}
             />
-            <Route path="/date/:id" element={<ChoiceDate />} />
+            <Route path="/date/:id" element={<ChoiceDate />} /> */}
+
             <Route path="/service/:id/:serviceId" element={<ChoiceService />} />
+
             <Route path="/basket/:id" element={<BasketPage />} />
           </Route>
           <Route path="/com/:id" element={<CommentsPage />} />

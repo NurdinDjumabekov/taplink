@@ -92,7 +92,7 @@ const SendOrders = ({ lookSend, setLookSend }) => {
           <h4>Введите данные</h4>
           <InputMask
             mask="+999(999)99-99-99"
-            placeholder="+996(___)__-__-__"
+            placeholder="+996(___)______"
             name="number"
             onChange={changeInput}
             required
@@ -111,7 +111,6 @@ const SendOrders = ({ lookSend, setLookSend }) => {
             placeholder="Комментарий к записи"
             value={dataUser.more_info}
             onChange={changeInput}
-            required
           ></textarea>
           <div
             className="warn"

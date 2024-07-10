@@ -25,20 +25,15 @@ const ChoiceService = () => {
   const addBasket = (obj) => {
     const isServiceInBasket = basketUserCopy?.service?.some(
       /// проверка есть ли id, если есть то не добавлять
-      (i) => i?.codeid === obj?.codeid
+      (i) => i?.codeid == obj?.codeid
     );
 
     if (isServiceInBasket) {
       dispatch(deleteBasketServiceCopy(obj?.codeid));
     } else {
       if (basketUserCopy?.service?.length === 3) {
-        dispatch(
-          changeAlertText({
-            text: "Вы за раз можете выбрать не больше 3х услуг",
-            backColor: "#008899",
-            state: true,
-          })
-        );
+        const text = "Вы за раз можете выбрать не больше 3х услуг";
+        dispatch(changeAlertText({ text, backColor: "#008899", state: true }));
       } else {
         dispatch(addBasketServiceCopy(obj));
       }
@@ -62,15 +57,11 @@ const ChoiceService = () => {
     } else {
       navigate(`/spec/${id}/${basketUserCopy?.service?.[0]?.code_department}`);
     }
-    // dispatch(changeBasketUserCopy({ master: {}, service: [] }));
   };
 
   React.useEffect(() => {
-    dispatch(takeListService({ id: serviceId || 0 }));
+    dispatch(takeListService({ id: serviceId }));
   }, []);
-
-  console.log(listService, "listService");
-  // console.log(basketUserCopy, "basketUserCopy");
 
   return (
     <div className="serviceChoice">
@@ -109,7 +100,7 @@ const ChoiceService = () => {
 
         {basketUserCopy?.service?.length !== 0 && (
           <button className="zakaz" onClick={addBasketZakaz}>
-            Перейти к заказу
+            Записаться
           </button>
         )}
       </div>
