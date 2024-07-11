@@ -10,7 +10,5 @@ export const dateFormat = (inputDateTime, type) => {
   const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
   const formattedDate = `${day}.${month}.${dateObject.getFullYear()}`;
 
-  console.log(formattedDate);
-
   return type === "time" ? formattedTime : formattedDate;
 };

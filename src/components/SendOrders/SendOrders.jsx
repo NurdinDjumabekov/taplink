@@ -1,17 +1,27 @@
 import React from "react";
-import Modals from "../Modals/Modals";
 import InputMask from "react-input-mask";
-import "./SendOrders.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDataUser } from "../../store/reducers/inputSlice";
+import { useNavigate } from "react-router-dom";
+
+///// scss
+import "./SendOrders.scss";
+
+///// imgs
 import like from "../../assets/icons/goodSend.svg";
-import { addSumTimes } from "../../helpers/addSumTimes";
+
+/////// fns
+import { changeDataUser } from "../../store/reducers/inputSlice";
 import { createZakaz } from "../../store/reducers/requestSlice";
-import { transformNumber } from "../../helpers/transformNumber";
 import { changeAlertText } from "../../store/reducers/stateSlice";
 
-const SendOrders = ({ lookSend, setLookSend }) => {
+////// helpers
+import { transformNumber } from "../../helpers/transformNumber";
+import { addMinutesToTime, transformDate } from "../../helpers/transformDate";
+
+const SendOrders = ({}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { dataUser } = useSelector((state) => state.inputSlice);
   const { basketUser } = useSelector((state) => state.saveDataSlice);
 
@@ -40,51 +50,45 @@ const SendOrders = ({ lookSend, setLookSend }) => {
       transformNumber(dataUser?.number)
     );
     if (isValidPhoneNumber) {
-      const formattedDateFrom = `${basketUser?.master?.[0]?.date}${" "}${
-        basketUser?.master?.[0]?.time
-      }:00`;
+      const { date, time } = basketUser?.master?.[0];
 
-      const totalMinutes =
-        timeToMinutes(basketUser?.master?.[0]?.time) + /// время 12:00
-        parseInt(basketUser?.service?.[0]?.timeBusy || "0") + // тут 60 (в минутах)
-        parseInt(basketUser?.service?.[1]?.timeBusy || "0") + // тут 60 (в минутах)
-        parseInt(basketUser?.service?.[2]?.timeBusy || "0"); // тут 60 (в минутах)
-      // console.log(minutesToTime(totalMinutes));
+      const allMinutes = basketUser?.service?.reduce((acc, obj) => {
+        const timeBusy =
+          obj?.timeBusy && !isNaN(obj?.timeBusy) && obj?.timeBusy > 0
+            ? obj?.timeBusy
+            : 15;
+        return acc + timeBusy;
+      }, 0);
 
-      const formattedDateTo = `${
-        basketUser?.master?.[0]?.date
-      }${" "}${minutesToTime(totalMinutes)}:00`;
+      const date_from = `${date}${" "}${transformDate(time)}:00`;
+      const date_to = `${date}${" "}${addMinutesToTime(
+        transformDate(time),
+        allMinutes
+      )}:00`;
 
       const data = {
-        fio: dataUser.name,
-        phone: transformNumber(dataUser.number),
-        date_from: formattedDateFrom,
-        date_to: formattedDateTo,
+        fio: dataUser?.name,
+        phone: transformNumber(dataUser?.number),
+        date_from,
+        date_to,
         code_department: basketUser?.service?.[0]?.code_department,
-        code_doctor: basketUser?.master?.[0]?.codeid,
+        code_doctor: basketUser?.master?.[0]?.code_doctor,
         arr: [...basketUser?.service],
         comment: dataUser?.more_info,
       };
-      dispatch(createZakaz(data));
 
-      // console.log(dataUser, "dataUser");
-      // console.log(basketUser, "basketUser");
-      // console.log(data, "data");
+      dispatch(createZakaz({ data, navigate }));
     } else {
       dispatch(
         changeAlertText({
           text: "Введите правильный номер телефона",
-          backColor: "#ab89bce0",
+          backColor: "#008899",
           state: true,
         })
       );
     }
   };
 
-  // console.log(dataUser, "dataUser");
-  // console.log(basketUser, "basketUser");
-  /// addSumTimes
-  // delete
   return (
     <div className="sendOrders">
       <div className="containerMini">
@@ -153,4 +157,3 @@ const minutesToTime = (totalMinutes) => {
     "0"
   )}`;
 };
-

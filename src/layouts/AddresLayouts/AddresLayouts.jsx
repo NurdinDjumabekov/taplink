@@ -19,10 +19,10 @@ const AddresLayouts = () => {
   const dispatch = useDispatch();
   const { everyFilial } = useSelector((state) => state.requestSlice);
 
-  const { id, departamentId } = useParams();
+  const { filial, departamentId } = useParams();
 
   useEffect(() => {
-    dispatch(takeMasters({ id, depId: departamentId || 0 })); /// беру данные филиала и мастеров
+    dispatch(takeMasters({ id: filial, depId: 0 })); /// беру данные филиала и мастеров
   }, [departamentId]);
 
   const isOtherPage =

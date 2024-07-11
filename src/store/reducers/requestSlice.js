@@ -126,17 +126,16 @@ export const takeTypesService = createAsyncThunk(
 );
 
 /////// takeListService
+//////// для списка услуг каждого мастера
 export const takeListService = createAsyncThunk(
   "takeListService",
-  async function (info, { rejectWithValue }) {
-    const { id } = info;
+  async function (id_master, { rejectWithValue }) {
     try {
-      const response = await axios({
-        method: "GET",
-        url: `${REACT_APP_API_URL}/service?id=${id}`,
-      });
+      const url = `${REACT_APP_API_URL}/service?id_master=${id_master}`;
+      const response = await axios(url);
+
       if (response.status >= 200 && response.status < 300) {
-        return response?.data?.recordset;
+        return response?.data;
       } else {
         throw Error(`Error: ${response.status}`);
       }
@@ -224,12 +223,12 @@ export const confirmZakazBD = createAsyncThunk(
 /////// createZakaz
 export const createZakaz = createAsyncThunk(
   "createZakaz",
-  async function (info, { dispatch, rejectWithValue }) {
+  async function ({ data, navigate }, { dispatch, rejectWithValue }) {
     try {
       const response = await axios({
         method: "POST",
         url: `${REACT_APP_API_URL}/create`,
-        data: { ...info },
+        data,
       });
       if (response.status >= 200 && response.status < 300) {
         dispatch(
@@ -240,10 +239,10 @@ export const createZakaz = createAsyncThunk(
           })
         );
         setTimeout(() => {
+          navigate("/");
           localStorage.clear();
-          window.location.reload();
         }, 2000);
-        // return response?.data?.recordset;
+        return response?.data?.recordset;
       } else {
         throw Error(`Error: ${response.status}`);
       }
@@ -258,11 +257,11 @@ export const createZakaz = createAsyncThunk(
 export const toTakeSchedule = createAsyncThunk(
   "toTakeSchedule",
   async function (props, { dispatch, rejectWithValue }) {
-    const { filial, dayOfWeekText, date } = props;
+    const { filial, dayOfWeek, date } = props;
     try {
       const response = await axios({
         method: "GET",
-        url: `${REACT_APP_API_URL}/everySchedule?filial=${filial}&dayOfWeekText=${dayOfWeekText}&date=${date}`,
+        url: `${REACT_APP_API_URL}/everySchedule?filial=${filial}&dayOfWeek=${dayOfWeek}&date=${date}`,
       });
       if (response.status >= 200 && response.status < 300) {
         return response?.data;

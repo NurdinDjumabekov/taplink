@@ -2,48 +2,38 @@ import React, { useState } from "react";
 import "./BasketPage.scss";
 import "./BasketPage.scss";
 import { useDispatch, useSelector } from "react-redux";
+
+//////// helpers
 import { renderStars } from "../../helpers/renderStars";
+import { dateFormat } from "../../helpers/dateFormat";
+import { convertTime } from "../../helpers/convertTime";
+
+/////// assets
 import dateImg from "../../assets/icons/choiceDate.svg";
 import star from "../../assets/icons/star.svg";
 import edit from "../../assets/icons/edit.svg";
 import del from "../../assets/icons/delBtn.svg";
-import { convertTime } from "../../helpers/convertTime";
-import {
-  deleteBasketService,
-  changeTypeLookSevices,
-} from "../../store/reducers/saveDataSlice";
-import { changeAlertText } from "../../store/reducers/stateSlice";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SendOrders from "../../components/SendOrders/SendOrders";
-import { createZakaz } from "../../store/reducers/requestSlice";
 import imgAlt from "../../assets/image/masterAlt.jpg";
-import { dateFormat } from "../../helpers/dateFormat";
+import { transformDate } from "../../helpers/transformDate";
 
 const BasketPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
 
-  const { basketUser, temporaryIdFilial } = useSelector(
-    (state) => state.saveDataSlice
-  );
-  const { summOrders } = useSelector((state) => state.stateSlice);
+  const { basketUser } = useSelector((state) => state.saveDataSlice);
 
-  const editMaster = () => {
-    navigate(`/spec/${id}/${basketUser?.service?.[0]?.code_department || 0}`);
-  };
+  const { filial, date, dayOfWeek, code_doctor } = basketUser?.master?.[0];
 
-  const editServise = () => {
-    navigate(`/service/${id}/${basketUser?.master?.[0]?.codeid || 0}`);
-  };
+  const editMaster = () => navigate(`/spec/${filial}/${date}/${dayOfWeek}`);
+
+  const editServise = () => navigate(`/service/${filial}/${code_doctor}`);
 
   const clearBasket = () => {
     navigate("/");
     localStorage.clear();
     window.location.reload();
   };
-
-  // console.log(basketUser, "basketUser");
 
   return (
     <>
@@ -103,7 +93,7 @@ const BasketPage = () => {
                             {dateFormat(basketUser?.master?.[0]?.date, "date")})
                           </span>
                         </div>
-                        <h4>{basketUser?.master?.[0]?.time}</h4>
+                        <h4>{transformDate(basketUser?.master?.[0]?.time)}</h4>
                       </div>
                     </div>
                     <button className="editBtn" onClick={editMaster}>

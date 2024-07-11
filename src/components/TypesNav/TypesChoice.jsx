@@ -19,14 +19,16 @@ import { daysOfWeek } from "../../helpers/dataArr";
 const TypesNav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { filial } = useParams();
 
   const today = new Date();
   const dayWeekNum = today.getDay();
-  const dayOfWeekText = daysOfWeek?.[dayWeekNum];
+  const dayOfWeek = daysOfWeek?.[dayWeekNum];
 
   const navServices = () =>
-    navigate(`/spec/1/${getNowDate()}/${id}/${dayOfWeekText}`);
+    navigate(`/spec/${filial}/${getNowDate()}/${dayOfWeek}`);
+
+  const navDate = () => navigate(`/date/${filial}`);
 
   React.useEffect(() => {
     dispatch(changeBasketUserCopy({ master: {}, service: [] }));
@@ -38,23 +40,13 @@ const TypesNav = () => {
     <div className="typesNav">
       <div className="container">
         <div className="typesNav__inner">
-          {/* {listBtns?.map((i) => (
-            <div key={i.id} onClick={() => clickBtn(i?.id, i?.link, i?.link2)}>
-              <div>
-                <img src={arrImg?.[i.id - 1]} alt="" />
-              </div>
-              <button className={i?.bool ? "activeBtnChioce" : ""}>
-                {i?.title}
-              </button>
-            </div>
-          ))} */}
           <div onClick={navServices}>
             <div>
               <img src={choicesSpec} alt="choicesSpec" />
             </div>
             <button>Выбрать специалиста</button>
           </div>
-          <div onClick={navServices}>
+          <div onClick={navDate}>
             <div>
               <img src={choiceDate} alt="choiceDate" />
             </div>

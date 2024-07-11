@@ -1,20 +1,25 @@
+////// hooks
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./ChoiceService.scss";
-import {
-  addBasketServiceCopy,
-  changeBasketUser,
-  deleteBasketServiceCopy,
-} from "../../store/reducers/saveDataSlice";
-import { changeAlertText } from "../../store/reducers/stateSlice";
 import { useNavigate, useParams } from "react-router-dom";
+
+////// scss
+import "./ChoiceService.scss";
+
+////// store
+import { addBasketServiceCopy } from "../../store/reducers/saveDataSlice";
+import { changeBasketUser } from "../../store/reducers/saveDataSlice";
+import { deleteBasketServiceCopy } from "../../store/reducers/saveDataSlice";
+import { changeAlertText } from "../../store/reducers/stateSlice";
 import { takeListService } from "../../store/reducers/requestSlice";
+
+/////// helpers
 import { convertTime } from "../../helpers/convertTime";
 
 const ChoiceService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id, serviceId } = useParams();
+  const { id_master, filial } = useParams();
 
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
@@ -41,7 +46,7 @@ const ChoiceService = () => {
   };
 
   const addBasketZakaz = () => {
-    if (basketUserCopy?.master?.fio && basketUserCopy?.master?.date) {
+    if (basketUserCopy?.master?.date && basketUserCopy?.service?.length !== 0) {
       dispatch(
         changeBasketUser({
           ...basketUser,
@@ -49,18 +54,12 @@ const ChoiceService = () => {
           service: basketUserCopy?.service || basketUser?.service,
         })
       );
-      navigate(`/basket/${id}`);
-    } else if (basketUserCopy?.master?.time && basketUserCopy?.master?.date) {
-      navigate(
-        `/spec_calendar/${id}/${basketUserCopy?.service?.[0]?.code_department}`
-      );
-    } else {
-      navigate(`/spec/${id}/${basketUserCopy?.service?.[0]?.code_department}`);
+      navigate(`/basket/${filial}`);
     }
   };
 
   React.useEffect(() => {
-    dispatch(takeListService({ id: serviceId }));
+    dispatch(takeListService(id_master));
   }, []);
 
   return (

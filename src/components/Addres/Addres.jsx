@@ -21,8 +21,6 @@ const Addres = () => {
     dispatch(changeTemporaryIdFilial(codeid)); // для временного хранения id филиала, т.к. при откате с корзины надо нужен id филиала, где есть мастер мастера
   };
 
-  console.log(listFilials, "listFilials");
-
   return (
     <div className="addres">
       <div className="container">

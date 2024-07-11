@@ -1,30 +1,43 @@
+////// hooks
 import React, { useState } from "react";
-import Calendar from "react-calendar";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+////// css
 import "react-calendar/dist/Calendar.css";
 import "./ChoiceDate.scss";
-import { useDispatch, useSelector } from "react-redux";
+
+/////// helpers
 import { daysOfWeek } from "../../helpers/dataArr";
-import { transformDate } from "../../helpers/transformDate";
+import { formatDateTime, transformDate } from "../../helpers/transformDate";
+
+/////// fns
 import { changeListTime } from "../../store/reducers/stateSlice";
 import { changeBasketUserCopy } from "../../store/reducers/saveDataSlice";
-import { useNavigate, useParams } from "react-router-dom";
+
+/////// components
+import Calendar from "react-calendar";
 
 const ChoiceDate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+
+  const { filial } = useParams();
+
   const [date, setDate] = useState(new Date());
   const currentDate = new Date();
   const yesterday = currentDate.setDate(currentDate.getDate() - 1);
 
-  const { listTimeForCalendare } = useSelector((state) => state.stateSlice);
   const { basketUserCopy } = useSelector((state) => state.saveDataSlice);
   const { listSchedule } = useSelector((state) => state.requestSlice);
-  const timeMaster = basketUserCopy?.master?.time;
 
   const onChange = (newDate) => setDate(newDate);
 
   const tileDisabled = ({ date }) => date < yesterday;
+
+  ///// определяю день недели
+  const dayWeekNum = date.getDay();
+  const dayOfWeek = daysOfWeek?.[dayWeekNum];
 
   const onClickDay = (value) => {
     const dayOfWeek = value.getDay();
@@ -82,28 +95,8 @@ const ChoiceDate = () => {
     }
   };
 
-  const choiceTime = (time) => {
-    if (time === timeMaster) {
-      dispatch(
-        changeBasketUserCopy({
-          service: [],
-          master: { date: basketUserCopy?.master?.date },
-        })
-      ); /// удаляю объект при повторном нажатии
-    } else {
-      // dispatch(copyAddBasketMaster({ time, date: "today" })); /// добавляю объект
-
-      dispatch(
-        changeBasketUserCopy({
-          service: [],
-          master: { ...basketUserCopy?.master, time },
-        })
-      );
-    }
-  };
-
-  const nextFnService = () =>
-    navigate(`/spec_calendar/${basketUserCopy?.master?.date}`);
+  const nextService = () =>
+    navigate(`/spec/${filial}/${formatDateTime(date)}/${dayOfWeek}`);
 
   React.useEffect(() => {
     if (listSchedule.length > 0) {
@@ -138,21 +131,8 @@ const ChoiceDate = () => {
           onClickDay={onClickDay}
         />
         <div className="containerMini">
-          {/* <div className="dateChoice__times">
-            <div className="listtime">
-              {listTimeForCalendare?.map((i, index) => (
-                <button
-                  key={index}
-                  onClick={() => choiceTime(i)}
-                  className={timeMaster == i ? "activeTime" : ""}
-                >
-                  {i}
-                </button>
-              ))}
-            </div>
-          </div> */}
           {basketUserCopy?.master?.date && (
-            <button className="zakaz" onClick={nextFnService}>
+            <button className="zakaz" onClick={nextService}>
               Перейти к услугам
             </button>
           )}

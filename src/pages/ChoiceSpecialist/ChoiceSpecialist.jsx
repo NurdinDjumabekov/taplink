@@ -22,7 +22,7 @@ import { toTakeSchedule } from "../../store/reducers/requestSlice";
 const ChoiceSpecialist = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id, date, filial, dayOfWeekText } = useParams();
+  const { date, filial, dayOfWeek } = useParams();
 
   const { listMasters } = useSelector((state) => state.requestSlice);
   const { basketUserCopy } = useSelector((state) => state.saveDataSlice);
@@ -33,21 +33,24 @@ const ChoiceSpecialist = () => {
 
   const clickComents = (id) => navigate(`/com/${id}`);
 
-  const choiceTime = (date, time, code_doctor) => {
-    if (idMaster == code_doctor && time == timeMaster) {
+  const choiceTime = (item, spec) => {
+    const { time, date } = item;
+
+    if (idMaster == spec?.code_doctor && time == timeMaster) {
       dispatch(copyAddBasketMaster({}));
       /// удаляю объект при повторном нажатии
     } else {
-      dispatch(copyAddBasketMaster({ time, date, code_doctor }));
+      dispatch(copyAddBasketMaster({ time, date, ...spec, dayOfWeek, filial }));
       /// добавляю объект
     }
   };
 
-  const nextFnService = () => navigate(`/service/${id}/${idMaster}`);
+  const nextFnService = () => navigate(`/service/${filial}/${idMaster}`);
 
   useEffect(() => {
-    dispatch(toTakeSchedule({ filial, dayOfWeekText, date }));
+    dispatch(toTakeSchedule({ filial, dayOfWeek, date }));
   }, []);
+
   return (
     <div className="spec">
       <div className="containerMini">
@@ -105,9 +108,7 @@ const ChoiceSpecialist = () => {
                     {spec?.listTimes?.map((item, index) => (
                       <button
                         key={index}
-                        onClick={() =>
-                          choiceTime(item?.date, item?.time, spec?.code_doctor)
-                        }
+                        onClick={() => choiceTime(item, spec)}
                         className={
                           idMaster == spec?.code_doctor &&
                           timeMaster === item?.time
@@ -119,7 +120,7 @@ const ChoiceSpecialist = () => {
                       </button>
                     ))}
                   </div>
-                  <i onClick={() => navigate(`/date/${id}`)}>
+                  <i onClick={() => navigate(`/date/${filial}`)}>
                     Выбрать другое время
                   </i>
                   {Object.keys(basketUserCopy?.master).length !== 0 && (
@@ -138,3 +139,69 @@ const ChoiceSpecialist = () => {
 };
 
 export default ChoiceSpecialist;
+
+// {listMasters?.map(
+//   (spec) =>
+//     spec?.listTimes?.length > 0 && (
+//       <div key={spec?.codeid} className="spec__every">
+//         <div className="spec__content">
+//           <div className="spec__content__more">
+//             <div className="mainLogo">
+//               <img
+//                 src={spec?.logo ? spec?.logo : imgAlt}
+//                 alt="мастер"
+//               />
+//             </div>
+//             <div className="mainText">
+//               <p>
+//                 {spec?.schedule?.map((con, ind) => (
+//                   <span key={ind}>
+//                     {con}
+//                     {ind !== spec.schedule.length - 1 && ", "}
+//                   </span>
+//                 ))}
+//               </p>
+//               <h5>{spec.fio}</h5>
+//               <div className="mainText__rating">
+//                 <div className="star">
+//                   {renderStars(spec?.rating, star)}
+//                 </div>
+//                 <span>{spec?.countSchel} отзывов</span>
+//               </div>
+//             </div>
+//           </div>
+//           <div
+//             className="moreComment"
+//             onClick={() => clickComents(spec?.code_doctor)}
+//           >
+//             <img src={moreInfo} alt="moreInfo" />
+//           </div>
+//         </div>
+//         <p>Ближайшее время для записи на сегодня: </p>
+//         <div className="listtime">
+//           {spec?.listTimes?.map((item, index) => (
+//             <button
+//               key={index}
+//               onClick={() => choiceTime(item, spec)}
+//               className={
+//                 idMaster == spec?.code_doctor &&
+//                 timeMaster === item?.time
+//                   ? "activeTime"
+//                   : ""
+//               }
+//             >
+//               {transformDate(item?.time)}
+//             </button>
+//           ))}
+//         </div>
+//         <i onClick={() => navigate(`/date/${filial}`)}>
+//           Выбрать другое время
+//         </i>
+//         {Object.keys(basketUserCopy?.master).length !== 0 && (
+//           <button className="zakaz" onClick={nextFnService}>
+//             Перейти к услугам
+//           </button>
+//         )}
+//       </div>
+//     )
+// )}

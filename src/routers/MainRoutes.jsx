@@ -37,22 +37,27 @@ const MainRoutes = () => {
           <Route path="/zap" element={<LookAction />} />
           <Route path="/det/:id" element={<EstabPage />} />
           <Route element={<AddresLayouts />}>
-            <Route path="/choice/:id" element={<TypesNav />} />
+            <Route path="/choice/:filial" element={<TypesNav />} />
 
             <Route
-              path="/spec/:id/:date/:filial/:dayOfWeekText"
+              path="/spec/:filial/:date/:dayOfWeek"
               element={<ChoiceSpecialist />}
+            />
+
+            <Route path="/date/:filial" element={<ChoiceDate />} />
+
+            <Route
+              path="/service/:filial/:id_master"
+              element={<ChoiceService />}
             />
 
             {/*<Route
               path="/spec_calendar/:date"
               element={<ChoiceSpecialistCalendar />}
             />
-            <Route path="/date/:id" element={<ChoiceDate />} /> */}
+             */}
 
-            <Route path="/service/:id/:serviceId" element={<ChoiceService />} />
-
-            <Route path="/basket/:id" element={<BasketPage />} />
+            <Route path="/basket/:filial" element={<BasketPage />} />
           </Route>
           <Route path="/com/:id" element={<CommentsPage />} />
           {/* <Route path="/cer" element={<Certificate />} /> */}
