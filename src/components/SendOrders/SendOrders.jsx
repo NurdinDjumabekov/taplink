@@ -71,7 +71,7 @@ const SendOrders = ({}) => {
         phone: transformNumber(dataUser?.number),
         date_from,
         date_to,
-        code_department: basketUser?.service?.[0]?.code_department,
+        code_department: basketUser?.master?.[0]?.code_department?.[0],
         code_doctor: basketUser?.master?.[0]?.code_doctor,
         arr: [...basketUser?.service],
         comment: dataUser?.more_info,
@@ -88,6 +88,8 @@ const SendOrders = ({}) => {
       );
     }
   };
+
+  console.log(basketUser, "basketUser");
 
   return (
     <div className="sendOrders">

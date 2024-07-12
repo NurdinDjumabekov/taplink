@@ -47,7 +47,7 @@ const MainRoutes = () => {
             <Route path="/date/:filial" element={<ChoiceDate />} />
 
             <Route
-              path="/service/:filial/:id_master"
+              path="/service/:filial/:id_master/:department"
               element={<ChoiceService />}
             />
 

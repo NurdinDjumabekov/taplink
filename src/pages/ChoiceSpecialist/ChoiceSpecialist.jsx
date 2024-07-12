@@ -29,6 +29,7 @@ const ChoiceSpecialist = () => {
 
   const idMaster = basketUserCopy?.master?.code_doctor;
   const timeMaster = basketUserCopy?.master?.time;
+  const department = basketUserCopy?.master?.code_department?.[0];
   // codeid - мастера, id - времени
 
   const clickComents = (id) => navigate(`/com/${id}`);
@@ -40,12 +41,13 @@ const ChoiceSpecialist = () => {
       dispatch(copyAddBasketMaster({}));
       /// удаляю объект при повторном нажатии
     } else {
-      dispatch(copyAddBasketMaster({ time, date, ...spec, dayOfWeek, filial }));
+      dispatch(copyAddBasketMaster({ time, date, dayOfWeek, filial, ...spec }));
       /// добавляю объект
     }
   };
 
-  const nextFnService = () => navigate(`/service/${filial}/${idMaster}`);
+  const nextFnService = () =>
+    navigate(`/service/${filial}/${idMaster}/${department}`);
 
   useEffect(() => {
     dispatch(toTakeSchedule({ filial, dayOfWeek, date }));

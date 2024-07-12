@@ -19,7 +19,7 @@ import { convertTime } from "../../helpers/convertTime";
 const ChoiceService = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id_master, filial } = useParams();
+  const { id_master, filial, department } = useParams();
 
   const { basketUserCopy, basketUser } = useSelector(
     (state) => state.saveDataSlice
@@ -59,7 +59,7 @@ const ChoiceService = () => {
   };
 
   React.useEffect(() => {
-    dispatch(takeListService(id_master));
+    dispatch(takeListService({ id_master, department }));
   }, []);
 
   return (

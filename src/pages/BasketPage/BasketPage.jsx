@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+
+//////// scss
 import "./BasketPage.scss";
-import "./BasketPage.scss";
-import { useDispatch, useSelector } from "react-redux";
 
 //////// helpers
 import { renderStars } from "../../helpers/renderStars";
 import { dateFormat } from "../../helpers/dateFormat";
+import { transformDate } from "../../helpers/transformDate";
 import { convertTime } from "../../helpers/convertTime";
 
 /////// assets
@@ -13,21 +16,23 @@ import dateImg from "../../assets/icons/choiceDate.svg";
 import star from "../../assets/icons/star.svg";
 import edit from "../../assets/icons/edit.svg";
 import del from "../../assets/icons/delBtn.svg";
-import { NavLink, useNavigate } from "react-router-dom";
-import SendOrders from "../../components/SendOrders/SendOrders";
 import imgAlt from "../../assets/image/masterAlt.jpg";
-import { transformDate } from "../../helpers/transformDate";
+
+//////// components
+import SendOrders from "../../components/SendOrders/SendOrders";
 
 const BasketPage = () => {
   const navigate = useNavigate();
 
   const { basketUser } = useSelector((state) => state.saveDataSlice);
 
-  const { filial, date, dayOfWeek, code_doctor } = basketUser?.master?.[0];
+  const { filial, date, dayOfWeek, code_doctor, code_department } =
+    basketUser?.master?.[0];
 
   const editMaster = () => navigate(`/spec/${filial}/${date}/${dayOfWeek}`);
 
-  const editServise = () => navigate(`/service/${filial}/${code_doctor}`);
+  const editServise = () =>
+    navigate(`/service/${filial}/${code_doctor}/${code_department?.[0]}`);
 
   const clearBasket = () => {
     navigate("/");

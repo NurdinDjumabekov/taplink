@@ -129,9 +129,9 @@ export const takeTypesService = createAsyncThunk(
 //////// для списка услуг каждого мастера
 export const takeListService = createAsyncThunk(
   "takeListService",
-  async function (id_master, { rejectWithValue }) {
+  async function ({ id_master, department }, { rejectWithValue }) {
     try {
-      const url = `${REACT_APP_API_URL}/service?id_master=${id_master}`;
+      const url = `${REACT_APP_API_URL}/service?id_master=${id_master}&department=${department}`;
       const response = await axios(url);
 
       if (response.status >= 200 && response.status < 300) {
@@ -224,6 +224,7 @@ export const confirmZakazBD = createAsyncThunk(
 export const createZakaz = createAsyncThunk(
   "createZakaz",
   async function ({ data, navigate }, { dispatch, rejectWithValue }) {
+    console.log(data, "data");
     try {
       const response = await axios({
         method: "POST",
